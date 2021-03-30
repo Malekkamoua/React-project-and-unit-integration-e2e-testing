@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import "../../assets/css/style.css";
 import MyBoostrap from "../../components/mybootstrap";
+import { Redirect } from "react-router-dom";
 
-const index = () => {
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [logged, setLogged] = useState(false);
+  console.log("email:", email);
+  console.log("password:", password);
+  const connect = (email, password) => {
+    if (email === "s" && password === "s") {
+      setLogged(true);
+    }
+  };
+  if (logged) {
+    return <Redirect to='/register' />;
+  }
   return (
     <div>
       <MyBoostrap />
@@ -26,83 +40,80 @@ const index = () => {
                 </div>
 
                 <div className='card-body'>
-                  <form
-                    method='POST'
-                    action='#'
-                    className='needs-validation'
-                    novalidate=''
-                  >
-                    <div className='form-group'>
-                      <label for='email'>Email</label>
-                      <input
-                        id='email'
-                        type='email'
-                        className='form-control'
-                        name='email'
-                        tabindex='1'
-                        required
-                        autofocus
-                      />
-                      <div className='invalid-feedback'>
-                        Please fill in your email
-                      </div>
+                  <div className='form-group'>
+                    <label for='email'>Email</label>
+                    <input
+                      id='email'
+                      type='email'
+                      className='form-control'
+                      name='email'
+                      tabindex='1'
+                      required
+                      autofocus
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <div className='invalid-feedback'>
+                      Please fill in your email
                     </div>
+                  </div>
 
-                    <div className='form-group'>
-                      <div className='d-block'>
-                        <label for='password' className='control-label'>
-                          Password
-                        </label>
-                        <div className='float-right'>
-                          <a
-                            href='auth-forgot-password.html'
-                            className='text-small'
-                          >
-                            Forgot Password?
-                          </a>
-                        </div>
-                      </div>
-                      <input
-                        id='password'
-                        type='password'
-                        className='form-control'
-                        name='password'
-                        tabindex='2'
-                        required
-                      />
-                      <div className='invalid-feedback'>
-                        please fill in your password
-                      </div>
-                    </div>
-
-                    <div className='form-group'>
-                      <div className='custom-control custom-checkbox'>
-                        <input
-                          type='checkbox'
-                          name='remember'
-                          className='custom-control-input'
-                          tabindex='3'
-                          id='remember-me'
-                        />
-                        <label
-                          className='custom-control-label'
-                          for='remember-me'
+                  <div className='form-group'>
+                    <div className='d-block'>
+                      <label for='password' className='control-label'>
+                        Password
+                      </label>
+                      <div className='float-right'>
+                        <a
+                          href='auth-forgot-password.html'
+                          className='text-small'
                         >
-                          Remember Me
-                        </label>
+                          Forgot Password?
+                        </a>
                       </div>
                     </div>
-
-                    <div className='form-group'>
-                      <button
-                        type='submit'
-                        className='btn btn-primary btn-lg btn-block'
-                        tabindex='4'
-                      >
-                        Login
-                      </button>
+                    <input
+                      id='password'
+                      type='password'
+                      className='form-control'
+                      name='password'
+                      tabindex='2'
+                      required
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div className='invalid-feedback'>
+                      please fill in your password
                     </div>
-                  </form>
+                  </div>
+
+                  <div className='form-group'>
+                    <div className='custom-control custom-checkbox'>
+                      <input
+                        type='checkbox'
+                        name='remember'
+                        className='custom-control-input'
+                        tabindex='3'
+                        id='remember-me'
+                      />
+                      <label className='custom-control-label' for='remember-me'>
+                        Remember Me
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className='form-group'>
+                    <button
+                      type='submit'
+                      className='btn btn-primary btn-lg btn-block'
+                      tabindex='4'
+                      onClick={() => connect(email, password)}
+                    >
+                      Login {email}
+                      {password}
+                    </button>
+                  </div>
+
                   <div className='text-center mt-4 mb-3'>
                     <div className='text-job text-muted'>Login With Social</div>
                   </div>
@@ -133,6 +144,6 @@ const index = () => {
   );
 };
 
-index.propTypes = {};
+Login.propTypes = {};
 
-export default index;
+export default Login;

@@ -1,9 +1,11 @@
 "use strict";
 
-$("#icons li").each(function() {
-  $(this).append('<div class="icon-name">'+ $(this).attr('class') +'</div>');
+$("#icons li").each(function () {
+  $(this).append(
+    '<div className="icon-name">' + $(this).attr("className") + "</div>"
+  );
 });
-$("#icons li").click(function() {
+$("#icons li").click(function () {
   $(".icon-name").fadeOut();
-  $(this).find('.icon-name').fadeIn();
+  $(this).find(".icon-name").fadeIn();
 });

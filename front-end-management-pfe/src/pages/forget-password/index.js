@@ -5,35 +5,35 @@ const ForgetPassword = () => {
   return (
     <div>
       <MyBoostrap />
-      <section class='section'>
-        <div class='container mt-5'>
-          <div class='row'>
-            <div class='col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4'>
-              <div class='login-brand'>
+      <section className='section'>
+        <div className='container mt-5'>
+          <div className='row'>
+            <div className='col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4'>
+              <div className='login-brand'>
                 <img
                   src='../assets/img/stisla-fill.svg'
                   alt='logo'
                   width='100'
-                  class='shadow-light rounded-circle'
+                  className='shadow-light rounded-circle'
                 />
               </div>
 
-              <div class='card card-primary'>
-                <div class='card-header'>
+              <div className='card card-primary'>
+                <div className='card-header'>
                   <h4>Forgot Password</h4>
                 </div>
 
-                <div class='card-body'>
-                  <p class='text-muted'>
+                <div className='card-body'>
+                  <p className='text-muted'>
                     We will send a link to reset your password
                   </p>
                   <form method='POST'>
-                    <div class='form-group'>
+                    <div className='form-group'>
                       <label for='email'>Email</label>
                       <input
                         id='email'
                         type='email'
-                        class='form-control'
+                        className='form-control'
                         name='email'
                         tabindex='1'
                         required
@@ -41,10 +41,10 @@ const ForgetPassword = () => {
                       />
                     </div>
 
-                    <div class='form-group'>
+                    <div className='form-group'>
                       <button
                         type='submit'
-                        class='btn btn-primary btn-lg btn-block'
+                        className='btn btn-primary btn-lg btn-block'
                         tabindex='4'
                       >
                         Forgot Password
@@ -53,7 +53,7 @@ const ForgetPassword = () => {
                   </form>
                 </div>
               </div>
-              <div class='simple-footer'>Copyright &copy; Stisla 2018</div>
+              <div className='simple-footer'>Copyright &copy; Stisla 2018</div>
             </div>
           </div>
         </div>
