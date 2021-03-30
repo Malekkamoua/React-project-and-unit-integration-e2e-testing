@@ -27,7 +27,7 @@ const CreateAccount = () => {
           </div>
 
           <div className="section-body">
-            <h2 className="section-title">Create New Post</h2>
+            <h2 className="section-title">Create New User</h2>
             <p className="section-lead">
               On this page you can create a new post and fill in all fields.
             </p>
