@@ -71,6 +71,9 @@ const Header = () => {
                 Create user <Link to="/create" />{" "}
               </MenuItem>
               <MenuItem icon={<BiCog />}>
+                Create pfe <Link to="/create/pfe" />{" "}
+              </MenuItem>
+              <MenuItem icon={<BiCog />}>
                 Pfe details <Link to="/details/pfe" />{" "}
               </MenuItem>
             </Menu>

@@ -49,6 +49,10 @@ function App() {
           <ListPfe />
         </Route>
 
+        <Route path="/create/pfe">
+          <CreateAccount />
+        </Route>
+
         <Route path="/details/pfe">
           <DetailsPfe />
         </Route>

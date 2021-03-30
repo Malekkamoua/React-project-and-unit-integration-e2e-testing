@@ -2,7 +2,7 @@ import React from "react";
 import MyBoostrap from "../../components/mybootstrap";
 import "../../assets/css/style.css";
 
-const CreateAccount = () => {
+const CreatePfe = () => {
   return (
     <div>
       <MyBoostrap />
@@ -14,7 +14,7 @@ const CreateAccount = () => {
                 <i className="fas fa-arrow-left"></i>
               </a>
             </div>
-            <h1>Create New user</h1>
+            <h1>Create Pfe</h1>
             <div className="section-header-breadcrumb">
               <div className="breadcrumb-item active">
                 <a href="#">Dashboard</a>
@@ -117,6 +117,6 @@ const CreateAccount = () => {
   );
 };
 
-CreateAccount.propTypes = {};
+CreatePfe.propTypes = {};
 
-export default CreateAccount;
+export default CreatePfe;
