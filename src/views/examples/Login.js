@@ -1,21 +1,16 @@
 /*!
-
 =========================================================
 * Argon Dashboard React - v1.2.0
 =========================================================
-
 * Product Page: https://www.creative-tim.com/product/argon-dashboard-react
 * Copyright 2021 Creative Tim (https://www.creative-tim.com)
 * Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
 * Coded by Creative Tim
-
 =========================================================
-
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
 */
-import React from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router";
 
 // reactstrap components
 import {
@@ -32,8 +27,33 @@ import {
   Row,
   Col
 } from "reactstrap";
-
+import api from "../../api";
 const Login = () => {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [loading, setloading] = useState(false);
+  const [logged, setlogged] = useState(false);
+  console.log("email", email, "password:", password);
+  const login = async e => {
+    e.preventDefault();
+    setloading(true);
+    console.log(email, password);
+    try {
+      const result = await api.post("/login", {
+        email: email,
+        password: password
+      });
+      localStorage.setItem("user", JSON.stringify(result.data));
+      console.log("the result ", result);
+      setlogged(true);
+    } catch (e) {
+      console.log(e);
+    }
+    setloading(false);
+  };
+  if (logged) {
+    return <Redirect to="/user-profile" />;
+  }
   return (
     <>
       <Col lg="5" md="7">
@@ -92,6 +112,7 @@ const Login = () => {
                     placeholder="Email"
                     type="email"
                     autoComplete="new-email"
+                    onChange={e => setemail(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
@@ -106,15 +127,19 @@ const Login = () => {
                     placeholder="Password"
                     type="password"
                     autoComplete="new-password"
+                    onChange={e => setpassword(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button
+                  className="my-4"
+                  color="primary"
+                  type="button"
+                  onClick={login}
+                  disabled={loading}
+                >
                   Sign in
-                </Button>
-                <Button className="my-4" color="warning" type="button">
-                  Create account
                 </Button>
               </div>
             </Form>
