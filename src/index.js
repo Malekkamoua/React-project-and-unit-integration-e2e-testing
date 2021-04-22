@@ -19,6 +19,8 @@ import "assets/scss/argon-dashboard-react.scss";
 
 import AdminLayout from "layouts/Admin.js";
 import AuthLayout from "layouts/Auth.js";
+import StudentLayout from "layouts/StudentsLayout";
+import TeacherLayout from "layouts/TeacherLayout";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
@@ -29,9 +31,17 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path="/admin" render={props => <AdminLayout {...props} />} />
-        <Route path="/auth" render={props => <AuthLayout {...props} />} />
-        <Redirect from="/" to="/admin/index" />
+        <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
+        <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
+        <Route
+          path='/student'
+          render={(props) => <StudentLayout {...props} />}
+        />
+        <Route
+          path='/teacher'
+          render={(props) => <TeacherLayout {...props} />}
+        />
+        <Redirect from='/' to='/admin/index' />
       </Switch>
     </BrowserRouter>
   </Provider>,

@@ -22,56 +22,93 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Students from "views/examples/Students.js";
-
-var routes = [
-  {
-    path: "/user-profile",
-    name: "My Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
-    layout: "/admin"
-  },
-  {
-    path: "/teachers",
-    name: "teachers",
-    icon: "ni ni-tv-2 text-primary",
-    component: Teachers,
-    layout: "/admin"
-  },
-  {
-    path: "/students",
-    name: "Students",
-    icon: "ni ni-planet text-blue",
-    component: Students,
-    layout: "/admin"
-  },
-  {
-    path: "/projects",
-    name: "Projects",
-    icon: "ni ni-pin-3 text-orange",
-    component: Projects,
-    layout: "/admin"
-  },
-  {
-    path: "/tables",
-    name: "Form",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Tables,
-    layout: "/admin"
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth"
-  },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    component: Register,
-    layout: "/auth"
-  }
-];
-export default routes;
+//studentRoutes
+var routesOject = {
+  routesTeacher: [
+    {
+      path: "/teacher-profile",
+      name: "My Profile",
+      icon: "ni ni-single-02 text-yellow",
+      component: Profile,
+      layout: "/teacher",
+    },
+    {
+      path: "/listpfe",
+      name: "ListPFE",
+      icon: "ni ni-single-02 text-yellow",
+      component: Teachers,
+      layout: "/teacher",
+    },
+  ],
+  routesStudent: [
+    {
+      path: "/student-profile",
+      name: "My Profile",
+      icon: "ni ni-single-02 text-yellow",
+      component: Profile,
+      layout: "/student",
+    },
+    {
+      path: "/listpfe",
+      name: "ListPFE",
+      icon: "ni ni-single-02 text-yellow",
+      component: Students,
+      layout: "/student",
+    },
+  ],
+  routesAdmin: [
+    //adminroutes
+    {
+      path: "/user-profile",
+      name: "My Profile",
+      icon: "ni ni-single-02 text-yellow",
+      component: Students,
+      layout: "/admin",
+    },
+    {
+      path: "/teachers",
+      name: "teachers",
+      icon: "ni ni-tv-2 text-primary",
+      component: Teachers,
+      layout: "/admin",
+    },
+    {
+      path: "/students",
+      name: "Students",
+      icon: "ni ni-planet text-blue",
+      component: Students,
+      layout: "/admin",
+    },
+    {
+      path: "/projects",
+      name: "Projects",
+      icon: "ni ni-pin-3 text-orange",
+      component: Projects,
+      layout: "/admin",
+    },
+    {
+      path: "/tables",
+      name: "Form",
+      icon: "ni ni-bullet-list-67 text-red",
+      component: Tables,
+      layout: "/admin",
+    },
+  ],
+  routesAuth: [
+    {
+      path: "/login",
+      name: "Login",
+      icon: "ni ni-key-25 text-info",
+      component: Login,
+      layout: "/auth",
+    },
+    {
+      path: "/register",
+      name: "Register",
+      icon: "ni ni-circle-08 text-pink",
+      component: Register,
+      layout: "/auth",
+    },
+  ],
+};
+export default routesOject;

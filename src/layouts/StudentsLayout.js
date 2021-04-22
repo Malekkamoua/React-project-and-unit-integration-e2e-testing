@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React from "react";
 import { useLocation, Route, Switch, Redirect } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -24,25 +24,22 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
-import routes from "../routes";
-const { routesAdmin } = routes;
-const Admin = (props) => {
+import routes from "routes.js";
+const { routesStudent } = routes;
+const StudentLayout = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
   const user = localStorage.getItem("user");
-
   const userObject = JSON.parse(user);
-
-  console.log(userObject);
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routesAdmin) => {
-    return routesAdmin.map((prop, key) => {
-      if (prop.layout === "/admin") {
+  const getRoutes = (routesStudent) => {
+    return routesStudent.map((prop, key) => {
+      if (prop.layout === "/student") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -57,13 +54,13 @@ const Admin = (props) => {
   };
 
   const getBrandText = (path) => {
-    for (let i = 0; i < routesAdmin.length; i++) {
+    for (let i = 0; i < routesStudent.length; i++) {
       if (
         props.location.pathname.indexOf(
-          routesAdmin[i].layout + routesAdmin[i].path
+          routesStudent[i].layout + routesStudent[i].path
         ) !== -1
       ) {
-        return routesAdmin[i].name;
+        return routesStudent[i].name;
       }
     }
     return "Brand";
@@ -73,7 +70,7 @@ const Admin = (props) => {
     <>
       <Sidebar
         {...props}
-        routes={routesAdmin}
+        routes={routesStudent}
         logo={{
           innerLink: "/admin/index",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
@@ -87,7 +84,7 @@ const Admin = (props) => {
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>
-          {getRoutes(routesAdmin)}
+          {getRoutes(routesStudent)}
           <Redirect from='*' to='/admin/index' />
         </Switch>
         <Container fluid>
@@ -98,4 +95,4 @@ const Admin = (props) => {
   );
 };
 
-export default Admin;
+export default StudentLayout;

@@ -25,7 +25,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 import api from "../../api";
 const Login = () => {
@@ -33,18 +33,21 @@ const Login = () => {
   const [password, setpassword] = useState("");
   const [loading, setloading] = useState(false);
   const [logged, setlogged] = useState(false);
+  const [role, setrole] = useState("");
   console.log("email", email, "password:", password);
-  const login = async e => {
+  let result;
+  const login = async (e) => {
     e.preventDefault();
     setloading(true);
     console.log(email, password);
     try {
-      const result = await api.post("/login", {
+      result = await api.post("/login", {
         email: email,
-        password: password
+        password: password,
       });
       localStorage.setItem("user", JSON.stringify(result.data));
       console.log("the result ", result);
+      setrole(result.data.userInformation.role);
       setlogged(true);
     } catch (e) {
       console.log(e);
@@ -52,90 +55,99 @@ const Login = () => {
     setloading(false);
   };
   if (logged) {
-    return <Redirect to="/user-profile" />;
+    console.log(role);
+    if (role === "teacher") {
+      return <Redirect to='/teacher/teacher-profile' />;
+    }
+    if (role === "admin") {
+      return <Redirect to='/teacher/admin-profile' />;
+    }
+    if (role === "student") {
+      return <Redirect to='/teacher/student-profile' />;
+    }
   }
   return (
     <>
-      <Col lg="5" md="7">
-        <Card className="bg-secondary shadow border-0">
-          <CardHeader className="bg-transparent pb-5">
-            <div className="text-muted text-center mt-2 mb-3">
+      <Col lg='5' md='7'>
+        <Card className='bg-secondary shadow border-0'>
+          <CardHeader className='bg-transparent pb-5'>
+            <div className='text-muted text-center mt-2 mb-3'>
               <small>LOGO</small>
             </div>
-            <div className="btn-wrapper text-center">
+            <div className='btn-wrapper text-center'>
               <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
+                className='btn-neutral btn-icon'
+                color='default'
+                href='#pablo'
+                onClick={(e) => e.preventDefault()}
               >
-                <span className="btn-inner--icon">
+                <span className='btn-inner--icon'>
                   <img
-                    alt="..."
+                    alt='...'
                     src={
                       require("../../assets/img/icons/common/github.svg")
                         .default
                     }
                   />
                 </span>
-                <span className="btn-inner--text">Github</span>
+                <span className='btn-inner--text'>Github</span>
               </Button>
               <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={e => e.preventDefault()}
+                className='btn-neutral btn-icon'
+                color='default'
+                href='#pablo'
+                onClick={(e) => e.preventDefault()}
               >
-                <span className="btn-inner--icon">
+                <span className='btn-inner--icon'>
                   <img
-                    alt="..."
+                    alt='...'
                     src={
                       require("../../assets/img/icons/common/google.svg")
                         .default
                     }
                   />
                 </span>
-                <span className="btn-inner--text">Google</span>
+                <span className='btn-inner--text'>Google</span>
               </Button>
             </div>
           </CardHeader>
-          <CardBody className="px-lg-5 py-lg-5">
-            <Form role="form">
-              <FormGroup className="mb-3">
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
+          <CardBody className='px-lg-5 py-lg-5'>
+            <Form role='form'>
+              <FormGroup className='mb-3'>
+                <InputGroup className='input-group-alternative'>
+                  <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                      <i className="ni ni-email-83" />
+                      <i className='ni ni-email-83' />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Email"
-                    type="email"
-                    autoComplete="new-email"
-                    onChange={e => setemail(e.target.value)}
+                    placeholder='Email'
+                    type='email'
+                    autoComplete='new-email'
+                    onChange={(e) => setemail(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
+                <InputGroup className='input-group-alternative'>
+                  <InputGroupAddon addonType='prepend'>
                     <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
+                      <i className='ni ni-lock-circle-open' />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Password"
-                    type="password"
-                    autoComplete="new-password"
-                    onChange={e => setpassword(e.target.value)}
+                    placeholder='Password'
+                    type='password'
+                    autoComplete='new-password'
+                    onChange={(e) => setpassword(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
-              <div className="text-center">
+              <div className='text-center'>
                 <Button
-                  className="my-4"
-                  color="primary"
-                  type="button"
+                  className='my-4'
+                  color='primary'
+                  type='button'
                   onClick={login}
                   disabled={loading}
                 >

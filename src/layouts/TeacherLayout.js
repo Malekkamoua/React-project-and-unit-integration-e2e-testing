@@ -24,25 +24,23 @@ import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import AdminFooter from "components/Footers/AdminFooter.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
 
-import routes from "../routes";
-const { routesAdmin } = routes;
-const Admin = (props) => {
+import routes from "routes.js";
+const { routesTeacher } = routes;
+const TeacherLayout = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
   const user = localStorage.getItem("user");
-
   const userObject = JSON.parse(user);
 
-  console.log(userObject);
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
     mainContent.current.scrollTop = 0;
   }, [location]);
 
-  const getRoutes = (routesAdmin) => {
-    return routesAdmin.map((prop, key) => {
-      if (prop.layout === "/admin") {
+  const getRoutes = (routesTeacher) => {
+    return routesTeacher.map((prop, key) => {
+      if (prop.layout === "/teacher") {
         return (
           <Route
             path={prop.layout + prop.path}
@@ -57,13 +55,13 @@ const Admin = (props) => {
   };
 
   const getBrandText = (path) => {
-    for (let i = 0; i < routesAdmin.length; i++) {
+    for (let i = 0; i < routesTeacher.length; i++) {
       if (
         props.location.pathname.indexOf(
-          routesAdmin[i].layout + routesAdmin[i].path
+          routesTeacher[i].layout + routesTeacher[i].path
         ) !== -1
       ) {
-        return routesAdmin[i].name;
+        return routesTeacher[i].name;
       }
     }
     return "Brand";
@@ -73,7 +71,8 @@ const Admin = (props) => {
     <>
       <Sidebar
         {...props}
-        routes={routesAdmin}
+        userName={userObject.userInformation.email}
+        routes={routesTeacher}
         logo={{
           innerLink: "/admin/index",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
@@ -82,13 +81,13 @@ const Admin = (props) => {
       />
       <div className='main-content' ref={mainContent}>
         <AdminNavbar
-          {...props}
           userName={userObject.userInformation.email}
+          {...props}
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>
-          {getRoutes(routesAdmin)}
-          <Redirect from='*' to='/admin/index' />
+          {getRoutes(routesTeacher)}
+          {/* <Redirect from='*' to='/admin/index' /> */}
         </Switch>
         <Container fluid>
           <AdminFooter />
@@ -98,4 +97,4 @@ const Admin = (props) => {
   );
 };
 
-export default Admin;
+export default TeacherLayout;
