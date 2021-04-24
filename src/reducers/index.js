@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
 
-const rootReducer = combineReducers({});
+import activePfeReducer from "./activePfeReducer";
+
+const rootReducer = combineReducers({ activePfe: activePfeReducer });
 
 export default rootReducer;

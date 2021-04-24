@@ -22,6 +22,7 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Students from "views/examples/Students.js";
+import DetailPfe from "views/examples/DetailPfe";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -37,6 +38,11 @@ var routesOject = {
       name: "ListPFE",
       icon: "ni ni-single-02 text-yellow",
       component: Teachers,
+      layout: "/teacher",
+    },
+    {
+      path: "/detailpfe",
+      component: DetailPfe,
       layout: "/teacher",
     },
   ],

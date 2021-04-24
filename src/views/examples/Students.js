@@ -18,25 +18,57 @@
 import React, { useState, useEffect } from "react";
 
 // reactstrap components
-import { Card, CardHeader, Table, Container, Row } from "reactstrap";
+import {
+  Card,
+  CardHeader,
+  Table,
+  Container,
+  Row,
+  Button,
+  Col,
+  Form,
+  FormGroup,
+  InputGroup,
+  CardBody,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
+} from "reactstrap";
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
 
 const Students = () => {
   const [listPFE, setlistPFE] = useState([]);
-
+  const [nomPfe, setnomPfe] = useState("");
+  const [contentPfe, setcontentPfe] = useState("");
   useEffect(async () => {
     let data = await api.get("teachers/all", {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNWUzNzI1Nzc2MDA3MjYwNDdjZDhlMCIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjE5MDUxMTYwLCJleHAiOjE2MjY4MjcxNjB9.j66VifIAjjFGUFF_icm8uohaYyWT1t8KCwt2YZ-BFJs",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjM2MzBlNTVlZGViM2Y4MDU3N2VkMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjE5MjExMDEzLCJleHAiOjE2MjY5ODcwMTN9.Yfnj-zUkL-x9-zcUTZtgsXWrqarBZIS9BUgK1lvwm7E",
       },
     });
     setlistPFE(data.data);
     console.log(data.data);
   }, []);
 
+  const ajouterPfe = async () => {
+    console.log("button clicked");
+    await api.post(
+      "students/pfe",
+      {
+        title: nomPfe,
+        content: contentPfe,
+      },
+      {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjM2MzBlNTVlZGViM2Y4MDU3N2VkMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjE5MjExMDEzLCJleHAiOjE2MjY5ODcwMTN9.Yfnj-zUkL-x9-zcUTZtgsXWrqarBZIS9BUgK1lvwm7E",
+        },
+      }
+    );
+  };
   return (
     <>
       <Header />
@@ -75,6 +107,57 @@ const Students = () => {
           </div>
         </Row>
         {/* Dark table */}
+        <Col lg='13' md='13'>
+          <Card className='bg-secondary shadow border-0'>
+            <CardBody className='px-lg-5 py-lg-5'>
+              <Form role='form'>
+                <FormGroup>
+                  <InputGroup className='input-group-alternative mb-3'>
+                    <InputGroupAddon addonType='prepend'>
+                      <InputGroupText>
+                        <i className='ni ni-hat-3' />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder='Nom PFE'
+                      type='text'
+                      onChange={(e) => {
+                        setnomPfe(e.target.value);
+                      }}
+                    />
+                  </InputGroup>
+                </FormGroup>
+                <FormGroup>
+                  <InputGroup className='input-group-alternative mb-3'>
+                    <InputGroupAddon addonType='prepend'>
+                      <InputGroupText>
+                        <i className='ni ni-email-83' />
+                      </InputGroupText>
+                    </InputGroupAddon>
+                    <Input
+                      placeholder='Content'
+                      type='textarea'
+                      onChange={(e) => {
+                        setcontentPfe(e.target.value);
+                      }}
+                    />
+                  </InputGroup>
+                </FormGroup>
+
+                <div className='text-center'>
+                  <Button
+                    className='mt-4'
+                    color='primary'
+                    type='button'
+                    onClick={async () => await ajouterPfe()}
+                  >
+                    Ajouter PFE
+                  </Button>
+                </div>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
       </Container>
     </>
   );

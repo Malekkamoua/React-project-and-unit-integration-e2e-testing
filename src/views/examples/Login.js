@@ -63,7 +63,7 @@ const Login = () => {
       return <Redirect to='/teacher/admin-profile' />;
     }
     if (role === "student") {
-      return <Redirect to='/teacher/student-profile' />;
+      return <Redirect to='/student/student-profile' />;
     }
   }
   return (
