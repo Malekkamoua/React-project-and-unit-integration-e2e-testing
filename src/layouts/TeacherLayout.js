@@ -74,7 +74,7 @@ const TeacherLayout = (props) => {
         userName={userObject.userInformation.email}
         routes={routesTeacher}
         logo={{
-          innerLink: "/admin/index",
+          innerLink: "/teacher/teacher-profile",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
           imgAlt: "...",
         }}
@@ -87,7 +87,7 @@ const TeacherLayout = (props) => {
         />
         <Switch>
           {getRoutes(routesTeacher)}
-          {/* <Redirect from='*' to='/admin/index' /> */}
+          <Redirect from='*' to='/teacher/teacher-profile' />
         </Switch>
         <Container fluid>
           <AdminFooter />

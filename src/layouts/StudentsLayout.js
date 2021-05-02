@@ -72,7 +72,7 @@ const StudentLayout = (props) => {
         {...props}
         routes={routesStudent}
         logo={{
-          innerLink: "/admin/index",
+          innerLink: "/student/student-profile",
           imgSrc: require("../assets/img/brand/argon-react.png").default,
           imgAlt: "...",
         }}
@@ -85,7 +85,7 @@ const StudentLayout = (props) => {
         />
         <Switch>
           {getRoutes(routesStudent)}
-          <Redirect from='*' to='/admin/index' />
+          <Redirect from='*' to='/student/student-profile' />
         </Switch>
         <Container fluid>
           <AdminFooter />

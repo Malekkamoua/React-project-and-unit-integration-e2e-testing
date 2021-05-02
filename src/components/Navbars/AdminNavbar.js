@@ -87,7 +87,10 @@ const AdminNavbar = (props) => {
                   <span>Support</span>
                 </DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem href='#pablo' onClick={(e) => e.preventDefault()}>
+                <DropdownItem
+                  href='http://localhost:3000/auth/login'
+                  onClick={() => sessionStorage.clear()}
+                >
                   <i className='ni ni-user-run' />
                   <span>Logout</span>
                 </DropdownItem>

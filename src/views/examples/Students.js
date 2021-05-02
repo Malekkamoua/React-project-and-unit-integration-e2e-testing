@@ -37,37 +37,17 @@ import {
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
+import { addPfe } from "../../services/pfeService";
 
 const Students = () => {
-  const [listPFE, setlistPFE] = useState([]);
   const [nomPfe, setnomPfe] = useState("");
   const [contentPfe, setcontentPfe] = useState("");
-  useEffect(async () => {
-    let data = await api.get("teachers/all", {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjM2MzBlNTVlZGViM2Y4MDU3N2VkMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjE5MjExMDEzLCJleHAiOjE2MjY5ODcwMTN9.Yfnj-zUkL-x9-zcUTZtgsXWrqarBZIS9BUgK1lvwm7E",
-      },
-    });
-    setlistPFE(data.data);
-    console.log(data.data);
-  }, []);
 
+  const token = JSON.parse(localStorage.getItem("user")).token;
   const ajouterPfe = async () => {
-    console.log("button clicked");
-    await api.post(
-      "students/pfe",
-      {
-        title: nomPfe,
-        content: contentPfe,
-      },
-      {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNjM2MzBlNTVlZGViM2Y4MDU3N2VkMyIsInJvbGUiOiJzdHVkZW50IiwiaWF0IjoxNjE5MjExMDEzLCJleHAiOjE2MjY5ODcwMTN9.Yfnj-zUkL-x9-zcUTZtgsXWrqarBZIS9BUgK1lvwm7E",
-        },
-      }
-    );
+    await addPfe({ title: nomPfe, content: contentPfe }, token);
+    setnomPfe("");
+    setcontentPfe("");
   };
   return (
     <>
@@ -79,30 +59,8 @@ const Students = () => {
           <div className='col'>
             <Card className='shadow'>
               <CardHeader className='border-0'>
-                <h3 className='mb-0'>List des PFE</h3>
+                <h3 className='mb-0'>Ajouter PFE</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
-                  <tr>
-                    <th scope='col'>Project</th>
-                    <th scope='col'>Contenu</th>
-                    <th scope='col'>Status</th>
-
-                    <th scope='col' />
-                  </tr>
-                </thead>
-                <tbody>
-                  {listPFE.map((elem) => {
-                    return (
-                      <tr>
-                        <td>{elem.title}</td>
-                        <td>{elem.content}</td>
-                        <td>{elem.status ? "Accepted" : "Pending"}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </Table>
             </Card>
           </div>
         </Row>
@@ -121,6 +79,7 @@ const Students = () => {
                     <Input
                       placeholder='Nom PFE'
                       type='text'
+                      value={nomPfe}
                       onChange={(e) => {
                         setnomPfe(e.target.value);
                       }}
@@ -137,6 +96,7 @@ const Students = () => {
                     <Input
                       placeholder='Content'
                       type='textarea'
+                      value={contentPfe}
                       onChange={(e) => {
                         setcontentPfe(e.target.value);
                       }}

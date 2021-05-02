@@ -27,6 +27,10 @@ import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
+let connetedRole = JSON.parse(localStorage.getItem("user")).userInformation
+  .role;
+
+// console.log(connecteduser.userInformation.role);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
@@ -41,7 +45,14 @@ ReactDOM.render(
           path='/teacher'
           render={(props) => <TeacherLayout {...props} />}
         />
-        <Redirect from='/' to='/admin/index' />
+
+        {connetedRole === "student" && (
+          <Redirect from='*' to='/student/student-profile' />
+        )}
+        {connetedRole === "teacher" && (
+          <Redirect from='/' to='/teacher/teacher-profile' />
+        )}
+        <Redirect from='*' to='/auth/login' />
       </Switch>
     </BrowserRouter>
   </Provider>,

@@ -48,19 +48,15 @@ import { activePfeAction } from "../../actions/activePfeAction";
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
-
+import { getPfe } from "../../services/pfeService";
 const Teachers = (props) => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
   useEffect(async () => {
-    let data = await api.get("teachers/all", {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwNWUzNzI1Nzc2MDA3MjYwNDdjZDhlMCIsInJvbGUiOiJ0ZWFjaGVyIiwiaWF0IjoxNjE5MjEyMDk2LCJleHAiOjE2MjY5ODgwOTZ9.rrdo_bZEHM079h2c7cywE4Wm17FK5EDR1C2f39BpfIE",
-      },
-    });
-    setlistPFE(data.data);
-    console.log(data.data);
+    let token = JSON.parse(localStorage.getItem("user")).token;
+    const listPfe = await getPfe(token);
+    setlistPFE(listPfe);
+    console.log(listPfe);
   }, []);
   // const goToDetail = (pfe) => {};
   return (
