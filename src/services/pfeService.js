@@ -15,4 +15,15 @@ const addPfe = async (pfe, token) => {
     },
   });
 };
-export { getPfe, addPfe };
+const acceptPfe = async (idPfe, token) => {
+  await api.post(
+    "teachers/accept/" + idPfe,
+    {},
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+};
+export { getPfe, addPfe, acceptPfe };

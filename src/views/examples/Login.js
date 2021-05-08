@@ -60,7 +60,7 @@ const Login = () => {
       return <Redirect to='/teacher/teacher-profile' />;
     }
     if (role === "admin") {
-      return <Redirect to='/teacher/admin-profile' />;
+      return <Redirect to='/admin/students' />;
     }
     if (role === "student") {
       return <Redirect to='/student/student-profile' />;

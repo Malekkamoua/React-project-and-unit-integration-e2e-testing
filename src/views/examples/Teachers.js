@@ -48,17 +48,22 @@ import { activePfeAction } from "../../actions/activePfeAction";
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
-import { getPfe } from "../../services/pfeService";
+import { getPfe, acceptPfe } from "../../services/pfeService";
 const Teachers = (props) => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
+  const [mount, setMount] = useState(false);
+  let token = JSON.parse(localStorage.getItem("user")).token;
   useEffect(async () => {
-    let token = JSON.parse(localStorage.getItem("user")).token;
     const listPfe = await getPfe(token);
     setlistPFE(listPfe);
     console.log(listPfe);
-  }, []);
+  }, [mount]);
   // const goToDetail = (pfe) => {};
+  const acceptPfeHandler = (idPfe, token) => {
+    acceptPfe(idPfe, token);
+    setMount(!mount);
+  };
   return (
     <>
       <Header />
@@ -69,7 +74,7 @@ const Teachers = (props) => {
           <div className='col'>
             <Card className='shadow'>
               <CardHeader className='border-0'>
-                <h3 className='mb-0'>Card tables</h3>
+                <h3 className='mb-0'>Liste des PFE</h3>
               </CardHeader>
               <Table className='align-items-center table-flush' responsive>
                 <thead className='thead-light'>
@@ -77,7 +82,7 @@ const Teachers = (props) => {
                     <th scope='col'>Project</th>
                     <th scope='col'>Contenu</th>
                     <th scope='col'>Status</th>
-                    <th scope='col'>Actions</th>
+                    <th colSpan='2'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -87,6 +92,14 @@ const Teachers = (props) => {
                         <td>{elem.title}</td>
                         <td>{elem.content}</td>
                         <td>{elem.status ? "Accepted" : "Pending"}</td>
+                        <td>
+                          <Button
+                            className='btn btn-success'
+                            onClick={() => acceptPfeHandler(elem._id, token)}
+                          >
+                            Accept
+                          </Button>
+                        </td>
                         <td>
                           <Link
                             to='detailpfe'

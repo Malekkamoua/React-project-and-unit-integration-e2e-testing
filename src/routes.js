@@ -23,6 +23,9 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Students from "views/examples/Students.js";
 import DetailPfe from "views/examples/DetailPfe";
+import AddEtudiant from "views/examples/AddEtudiant";
+import ListEtudiantAdmin from "views/examples/ListEtudiantAdmin";
+import DetailEtudiant from "views/examples/DetailEtudiant";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -56,7 +59,7 @@ var routesOject = {
     },
     {
       path: "/listpfe",
-      name: "ListPFE",
+      name: "Ajouter Pfe",
       icon: "ni ni-single-02 text-yellow",
       component: Students,
       layout: "/student",
@@ -72,17 +75,22 @@ var routesOject = {
       layout: "/admin",
     },
     {
+      path: "/detailEtudiant",
+      component: DetailEtudiant,
+      layout: "/admin",
+    },
+    {
+      path: "/addEtudiant",
+      name: "Ajouter Etudiant",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddEtudiant,
+      layout: "/admin",
+    },
+    {
       path: "/teachers",
       name: "teachers",
       icon: "ni ni-tv-2 text-primary",
       component: Teachers,
-      layout: "/admin",
-    },
-    {
-      path: "/students",
-      name: "Students",
-      icon: "ni ni-planet text-blue",
-      component: Students,
       layout: "/admin",
     },
     {
@@ -99,6 +107,13 @@ var routesOject = {
       component: Tables,
       layout: "/admin",
     },
+    {
+      path: "/students",
+      name: "List des Etudiants",
+      icon: "ni ni-bullet-list-67 text-red",
+      component: ListEtudiantAdmin,
+      layout: "/admin",
+    },
   ],
   routesAuth: [
     {
@@ -108,6 +123,7 @@ var routesOject = {
       component: Login,
       layout: "/auth",
     },
+
     {
       path: "/register",
       name: "Register",
