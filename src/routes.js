@@ -26,6 +26,9 @@ import DetailPfe from "views/examples/DetailPfe";
 import AddEtudiant from "views/examples/AddEtudiant";
 import ListEtudiantAdmin from "views/examples/ListEtudiantAdmin";
 import DetailEtudiant from "views/examples/DetailEtudiant";
+import ListTeacherAdmin from "views/examples/ListTeacherAdmin";
+import DetailTeacher from "views/examples/DetailTeacher";
+import AddTeacher from "views/examples/AddTeacher";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -80,6 +83,11 @@ var routesOject = {
       layout: "/admin",
     },
     {
+      path: "/detailTeacher",
+      component: DetailTeacher,
+      layout: "/admin",
+    },
+    {
       path: "/addEtudiant",
       name: "Ajouter Etudiant",
       icon: "ni ni-single-02 text-yellow",
@@ -87,10 +95,10 @@ var routesOject = {
       layout: "/admin",
     },
     {
-      path: "/teachers",
-      name: "teachers",
-      icon: "ni ni-tv-2 text-primary",
-      component: Teachers,
+      path: "/addTeacher",
+      name: "Ajouter Professeur",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddTeacher,
       layout: "/admin",
     },
     {
@@ -112,6 +120,13 @@ var routesOject = {
       name: "List des Etudiants",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListEtudiantAdmin,
+      layout: "/admin",
+    },
+    {
+      path: "/teachers",
+      name: "List des professeurs",
+      icon: "ni ni-bullet-list-67 text-red",
+      component: ListTeacherAdmin,
       layout: "/admin",
     },
   ],

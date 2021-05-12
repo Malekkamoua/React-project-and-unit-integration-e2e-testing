@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import { activeStudentAction } from "../../actions/activeStudentAction";
 import Header from "../../components/Headers/Header";
 import CustomModal from "../../components/CustomModal/CustomModal";
-import { getEdudiant, deleteEtudiant } from "../../services/studentService";
+import { getAllEtudiant, deleteEtudiant } from "../../services/studentService";
 
 const ListEtudiantAdmin = (props) => {
   const [listStudent, setListStudent] = useState([]);
@@ -16,7 +16,7 @@ const ListEtudiantAdmin = (props) => {
   const [idEtudiant, setIdEtudiant] = useState();
   console.log(props);
   useEffect(async () => {
-    const students = await getEdudiant(token);
+    const students = await getAllEtudiant(token);
     console.log(students);
     setListStudent(students);
   }, []);

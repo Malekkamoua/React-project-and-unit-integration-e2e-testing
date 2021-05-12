@@ -34,20 +34,9 @@ import {
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
 
-import { updateTeacher } from "../../services/teacherService";
-
-const DetailStudent = ({ studentprops }) => {
-  const [student, setstudent] = useState(studentprops);
-
-  const [nom, setNom] = useState(
-    studentprops.name ? studentprops.name.split(" ")[1] : ""
-  );
-  const [prenom, setPrenom] = useState(
-    studentprops.name ? studentprops.name.split(" ")[0] : ""
-  );
-  const [email, setEmail] = useState(studentprops.email);
-  const token = JSON.parse(localStorage.getItem("user")).token;
-  console.log(student);
+const DetailTeacher = ({ teacherprops }) => {
+  const [teacher, setteacher] = useState(teacherprops);
+  console.log(teacher);
   return (
     <>
       <UserHeader />
@@ -82,8 +71,8 @@ const DetailStudent = ({ studentprops }) => {
                 </Row>
                 <div className='text-center'>
                   <h3>
-                    {student.name}
-                    <span className='font-weight-light'>, {student.age}</span>
+                    {teacher.name}
+                    <span className='font-weight-light'>, {teacher.age}</span>
                   </h3>
                   <div className='h5 font-weight-300'>
                     <i className='ni location_pin mr-2' />
@@ -91,7 +80,7 @@ const DetailStudent = ({ studentprops }) => {
                   </div>
                   <div className='h5 mt-4'>
                     <i className='ni business_briefcase-24 mr-2' />
-                    Etudiant
+                    Professeur
                   </div>
                   <div>
                     <i className='ni education_hat mr-2' />
@@ -112,18 +101,13 @@ const DetailStudent = ({ studentprops }) => {
               <CardHeader className='bg-white border-0'>
                 <Row className='align-items-center'>
                   <Col xs='8'>
-                    <h3 className='mb-0'>Detail Etudiant</h3>
+                    <h3 className='mb-0'>Detail Professeur</h3>
                   </Col>
                   <Col className='text-right' xs='4'>
                     <Button
                       color='primary'
-                      onClick={() => {
-                        updateTeacher(
-                          token,
-                          { nom, prenom, email, age: student.age },
-                          student._id
-                        );
-                      }}
+                      href='#pablo'
+                      onClick={(e) => e.preventDefault()}
                       size='sm'
                     >
                       Sauvegarder
@@ -151,8 +135,7 @@ const DetailStudent = ({ studentprops }) => {
                             id='input-email'
                             placeholder='jesse@example.com'
                             type='email'
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            value={teacher.email}
                           />
                         </FormGroup>
                       </Col>
@@ -173,8 +156,9 @@ const DetailStudent = ({ studentprops }) => {
                             id='input-first-name'
                             placeholder='First name'
                             type='text'
-                            value={prenom}
-                            onChange={(e) => setPrenom(e.target.value)}
+                            value={
+                              teacher.name ? teacher.name.split(" ")[1] : ""
+                            }
                           />
                         </FormGroup>
                       </Col>
@@ -192,8 +176,9 @@ const DetailStudent = ({ studentprops }) => {
                             id='input-last-name'
                             placeholder='Last name'
                             type='text'
-                            value={nom}
-                            onChange={(e) => setNom(e.target.value)}
+                            value={
+                              teacher.name ? teacher.name.split(" ")[0] : ""
+                            }
                           />
                         </FormGroup>
                       </Col>
@@ -213,7 +198,7 @@ const DetailStudent = ({ studentprops }) => {
                             id='input-first-name'
                             placeholder='First name'
                             type='text'
-                            value={student.sexe}
+                            value={teacher.sexe}
                           />
                         </FormGroup>
                       </Col>
@@ -229,6 +214,6 @@ const DetailStudent = ({ studentprops }) => {
   );
 };
 const mapStateToProps = (state) => {
-  return { studentprops: state.activeStudent };
+  return { teacherprops: state.activeTeacher };
 };
-export default connect(mapStateToProps)(DetailStudent);
+export default connect(mapStateToProps)(DetailTeacher);

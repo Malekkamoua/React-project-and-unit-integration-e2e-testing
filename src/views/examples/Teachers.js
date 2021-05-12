@@ -48,14 +48,14 @@ import { activePfeAction } from "../../actions/activePfeAction";
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
-import { getPfe, acceptPfe } from "../../services/pfeService";
+import { getAllPfe, acceptPfe } from "../../services/pfeService";
 const Teachers = (props) => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
   let token = JSON.parse(localStorage.getItem("user")).token;
   useEffect(async () => {
-    const listPfe = await getPfe(token);
+    const listPfe = await getAllPfe(token);
     setlistPFE(listPfe);
     console.log(listPfe);
   }, [mount]);
