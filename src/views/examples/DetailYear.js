@@ -37,6 +37,7 @@ const DetailPfe = (props) => {
 
                 <Input
                   value={startDate}
+                  max={endDate}
                   type='date'
                   onChange={(e) => setStartDate(e.target.value)}
                 />
@@ -45,6 +46,7 @@ const DetailPfe = (props) => {
                 <Input
                   type='date'
                   value={endDate}
+                  Value
                   onChange={(e) => setEndDate(e.target.value)}
                 />
               </FormGroup>
