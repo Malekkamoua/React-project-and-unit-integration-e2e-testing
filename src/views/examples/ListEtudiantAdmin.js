@@ -7,12 +7,19 @@ import { bindActionCreators } from "redux";
 import { activeStudentAction } from "../../actions/activeStudentAction";
 import Header from "../../components/Headers/Header";
 import CustomModal from "../../components/CustomModal/CustomModal";
-import { getAllEtudiant, deleteEtudiant } from "../../services/studentService";
+import {
+  getAllEtudiant,
+  deleteEtudiant,
+  banEtudiant,
+  unBanEtudiant,
+} from "../../services/studentService";
 
 const ListEtudiantAdmin = (props) => {
   const [listStudent, setListStudent] = useState([]);
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [modal, setModal] = useState(false);
+  const [modalBan, setModalBan] = useState(false);
+  const [modalUnBan, setModalUnBan] = useState(false);
   const [idEtudiant, setIdEtudiant] = useState();
   console.log(props);
   useEffect(async () => {
@@ -20,6 +27,8 @@ const ListEtudiantAdmin = (props) => {
     console.log(students);
     setListStudent(students);
   }, []);
+  console.log(idEtudiant);
+  console.log("hello from the page");
   return (
     <>
       <Header />
@@ -38,7 +47,7 @@ const ListEtudiantAdmin = (props) => {
                     <th scope='col'>Nom</th>
                     <th scope='col'>Prenom</th>
                     <th scope='col'>Email</th>
-                    <th colSpan='2'>Actions</th>
+                    <th colSpan='3'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -77,6 +86,46 @@ const ListEtudiantAdmin = (props) => {
                             }}
                           />
                         </td>
+                        {elem.isBanned === false ? (
+                          <td>
+                            <CustomModal
+                              setEtudiant={() => setIdEtudiant(elem._id)}
+                              buttonLabel='Bannir'
+                              modal={modalBan}
+                              question='Voulez vous vraiment bannir cet étudiant'
+                              toggle={() => setModalBan(!modalBan)}
+                              apiFunction={async () => {
+                                //   console.log(idEtudiant);
+                                //in case deleteEtudiant doesn't work we need to block set list
+                                await banEtudiant(
+                                  token,
+                                  { ...elem, isBanned: true },
+                                  idEtudiant
+                                );
+                              }}
+                            />
+                          </td>
+                        ) : (
+                          <td>
+                            <CustomModal
+                              setEtudiant={() => setIdEtudiant(elem._id)}
+                              buttonLabel='Unbannir'
+                              modal={modalUnBan}
+                              question='Voulez vous vraiment unbannir cet étudiant'
+                              toggle={() => setModalUnBan(!modalUnBan)}
+                              apiFunction={async () => {
+                                //   console.log(idEtudiant);
+                                //in case deleteEtudiant doesn't work we need to block set list
+                                let data = await unBanEtudiant(
+                                  token,
+                                  { ...elem, isBanned: false },
+                                  idEtudiant
+                                );
+                                console.log(data);
+                              }}
+                            />
+                          </td>
+                        )}
                       </tr>
                     );
                   })}

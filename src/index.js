@@ -26,9 +26,9 @@ import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
-
-let connetedRole = JSON.parse(localStorage.getItem("user")).userInformation
-  .role;
+let connetedRole;
+if (localStorage.getItem("user"))
+  connetedRole = JSON.parse(localStorage.getItem("user")).userInformation.role;
 
 // console.log(connecteduser.userInformation.role);
 ReactDOM.render(

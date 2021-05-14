@@ -16,9 +16,9 @@ const ListTeacherAdmin = (props) => {
   const [idTeacher, setIdTeacher] = useState();
   console.log(props);
   useEffect(async () => {
-    const teachers = await getAllTeacher(token);
-    console.log(teachers);
-    setListTeacher(teachers);
+    const teacher = await getAllTeacher(token);
+    console.log(teacher);
+    setListTeacher(teacher);
   }, []);
   return (
     <>
@@ -30,24 +30,23 @@ const ListTeacherAdmin = (props) => {
           <div className='col'>
             <Card className='shadow'>
               <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des professeurs</h3>
+                <h3 className='mb-0'>Liste des Professeur</h3>
               </CardHeader>
               <Table className='align-items-center table-flush' responsive>
                 <thead className='thead-light'>
                   <tr>
-                    <th scope='col'>Nom</th>
-                    <th scope='col'>Prenom</th>
+                    <th scope='col'>Nom et Prenom</th>
                     <th scope='col'>Email</th>
                     <th colSpan='2'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {listTeacher.map((elem) => {
-                    if (elem.role === "teacher")
+                    if (elem.role !== "admin")
                       return (
                         <tr>
-                          <td>{elem.name ? elem.name.split(" ")[1] : ""}</td>
-                          <td>{elem.name ? elem.name.split(" ")[0] : ""}</td>
+                          <td>{elem.name}</td>
+
                           <td>{elem.email}</td>
 
                           <td>

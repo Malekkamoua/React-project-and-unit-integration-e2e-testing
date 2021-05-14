@@ -34,5 +34,35 @@ const updateEtudiant = async (token, etudiant, id_etudiant) => {
   });
   return data.data;
 };
-
-export { getAllEtudiant, deleteEtudiant, getEtudiant, updateEtudiant };
+const banEtudiant = async (token, etudiant, id_etudiant) => {
+  try {
+    let data = await api.put("admin/students/ban/" + id_etudiant, etudiant, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    return data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+const unBanEtudiant = async (token, etudiant, id_etudiant) => {
+  try {
+    let data = await api.put("admin/students/unban/" + id_etudiant, etudiant, {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    });
+    return data.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export {
+  getAllEtudiant,
+  deleteEtudiant,
+  getEtudiant,
+  updateEtudiant,
+  banEtudiant,
+  unBanEtudiant,
+};

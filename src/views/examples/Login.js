@@ -34,25 +34,30 @@ const Login = () => {
   const [loading, setloading] = useState(false);
   const [logged, setlogged] = useState(false);
   const [role, setrole] = useState("");
+  const [message, setMessage] = useState("");
   console.log("email", email, "password:", password);
   let result;
   const login = async (e) => {
     e.preventDefault();
     setloading(true);
     console.log(email, password);
-    try {
-      result = await api.post("/login", {
-        email: email,
-        password: password,
-      });
-      localStorage.setItem("user", JSON.stringify(result.data));
-      console.log("the result ", result);
-      setrole(result.data.userInformation.role);
-      setlogged(true);
-    } catch (e) {
-      console.log(e);
+
+    result = await api.post("/login", {
+      email: email,
+      password: password,
+    });
+
+    if (result.data.status === 404) {
+      setMessage(result.data.message);
+    } else {
+      if (result.data.status === 200) {
+        setlogged(true);
+        setloading(false);
+        localStorage.setItem("user", JSON.stringify(result.data));
+        console.log("the result ", result);
+        setrole(result.data.userInformation.role);
+      }
     }
-    setloading(false);
   };
   if (logged) {
     console.log(role);
@@ -153,6 +158,7 @@ const Login = () => {
                 >
                   Sign in
                 </Button>
+                <p style={{ color: "red" }}>{message}</p>
               </div>
             </Form>
           </CardBody>

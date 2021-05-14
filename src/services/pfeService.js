@@ -1,5 +1,13 @@
 import api from "../api";
 
+// const getAllPfe = async (token) => {
+//   let data = await api.get("admin/pfe", {
+//     headers: {
+//       Authorization: "Bearer " + token,
+//     },
+//   });
+//   return data.data;
+// };
 const getAllPfe = async (token) => {
   let data = await api.get("teachers/all", {
     headers: {
@@ -23,6 +31,7 @@ const addPfe = async (pfe, token) => {
     },
   });
 };
+
 const acceptPfe = async (idPfe, token) => {
   await api.post(
     "teachers/accept/" + idPfe,
@@ -42,4 +51,4 @@ const updatePfe = async (token, pfe, id_pfe) => {
   });
   return data.data;
 };
-export { getAllPfe, addPfe, acceptPfe, updatePfe };
+export { getAllPfe, addPfe, acceptPfe, updatePfe, getPfe };

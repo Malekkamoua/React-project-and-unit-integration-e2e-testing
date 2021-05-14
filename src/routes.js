@@ -29,6 +29,10 @@ import DetailEtudiant from "views/examples/DetailEtudiant";
 import ListTeacherAdmin from "views/examples/ListTeacherAdmin";
 import DetailTeacher from "views/examples/DetailTeacher";
 import AddTeacher from "views/examples/AddTeacher";
+import ListPfeAdmin from "views/examples/ListPfeAdmin";
+import AddYearUniver from "views/examples/AddYearUniver";
+import ListYearAdmin from "views/examples/ListYearAdmin";
+import DetailYear from "views/examples/DetailYear";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -71,10 +75,13 @@ var routesOject = {
   routesAdmin: [
     //adminroutes
     {
-      path: "/user-profile",
-      name: "My Profile",
-      icon: "ni ni-single-02 text-yellow",
-      component: Students,
+      path: "/detailYear",
+      component: DetailYear,
+      layout: "/admin",
+    },
+    {
+      path: "/detailpfe",
+      component: DetailPfe,
       layout: "/admin",
     },
     {
@@ -92,6 +99,13 @@ var routesOject = {
       name: "Ajouter Etudiant",
       icon: "ni ni-single-02 text-yellow",
       component: AddEtudiant,
+      layout: "/admin",
+    },
+    {
+      path: "/addAnneeUniver",
+      name: "Créer Année Universitaire",
+      icon: "ni ni-single-02 text-yellow",
+      component: AddYearUniver,
       layout: "/admin",
     },
     {
@@ -127,6 +141,20 @@ var routesOject = {
       name: "List des professeurs",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListTeacherAdmin,
+      layout: "/admin",
+    },
+    {
+      path: "/listPfe",
+      name: "Liste Des Pfe",
+      icon: "ni ni-bullet-list-67 text-red",
+      component: ListPfeAdmin,
+      layout: "/admin",
+    },
+    {
+      path: "/listYear",
+      name: "Liste des année universitaire",
+      icon: "ni ni-bullet-list-67 text-red",
+      component: ListYearAdmin,
       layout: "/admin",
     },
   ],
