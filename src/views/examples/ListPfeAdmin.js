@@ -52,7 +52,7 @@ const ListPfeTeacher = (props) => {
 
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
-  let token = JSON.parse(localStorage.getItem("user")).token;
+  let { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   console.log(token);
   useEffect(async () => {
     try {
@@ -64,8 +64,8 @@ const ListPfeTeacher = (props) => {
     }
   }, [mount]);
   // const goToDetail = (pfe) => {};
-  const acceptPfeHandler = (idPfe, token) => {
-    acceptPfe(idPfe, token);
+  const acceptPfeHandler = (idPfe, id_tutor, token) => {
+    acceptPfe(idPfe, id_tutor, token);
     setMount(!mount);
   };
   return (
@@ -96,18 +96,28 @@ const ListPfeTeacher = (props) => {
                         <td>{elem.title}</td>
                         <td>{elem.content}</td>
                         <td>{elem.status ? "Accepted" : "Pending"}</td>
-                        <td>
-                          {elem.status ? (
-                            <Button className='btn btn-danger'>Undo</Button>
-                          ) : (
-                            <Button
-                              className='btn btn-success'
-                              onClick={() => acceptPfeHandler(elem._id, token)}
-                            >
-                              Accept
-                            </Button>
-                          )}
-                        </td>
+                        {userInformation.role === "teacher" ? (
+                          <td>
+                            {elem.status ? (
+                              <Button className='btn btn-danger'>Undo</Button>
+                            ) : (
+                              <Button
+                                className='btn btn-success'
+                                onClick={() =>
+                                  acceptPfeHandler(
+                                    elem._id,
+                                    userInformation._id,
+                                    token
+                                  )
+                                }
+                              >
+                                Accept
+                              </Button>
+                            )}
+                          </td>
+                        ) : (
+                          ""
+                        )}
                         <td>
                           <Link
                             to='detailpfe'

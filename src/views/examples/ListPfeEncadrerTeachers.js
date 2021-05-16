@@ -48,16 +48,19 @@ import { activePfeAction } from "../../actions/activePfeAction";
 import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
-import { getAllPfe, acceptPfe } from "../../services/pfeService";
+import {
+  getAllPfe,
+  acceptPfe,
+  getAllPfeByTeacher,
+} from "../../services/pfeService";
 const Teachers = (props) => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
-  let token = JSON.parse(localStorage.getItem("user")).token;
+  let { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   useEffect(async () => {
-    const listPfe = await getAllPfe(token);
-    setlistPFE(listPfe);
-    console.log(listPfe);
+    const listPfe = await getAllPfeByTeacher(token, userInformation._id);
+    setlistPFE(listPfe.listPfeByTeacher);
   }, [mount]);
   // const goToDetail = (pfe) => {};
   const acceptPfeHandler = (idPfe, token) => {
@@ -92,14 +95,6 @@ const Teachers = (props) => {
                         <td>{elem.title}</td>
                         <td>{elem.content}</td>
                         <td>{elem.status ? "Accepted" : "Pending"}</td>
-                        <td>
-                          <Button
-                            className='btn btn-success'
-                            onClick={() => acceptPfeHandler(elem._id, token)}
-                          >
-                            Accept
-                          </Button>
-                        </td>
                         <td>
                           <Link
                             to='detailpfe'

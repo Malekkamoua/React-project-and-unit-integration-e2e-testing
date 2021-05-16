@@ -28,13 +28,13 @@ const RegisterUser = () => {
   const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
-
+  const { token } = JSON.parse(localStorage.getItem("user"));
   const ajouterEtudiant = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
       return null;
     }
-    const res = await addEtudiant(nom, prenom, age, email, password);
+    const res = await addEtudiant({ nom, prenom, age, email, password }, token);
     // setNom("");
     // setPrenom("");
     // setEmail("");

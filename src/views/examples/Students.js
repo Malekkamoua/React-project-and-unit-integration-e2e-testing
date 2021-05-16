@@ -43,9 +43,12 @@ const Students = () => {
   const [nomPfe, setnomPfe] = useState("");
   const [contentPfe, setcontentPfe] = useState("");
 
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   const ajouterPfe = async () => {
-    await addPfe({ title: nomPfe, content: contentPfe }, token);
+    await addPfe(
+      { title: nomPfe, content: contentPfe, student: userInformation._id },
+      token
+    );
     setnomPfe("");
     setcontentPfe("");
   };

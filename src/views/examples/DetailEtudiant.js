@@ -46,6 +46,15 @@ const DetailStudent = ({ studentprops }) => {
     studentprops.name ? studentprops.name.split(" ")[0] : ""
   );
   const [email, setEmail] = useState(studentprops.email);
+  const [nomPfe, setnomPfe] = useState(
+    studentprops.pfe ? studentprops.pfe.title : ""
+  );
+  const [contentPfe, setcontentPfe] = useState(
+    studentprops.pfe ? studentprops.pfe.content : ""
+  );
+  const [nomProf, setNomProf] = useState(
+    studentprops.tutor ? studentprops.tutor.name : ""
+  );
   const token = JSON.parse(localStorage.getItem("user")).token;
   console.log(student);
   return (
@@ -200,7 +209,7 @@ const DetailStudent = ({ studentprops }) => {
                     </Row>
                     <Row>
                       <Col lg='6'>
-                        <FormGroup>
+                        {/* <FormGroup>
                           <label
                             className='form-control-label'
                             htmlFor='input-first-name'
@@ -215,7 +224,7 @@ const DetailStudent = ({ studentprops }) => {
                             type='text'
                             value={student.sexe}
                           />
-                        </FormGroup>
+                        </FormGroup> */}
                       </Col>
                     </Row>
                   </div>
@@ -224,6 +233,104 @@ const DetailStudent = ({ studentprops }) => {
             </Card>
           </Col>
         </Row>
+        // the part concern the informtion about the pfe of this student
+        <Col className='order-xl-1' xl='8'>
+          <Card className='bg-secondary shadow'>
+            <CardHeader className='bg-white border-0'>
+              <Row className='align-items-center'>
+                <Col xs='8'>
+                  <h3 className='mb-0'>Detail Pfe</h3>
+                </Col>
+              </Row>
+            </CardHeader>
+            <CardBody>
+              <Form>
+                <div className='pl-lg-4'>
+                  <Row>
+                    <Col lg='6'>
+                      <FormGroup>
+                        <label
+                          className='form-control-label'
+                          htmlFor='input-pfe'
+                        >
+                          Nom PFE
+                        </label>
+                        <Input
+                          className='form-control-alternative'
+                          id='input-pfe'
+                          type='text'
+                          value={nomPfe}
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col lg='6'></Col>
+                  </Row>
+                  <Row>
+                    <Col lg='6'>
+                      <FormGroup>
+                        <label
+                          className='form-control-label'
+                          htmlFor='input-first-name'
+                        >
+                          Contenu
+                        </label>
+                        <Input
+                          className='form-control-alternative'
+                          defaultValue='Lucky'
+                          id='input-first-name'
+                          placeholder='First name'
+                          type='text'
+                          value={contentPfe}
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col lg='6'>
+                      <FormGroup>
+                        <label
+                          className='form-control-label'
+                          htmlFor='input-last-name'
+                        >
+                          Nom de l'encadreur
+                        </label>
+                        <Input
+                          className='form-control-alternative'
+                          defaultValue='Jesse'
+                          id='input-last-name'
+                          placeholder='Last name'
+                          type='text'
+                          value={nomProf}
+                          disabled
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col lg='6'>
+                      {/* <FormGroup>
+                        <label
+                          className='form-control-label'
+                          htmlFor='input-first-name'
+                        >
+                          Sexe
+                        </label>
+                        <Input
+                          className='form-control-alternative'
+                          defaultValue='Lucky'
+                          id='input-first-name'
+                          placeholder='First name'
+                          type='text'
+                          value={student.sexe}
+                        />
+                      </FormGroup> */}
+                    </Col>
+                  </Row>
+                </div>
+              </Form>
+            </CardBody>
+          </Card>
+        </Col>
       </Container>
     </>
   );

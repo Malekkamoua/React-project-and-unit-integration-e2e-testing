@@ -1,15 +1,15 @@
 import api from "../api";
 
-const addEtudiant = async (etudiant) => {
+const addEtudiant = async (etudiant, token) => {
   const { nom, prenom, age, email, password } = etudiant;
   let data = await api.post(
     "admin/students",
-    { name: nom.trim() + " " + prenom.trim(), age, email, password }
-    //  {
-    //    headers: {
-    //      Authorization: "Bearer " + token,
-    //    },
-    //  }
+    { name: nom.trim() + " " + prenom.trim(), age, email, password },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
   );
   return data.data;
 };

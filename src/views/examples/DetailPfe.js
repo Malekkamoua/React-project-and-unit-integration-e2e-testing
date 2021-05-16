@@ -17,8 +17,16 @@ const DetailPfe = (props) => {
       <Container className='mt--15' fluid>
         <Card style={{ width: "30rem", marginLeft: 350, marginTop: 200 }}>
           <CardBody>
-            <CardTitle>{props.activePfe.title}</CardTitle>
-            <CardText>{props.activePfe.content}</CardText>
+            <CardTitle>titre: {props.activePfe.title}</CardTitle>
+            <CardText>contenu: {props.activePfe.content}</CardText>
+            <CardText>
+              Nom et prenom d'etudiant:{" "}
+              {props.activePfe.student ? props.activePfe.student.name : ""}
+            </CardText>
+            <CardText>
+              Année: {props.activePfe.year ? props.activePfe.year.title : ""}
+            </CardText>
+
             <Button
               color='success'
               href='#pablo'

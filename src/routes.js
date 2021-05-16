@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import Teachers from "views/examples/Teachers.js";
+import ListPfeEncadrerTeachers from "views/examples/ListPfeEncadrerTeachers";
 import Profile from "views/examples/Profile.js";
 import Projects from "views/examples/Projects.js";
 import Register from "views/examples/Register.js";
@@ -47,7 +47,14 @@ var routesOject = {
       path: "/listpfe",
       name: "ListPFE",
       icon: "ni ni-single-02 text-yellow",
-      component: Teachers,
+      component: ListPfeAdmin,
+      layout: "/teacher",
+    },
+    {
+      path: "/pfeEncadrer",
+      name: "Votre encadrement",
+      icon: "ni ni-single-02 text-yellow",
+      component: ListPfeEncadrerTeachers,
       layout: "/teacher",
     },
     {
