@@ -36,4 +36,18 @@ const updateTeacher = async (token, teacher, id_teacher) => {
   );
   return data.data;
 };
-export { getAllTeacher, getTeacher, deleteTeacher, updateTeacher };
+const getPfeByTeacher = async (token, id_teacher) => {
+  let data = await api.get("teachers/pfe/teacher/" + id_teacher, {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  return data.data;
+};
+export {
+  getAllTeacher,
+  getTeacher,
+  deleteTeacher,
+  updateTeacher,
+  getPfeByTeacher,
+};

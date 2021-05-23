@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 // reactstrap components
@@ -30,13 +30,26 @@ import {
   Container,
   Row,
   Col,
+  CardText,
+  CardTitle,
+  ListGroupItem,
+  ListGroup,
 } from "reactstrap";
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
-
+import { getPfeByTeacher } from "../../services/teacherService";
 const DetailTeacher = ({ teacherprops }) => {
-  const [teacher, setteacher] = useState(teacherprops);
-  console.log(teacher);
+  const { token } = JSON.parse(localStorage.getItem("user"));
+
+  const [teacher, setTeacher] = useState(teacherprops);
+  const [listPfe, setListPfe] = useState([]);
+  useEffect(async () => {
+    const res = await getPfeByTeacher(token, teacherprops._id);
+    console.log(res);
+    setListPfe(res.listPfeByTeacher);
+    console.log(listPfe);
+  }, []);
+
   return (
     <>
       <UserHeader />
@@ -135,7 +148,7 @@ const DetailTeacher = ({ teacherprops }) => {
                             id='input-email'
                             placeholder='jesse@example.com'
                             type='email'
-                            value={teacher.email}
+                            value={teacher ? teacher.email : ""}
                           />
                         </FormGroup>
                       </Col>
@@ -156,9 +169,7 @@ const DetailTeacher = ({ teacherprops }) => {
                             id='input-first-name'
                             placeholder='First name'
                             type='text'
-                            value={
-                              teacher.name ? teacher.name.split(" ")[1] : ""
-                            }
+                            value={teacher ? teacher.name.split(" ")[1] : ""}
                           />
                         </FormGroup>
                       </Col>
@@ -176,9 +187,7 @@ const DetailTeacher = ({ teacherprops }) => {
                             id='input-last-name'
                             placeholder='Last name'
                             type='text'
-                            value={
-                              teacher.name ? teacher.name.split(" ")[0] : ""
-                            }
+                            value={teacher ? teacher.name.split(" ")[0] : ""}
                           />
                         </FormGroup>
                       </Col>
@@ -198,7 +207,7 @@ const DetailTeacher = ({ teacherprops }) => {
                             id='input-first-name'
                             placeholder='First name'
                             type='text'
-                            value={teacher.sexe}
+                            value={teacher ? teacher.sexe : ""}
                           />
                         </FormGroup>
                       </Col>
@@ -207,6 +216,22 @@ const DetailTeacher = ({ teacherprops }) => {
                 </Form>
               </CardBody>
             </Card>
+            <ListGroup >
+              {listPfe.map((e) => (
+                <ListGroupItem>
+                  <Card style={{ width: "30rem" }}>
+                    <CardBody>
+                      <CardTitle>titre:{e.title} </CardTitle>
+                      <CardText>contenu:{e.contenu} </CardText>
+                      <CardText>
+                        Nom et prenom d'etudiant:{e.student.name}{" "}
+                      </CardText>
+                      <CardText>Année:{e.year ? e.year.title : ""} </CardText>
+                    </CardBody>
+                  </Card>
+                </ListGroupItem>
+              ))}
+            </ListGroup>
           </Col>
         </Row>
       </Container>
