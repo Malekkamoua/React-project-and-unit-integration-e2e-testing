@@ -41,11 +41,12 @@ const getPfe = async (token, id_pfe) => {
   return data.data;
 };
 const addPfe = async (pfe, token) => {
-  await api.post("students/pfe", pfe, {
+  const res = await api.post("students/pfe", pfe, {
     headers: {
       Authorization: "Bearer " + token,
     },
   });
+  return res.data.data;
 };
 
 const acceptPfe = async (idPfe, id_prof, token) => {

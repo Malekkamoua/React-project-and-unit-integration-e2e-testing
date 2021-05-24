@@ -38,6 +38,7 @@ import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
 import { addPfe, getPfe, updatePfe } from "../../services/pfeService";
+import { getEtudiant } from "../../services/studentService";
 
 const Students = () => {
   const [nomPfe, setnomPfe] = useState("");
@@ -47,20 +48,28 @@ const Students = () => {
   const [systemDate, setsystemDate] = useState(new Date());
   const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   useEffect(async () => {
-    const res = await getPfe(token, userInformation.pfe);
-    console.log(res[0]);
-    setCurrentPfe(res[0]);
-    setcontentPfe(res[0].content ? res[0].content : "");
-    setnomPfe(res[0].title ? res[0].title : "");
-    setEndDate(res[0].year.endDate);
+    if (userInformation.pfe === undefined) {
+      const res = await getEtudiant(token, userInformation._id);
+      console.log(res);
+    } else {
+      const res = await getPfe(token, userInformation.pfe);
+      console.log(res[0]);
+      setCurrentPfe(res[0]);
+      setcontentPfe(res[0].content ? res[0].content : "");
+      setnomPfe(res[0].title ? res[0].title : "");
+      setEndDate(res[0].year.endDate);
+    }
   }, []);
   const addPfeHandler = async () => {
-    await addPfe(
+    const res = await addPfe(
       { title: nomPfe, content: contentPfe, student: userInformation._id },
       token
     );
-    setnomPfe("");
-    setcontentPfe("");
+    console.log(res);
+    setCurrentPfe(res);
+    setcontentPfe(res.content ? res.content : "");
+    setnomPfe(res.title ? res.title : "");
+    setEndDate(res.year.endDate);
   };
   const updatePfeHandler = async () => {
     await updatePfe(
@@ -73,7 +82,7 @@ const Students = () => {
       currentPfe._id
     );
   };
-  console.log(new Date(endDate).getTime());
+
   return (
     <>
       <Header />

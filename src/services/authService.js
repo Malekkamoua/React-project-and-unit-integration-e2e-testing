@@ -13,6 +13,19 @@ const addEtudiant = async (etudiant, token) => {
   );
   return data.data;
 };
+const changePassword = async (token, object, role, idUser) => {
+  const { oldPassword, newPassword } = object;
+  let data = await api.post(
+    "changePassword/" + idUser,
+    { oldPassword, newPassword, role },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+  return data.data;
+};
 const addTeacher = async (token, etudiant) => {
   const { nom, prenom, cin, email, password } = etudiant;
   let data = await api.post(
@@ -26,4 +39,4 @@ const addTeacher = async (token, etudiant) => {
   );
   return data.data;
 };
-export { addEtudiant, addTeacher };
+export { addEtudiant, addTeacher, changePassword };

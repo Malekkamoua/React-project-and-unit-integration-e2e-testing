@@ -47,8 +47,9 @@ const Login = () => {
       password: password,
     });
 
-    if (result.data.status === 404) {
+    if (result.data.status === 401) {
       setMessage(result.data.message);
+      setloading(false);
     } else {
       if (result.data.status === 200) {
         setlogged(true);
