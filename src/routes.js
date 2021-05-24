@@ -33,6 +33,7 @@ import ListPfeAdmin from "views/examples/ListPfeAdmin";
 import AddYearUniver from "views/examples/AddYearUniver";
 import ListYearAdmin from "views/examples/ListYearAdmin";
 import DetailYear from "views/examples/DetailYear";
+import EtatPfeEtudiant from "views/examples/EtatPfeEtudiant";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -69,6 +70,13 @@ var routesOject = {
       name: "My Profile",
       icon: "ni ni-single-02 text-yellow",
       component: Profile,
+      layout: "/student",
+    },
+    {
+      path: "/etatpfe",
+      name: "Etat de mon PFE",
+      icon: "ni ni-single-02 text-yellow",
+      component: EtatPfeEtudiant,
       layout: "/student",
     },
     {

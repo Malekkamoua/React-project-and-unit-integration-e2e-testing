@@ -60,7 +60,7 @@ const acceptPfe = async (idPfe, id_prof, token) => {
   );
 };
 const updatePfe = async (token, pfe, id_pfe) => {
-  let data = await api.get("students/pfe/" + id_pfe, pfe, {
+  let data = await api.put("students/pfe/" + id_pfe, pfe, {
     headers: {
       Authorization: "Bearer " + token,
     },
