@@ -1,14 +1,3 @@
-/*!
-=========================================================
-* Argon Dashboard React - v1.2.0
-=========================================================
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-* Coded by Creative Tim
-=========================================================
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -35,24 +24,18 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
-        <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
-        <Route
-          path='/student'
-          render={(props) => <StudentLayout {...props} />}
-        />
-        <Route
-          path='/teacher'
-          render={(props) => <TeacherLayout {...props} />}
-        />
+        <Route path="/admin" render={props => <AdminLayout {...props} />} />
+        <Route path="/auth" render={props => <AuthLayout {...props} />} />
+        <Route path="/student" render={props => <StudentLayout {...props} />} />
+        <Route path="/teacher" render={props => <TeacherLayout {...props} />} />
 
         {connetedRole === "student" && (
-          <Redirect from='*' to='/student/student-profile' />
+          <Redirect from="*" to="/student/student-profile" />
         )}
         {connetedRole === "teacher" && (
-          <Redirect from='/' to='/teacher/teacher-profile' />
+          <Redirect from="/" to="/teacher/teacher-profile" />
         )}
-        <Redirect from='*' to='/auth/login' />
+        <Redirect from="*" to="/auth/login" />
       </Switch>
     </BrowserRouter>
   </Provider>,

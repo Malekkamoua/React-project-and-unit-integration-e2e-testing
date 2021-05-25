@@ -43,34 +43,34 @@ var routesOject = {
       name: "My Profile",
       icon: "ni ni-single-02 text-yellow",
       component: Profile,
-      layout: "/teacher",
+      layout: "/teacher"
     },
     {
       path: "/listpfe",
       name: "ListPFE",
       icon: "ni ni-single-02 text-yellow",
       component: ListPfeAdmin,
-      layout: "/teacher",
+      layout: "/teacher"
     },
     {
       path: "/pfeEncadrer",
       name: "Votre encadrement",
       icon: "ni ni-single-02 text-yellow",
       component: ListPfeEncadrerTeachers,
-      layout: "/teacher",
+      layout: "/teacher"
     },
     {
       path: "/detailpfe",
       component: DetailPfe,
-      layout: "/teacher",
+      layout: "/teacher"
     },
     {
       path: "/changePassword",
       name: "Changer mon mot de passe",
       icon: "ni ni-single-02 text-yellow",
       component: ChangePasswordUser,
-      layout: "/student",
-    },
+      layout: "/student"
+    }
   ],
   routesStudent: [
     {
@@ -78,115 +78,115 @@ var routesOject = {
       name: "My Profile",
       icon: "ni ni-single-02 text-yellow",
       component: Profile,
-      layout: "/student",
+      layout: "/student"
     },
     {
       path: "/etatpfe",
       name: "Etat de mon PFE",
       icon: "ni ni-single-02 text-yellow",
       component: EtatPfeEtudiant,
-      layout: "/student",
+      layout: "/student"
     },
     {
       path: "/listpfe",
       name: "Ajouter Pfe",
       icon: "ni ni-single-02 text-yellow",
       component: Students,
-      layout: "/student",
+      layout: "/student"
     },
     {
       path: "/changePassword",
       name: "Changer mon mot de passe",
       icon: "ni ni-single-02 text-yellow",
       component: ChangePasswordUser,
-      layout: "/student",
-    },
+      layout: "/student"
+    }
   ],
   routesAdmin: [
     //adminroutes
     {
       path: "/detailYear",
       component: DetailYear,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/detailpfe",
       component: DetailPfe,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/detailEtudiant",
       component: DetailEtudiant,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/detailTeacher",
       component: DetailTeacher,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/addEtudiant",
       name: "Ajouter Etudiant",
       icon: "ni ni-single-02 text-yellow",
       component: AddEtudiant,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/addAnneeUniver",
       name: "Créer Année Universitaire",
       icon: "ni ni-single-02 text-yellow",
       component: AddYearUniver,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/addTeacher",
       name: "Ajouter Professeur",
       icon: "ni ni-single-02 text-yellow",
       component: AddTeacher,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/projects",
       name: "Projects",
       icon: "ni ni-pin-3 text-orange",
       component: Projects,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/tables",
       name: "Form",
       icon: "ni ni-bullet-list-67 text-red",
       component: Tables,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/students",
       name: "List des Etudiants",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListEtudiantAdmin,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/teachers",
       name: "List des professeurs",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListTeacherAdmin,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/listPfe",
       name: "Liste Des Pfe",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListPfeAdmin,
-      layout: "/admin",
+      layout: "/admin"
     },
     {
       path: "/listYear",
       name: "Liste des année universitaire",
       icon: "ni ni-bullet-list-67 text-red",
       component: ListYearAdmin,
-      layout: "/admin",
-    },
+      layout: "/admin"
+    }
   ],
   routesAuth: [
     {
@@ -194,7 +194,7 @@ var routesOject = {
       name: "Login",
       icon: "ni ni-key-25 text-info",
       component: Login,
-      layout: "/auth",
+      layout: "/auth"
     },
 
     {
@@ -202,8 +202,8 @@ var routesOject = {
       name: "Register",
       icon: "ni ni-circle-08 text-pink",
       component: Register,
-      layout: "/auth",
-    },
-  ],
+      layout: "/auth"
+    }
+  ]
 };
 export default routesOject;
