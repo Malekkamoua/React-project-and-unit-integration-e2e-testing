@@ -41,11 +41,12 @@ const getPfe = async (token, id_pfe) => {
   return data.data;
 };
 const addPfe = async (pfe, token) => {
-  await api.post("students/pfe", pfe, {
+  const res = await api.post("students/pfe", pfe, {
     headers: {
       Authorization: "Bearer " + token,
     },
   });
+  return res.data.data;
 };
 
 const acceptPfe = async (idPfe, id_prof, token) => {
@@ -60,7 +61,7 @@ const acceptPfe = async (idPfe, id_prof, token) => {
   );
 };
 const updatePfe = async (token, pfe, id_pfe) => {
-  let data = await api.get("students/pfe/" + id_pfe, pfe, {
+  let data = await api.put("students/pfe/" + id_pfe, pfe, {
     headers: {
       Authorization: "Bearer " + token,
     },

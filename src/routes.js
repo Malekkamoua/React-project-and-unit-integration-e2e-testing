@@ -33,6 +33,8 @@ import ListPfeAdmin from "views/examples/ListPfeAdmin";
 import AddYearUniver from "views/examples/AddYearUniver";
 import ListYearAdmin from "views/examples/ListYearAdmin";
 import DetailYear from "views/examples/DetailYear";
+import EtatPfeEtudiant from "views/examples/EtatPfeEtudiant";
+import ChangePasswordUser from "views/examples/ChangePasswordUser";
 //studentRoutes
 var routesOject = {
   routesTeacher: [
@@ -62,6 +64,13 @@ var routesOject = {
       component: DetailPfe,
       layout: "/teacher",
     },
+    {
+      path: "/changePassword",
+      name: "Changer mon mot de passe",
+      icon: "ni ni-single-02 text-yellow",
+      component: ChangePasswordUser,
+      layout: "/student",
+    },
   ],
   routesStudent: [
     {
@@ -72,10 +81,24 @@ var routesOject = {
       layout: "/student",
     },
     {
+      path: "/etatpfe",
+      name: "Etat de mon PFE",
+      icon: "ni ni-single-02 text-yellow",
+      component: EtatPfeEtudiant,
+      layout: "/student",
+    },
+    {
       path: "/listpfe",
       name: "Ajouter Pfe",
       icon: "ni ni-single-02 text-yellow",
       component: Students,
+      layout: "/student",
+    },
+    {
+      path: "/changePassword",
+      name: "Changer mon mot de passe",
+      icon: "ni ni-single-02 text-yellow",
+      component: ChangePasswordUser,
       layout: "/student",
     },
   ],
