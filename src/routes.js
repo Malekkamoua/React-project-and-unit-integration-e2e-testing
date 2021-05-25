@@ -23,7 +23,7 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Students from "views/examples/Students.js";
 import DetailPfe from "views/examples/DetailPfe";
-import AddEtudiant from "views/examples/AddEtudiant";
+import AddEtudiant from "views/examples/AddStudent";
 import ListEtudiantAdmin from "views/examples/ListEtudiantAdmin";
 import DetailEtudiant from "views/examples/DetailEtudiant";
 import ListTeacherAdmin from "views/examples/ListTeacherAdmin";
