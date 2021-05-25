@@ -5,34 +5,55 @@ import {
   Container,
   CardTitle,
   CardBody,
+  CardHeader,
+  Col,
   Button,
-  CardText,
+  CardText
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
-const DetailPfe = (props) => {
+const DetailPfe = props => {
   console.log(props);
   return (
     <>
       <Header />
-      <Container className='mt--15' fluid>
-        <Card style={{ width: "30rem", marginLeft: 350, marginTop: 200 }}>
-          <CardBody>
-            <CardTitle>titre: {props.activePfe.title}</CardTitle>
-            <CardText>contenu: {props.activePfe.content}</CardText>
-            <CardText>
-              Nom et prenom d'etudiant:{" "}
+      <Container
+        className="mt--15"
+        fluid
+        style={{ position: "relative", top: "-100px" }}
+      >
+        <Card className="shadow">
+          <CardHeader className="border-0" style={{ display: "flex" }}>
+            <h3 className="mb-0">
+              Détails PFE :{" "}
               {props.activePfe.student ? props.activePfe.student.name : ""}
-            </CardText>
-            <CardText>
+            </h3>
+            <CardText style={{ position: "relative", left: "57%" }}>
               Année: {props.activePfe.year ? props.activePfe.year.title : ""}
             </CardText>
+          </CardHeader>
+          <CardBody>
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Détails année universitaire</h3>
+              </CardHeader>
+              <CardBody>
+                <Col>
+                  <CardTitle>titre: {props.activePfe.title}</CardTitle>
+                  <CardText>contenu: {props.activePfe.content}</CardText>
+                </Col>
+              </CardBody>
+            </Card>
+            <br></br>
+            <br></br>
 
             <Button
-              color='success'
-              href='#pablo'
-              onClick={(e) => e.preventDefault()}
+              style={{ position: "relative", left: "92%" }}
+              color="success"
+              className="btn btn-success btn-sm"
+              href="#pablo"
+              onClick={e => e.preventDefault()}
             >
-              Accept
+              Accepter
             </Button>
           </CardBody>
         </Card>
@@ -40,7 +61,7 @@ const DetailPfe = (props) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { activePfe: state.activePfe };
 };
 export default connect(mapStateToProps)(DetailPfe);

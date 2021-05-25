@@ -6,15 +6,16 @@ import {
   Container,
   CardTitle,
   CardBody,
+  CardHeader,
   Button,
   CardText,
   Col,
   Input,
-  FormGroup,
+  FormGroup
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
 import { Link } from "react-router-dom";
-const DetailPfe = (props) => {
+const DetailPfe = props => {
   console.log(props.activeYear._id);
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [title, setTitle] = useState(props.activeYear.title);
@@ -27,42 +28,51 @@ const DetailPfe = (props) => {
   return (
     <>
       <Header />
-      <Container className='mt--15' fluid>
-        <Card style={{ width: "30rem", marginLeft: 350, marginTop: 200 }}>
+      <Container
+        className="mt--15"
+        fluid
+        style={{ position: "relative", top: "-100px" }}
+      >
+        <Card className="shadow">
+          <CardHeader className="border-0">
+            <h3 className="mb-0">Détails année universitaire</h3>
+          </CardHeader>
           <CardBody>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} />
             <Col>
               <FormGroup>
+                Titre{" "}
+                <Input value={title} onChange={e => setTitle(e.target.value)} />
                 <br />
-
+                Date Début
                 <Input
                   value={startDate}
                   max={endDate}
-                  type='date'
-                  onChange={(e) => setStartDate(e.target.value)}
+                  type="date"
+                  onChange={e => setStartDate(e.target.value)}
                 />
-
                 <br />
+                Date Fin
                 <Input
-                  type='date'
+                  type="date"
                   value={endDate}
                   Value
-                  onChange={(e) => setEndDate(e.target.value)}
+                  onChange={e => setEndDate(e.target.value)}
                 />
               </FormGroup>
             </Col>
-            <Link to='listYear'>
+            <Link to="listYear">
               <Button
-                color='danger'
+                style={{ position: "relative", left: "86%" }}
+                color="danger"
                 onClick={async () =>
                   await updateYear(token, props.activeYear._id, {
                     title,
                     startDate,
-                    endDate,
+                    endDate
                   })
                 }
               >
-                Accept
+                Enregistrer
               </Button>
             </Link>
           </CardBody>
@@ -71,7 +81,7 @@ const DetailPfe = (props) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return { activeYear: state.activeYear };
 };
 export default connect(mapStateToProps)(DetailPfe);

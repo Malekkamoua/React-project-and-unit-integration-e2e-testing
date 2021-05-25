@@ -29,7 +29,7 @@ import { activeYearAction } from "../../actions/activeYearAction";
 import Header from "components/Headers/Header.js";
 import { getAllYear } from "../../services/univ_yearService";
 
-const ListYearAdmin = (props) => {
+const ListYearAdmin = props => {
   console.log(props);
 
   const [listYear, setListYear] = useState([]);
@@ -50,37 +50,43 @@ const ListYearAdmin = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7' fluid>
+      <Container className="mt--7" fluid>
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des PFE</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Années universitaires</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>titre</th>
-                    <th scope='col'>Date Début</th>
-                    <th scope='col'>Date Fin</th>
-                    <th colSpan='2'>Actions</th>
+                    <th scope="col">titre</th>
+                    <th scope="col">Date Début</th>
+                    <th scope="col">Date Fin</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colSpan="3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listYear.map((elem) => {
+                  {listYear.map(elem => {
                     return (
                       <tr>
                         <td>{elem.title}</td>
                         <td>{elem.startDate.split("T")[0]}</td>
                         <td>{elem.endDate.split("T")[0]}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                           <Link
-                            to='detailYear'
-                            className='btn btn-primary'
+                            to="detailYear"
+                            className="btn btn-primary btn-sm"
                             onClick={() => props.selectYear(elem)}
                           >
-                            Detail
+                            Details
                           </Link>
                         </td>
                       </tr>

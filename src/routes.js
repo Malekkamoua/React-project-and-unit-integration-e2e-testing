@@ -146,20 +146,6 @@ var routesOject = {
       layout: "/admin"
     },
     {
-      path: "/projects",
-      name: "Projects",
-      icon: "ni ni-pin-3 text-orange",
-      component: Projects,
-      layout: "/admin"
-    },
-    {
-      path: "/tables",
-      name: "Form",
-      icon: "ni ni-bullet-list-67 text-red",
-      component: Tables,
-      layout: "/admin"
-    },
-    {
       path: "/students",
       name: "List des Etudiants",
       icon: "ni ni-bullet-list-67 text-red",

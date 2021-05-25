@@ -28,7 +28,7 @@ import {
   Input,
   Container,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 // core components
 import UserHeader from "components/Headers/UserHeader.js";
@@ -40,48 +40,45 @@ const Profile = () => {
     <>
       <UserHeader />
       {/* Page content */}
-      <Container className='mt--7' fluid>
+      <Container className="mt--7" fluid>
         <Row>
-          <Col className='order-xl-2 mb-5 mb-xl-0' xl='4'>
-            <Card className='card-profile shadow'>
-              <Row className='justify-content-center'>
-                <Col className='order-lg-2' lg='3'>
-                  <div className='card-profile-image'>
-                    <a href='#pablo' onClick={(e) => e.preventDefault()}>
+          <Col className="order-xl-2 mb-5 mb-xl-0" xl="4">
+            <Card className="card-profile shadow">
+              <Row className="justify-content-center">
+                <Col className="order-lg-2" lg="3">
+                  <div className="card-profile-image">
+                    <a href="#pablo" onClick={e => e.preventDefault()}>
                       <img
-                        alt='...'
-                        className='rounded-circle'
-                        src={
-                          require("../../assets/img/theme/team-4-800x800.jpg")
-                            .default
-                        }
+                        alt="..."
+                        className="rounded-circle"
+                        src="https://robohash.org/e27c051ad572320f5abb4c9b0bffb9d8?set=set3&bgset=bg2&size=200x200"
                       />
                     </a>
                   </div>
                 </Col>
               </Row>
-              <CardHeader className='text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4'>
-                <div className='d-flex justify-content-between'></div>
+              <CardHeader className="text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div className="d-flex justify-content-between"></div>
               </CardHeader>
-              <CardBody className='pt-0 pt-md-4'>
+              <CardBody className="pt-0 pt-md-4">
                 <Row>
-                  <div className='col'>
-                    <div className='card-profile-stats d-flex justify-content-center mt-md-5'>
+                  <div className="col">
+                    <div className="card-profile-stats d-flex justify-content-center mt-md-5">
                       <div></div>
                     </div>
                   </div>
                 </Row>
-                <div className='text-center'>
+                <div className="text-center">
                   <h3>
                     {user.name}
-                    <span className='font-weight-light'>, 27</span>
+                    <span className="font-weight-light">, 27</span>
                   </h3>
-                  <div className='h5 font-weight-300'>
-                    <i className='ni location_pin mr-2' />
+                  <div className="h5 font-weight-300">
+                    <i className="ni location_pin mr-2" />
                     Tunisie,Tunis
                   </div>
-                  <div className='h5 mt-4'>
-                    <i className='ni business_briefcase-24 mr-2' />
+                  <div className="h5 mt-4">
+                    <i className="ni business_briefcase-24 mr-2" />
                     {user.role === "teacher"
                       ? "Professeur"
                       : user.role === "student"
@@ -89,10 +86,10 @@ const Profile = () => {
                       : ""}
                   </div>
                   <div>
-                    <i className='ni education_hat mr-2' />
+                    <i className="ni education_hat mr-2" />
                     Université de Manouba
                   </div>
-                  <hr className='my-4' />
+                  <hr className="my-4" />
                   <p>
                     Ryan — the name taken by Melbourne-raised, Brooklyn-based
                     Nick Murphy — writes, performs and records all of his own

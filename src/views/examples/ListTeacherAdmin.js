@@ -9,7 +9,7 @@ import Header from "../../components/Headers/Header";
 import CustomModal from "../../components/CustomModal/CustomModal";
 import { getAllTeacher, deleteTeacher } from "../../services/teacherService";
 
-const ListTeacherAdmin = (props) => {
+const ListTeacherAdmin = props => {
   const [listTeacher, setListTeacher] = useState([]);
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [modal, setModal] = useState(false);
@@ -24,46 +24,50 @@ const ListTeacherAdmin = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7'>
+      <Container className="mt--7">
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des Professeur</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Liste des Professeur</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>Nom et Prenom</th>
-                    <th scope='col'>Email</th>
-                    <th colSpan='2'>Actions</th>
+                    <th scope="col">Nom et Prenom</th>
+                    <th scope="col">Email</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colSpan="3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listTeacher.map((elem) => {
+                  {listTeacher.map(elem => {
                     if (elem.role !== "admin")
                       return (
                         <tr>
                           <td>{elem.name}</td>
 
                           <td>{elem.email}</td>
-
-                          <td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td style={{ display: "flex" }}>
                             <Link
-                              to='detailTeacher'
-                              className='btn btn-primary'
+                              to="detailTeacher"
+                              className="btn btn-primary btn-sm"
                               onClick={() => props.selectTeacher(elem)}
                             >
-                              Detail
+                              Details
                             </Link>
-                          </td>
-                          <td>
+
                             <CustomModal
                               setEtudiant={() => setIdTeacher(elem._id)}
-                              buttonLabel='Delete'
+                              buttonLabel="Delete"
                               modal={modal}
-                              question='Voulez-vous vraiment supprimer cet étudiant'
+                              question="Voulez-vous vraiment supprimer cet étudiant"
                               toggle={() => setModal(!modal)}
                               apiFunction={() => {
                                 //   console.log(idEtudiant);
@@ -71,7 +75,7 @@ const ListTeacherAdmin = (props) => {
                                 deleteTeacher(token, idTeacher);
                                 setListTeacher(
                                   listTeacher.filter(
-                                    (elem) => elem._id !== idTeacher
+                                    elem => elem._id !== idTeacher
                                   )
                                 );
                               }}

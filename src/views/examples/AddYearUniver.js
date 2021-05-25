@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form,
+  Form
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
@@ -39,56 +39,57 @@ const RegisterUser = () => {
   return (
     <>
       <Header />
-      <Container className='mt--10'>
+      {/* Page content */}
+      <Container className="mt--7">
         {/* Table */}
-        <Row lg='7' md='7' style={{ width: 500, marginLeft: 300 }}>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Créer Année Universitaire</h3>
+        <Row>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Ajouter une année universitaire</h3>
               </CardHeader>
+              <close>
+                <Card className="bg-secondary shadow border-0">
+                  <CardBody className="px-lg-5 py-lg-5">
+                    <Form role="form">
+                      <CustomInput
+                        placeholder={"Nom"}
+                        value={title}
+                        onChange={e => setTitle(e.target.value)}
+                      />
+                      <CustomInput
+                        placeholder={"Prenom"}
+                        type="date"
+                        value={startDate}
+                        onChange={e => setStartDate(e.target.value)}
+                      />
+                      <CustomInput
+                        placeholder={"Age"}
+                        type="date"
+                        value={endDate}
+                        onChange={e => setEndDate(e.target.value)}
+                      />
+
+                      <div className="text-center">
+                        <Button
+                          className="mt-4"
+                          color="primary"
+                          type="button"
+                          onClick={() => {
+                            ajouterEtudiant();
+                          }}
+                        >
+                          Créer
+                        </Button>
+                      </div>
+                    </Form>
+                  </CardBody>
+                </Card>
+              </close>
             </Card>
           </div>
         </Row>
         {/* Dark table */}
-        <Col style={{ marginLeft: 300, width: 500 }} lg='7' md='7'>
-          <Card className='bg-secondary shadow border-0'>
-            <CardBody className='px-lg-5 py-lg-5'>
-              <Form role='form'>
-                <CustomInput
-                  placeholder={"Nom"}
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-                <CustomInput
-                  placeholder={"Prenom"}
-                  type='date'
-                  value={startDate}
-                  onChange={(e) => setStartDate(e.target.value)}
-                />
-                <CustomInput
-                  placeholder={"Age"}
-                  type='date'
-                  value={endDate}
-                  onChange={(e) => setEndDate(e.target.value)}
-                />
-
-                <div className='text-center'>
-                  <Button
-                    className='mt-4'
-                    color='primary'
-                    type='button'
-                    onClick={() => {
-                      ajouterEtudiant();
-                    }}
-                  >
-                    Créer
-                  </Button>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-        </Col>
       </Container>
     </>
   );

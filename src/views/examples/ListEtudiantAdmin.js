@@ -11,10 +11,10 @@ import {
   getAllEtudiant,
   deleteEtudiant,
   banEtudiant,
-  unBanEtudiant,
+  unBanEtudiant
 } from "../../services/studentService";
 
-const ListEtudiantAdmin = (props) => {
+const ListEtudiantAdmin = props => {
   const [listStudent, setListStudent] = useState([]);
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [modal, setModal] = useState(false);
@@ -33,70 +33,69 @@ const ListEtudiantAdmin = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7'>
+      <Container className="mt--7">
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des Etudiant</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Liste des Etudiants</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>Nom</th>
-                    <th scope='col'>Prenom</th>
-                    <th scope='col'>Email</th>
-                    <th colSpan='3'>Actions</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Email</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th colSpan="3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listStudent.map((elem) => {
+                  {listStudent.map(elem => {
                     return (
                       <tr>
                         <td>{elem.name ? elem.name.split(" ")[1] : ""}</td>
                         <td>{elem.name ? elem.name.split(" ")[0] : ""}</td>
                         <td>{elem.email}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-                        <td>
+                        <td style={{ display: "flex" }}>
                           <Link
-                            to='detailEtudiant'
-                            className='btn btn-primary'
+                            to="detailEtudiant"
+                            className="btn btn-primary btn-sm"
                             onClick={() => props.selectStudent(elem)}
                           >
-                            Detail
+                            Details
                           </Link>
-                        </td>
-                        <td>
+
                           <CustomModal
                             setEtudiant={() => setIdEtudiant(elem._id)}
-                            buttonLabel='Delete'
+                            buttonLabel="Supprimer"
                             modal={modal}
-                            question='Voulez-vous vraiment supprimer cet étudiant'
+                            question="Voulez-vous vraiment supprimer cet étudiant"
                             toggle={() => setModal(!modal)}
                             apiFunction={() => {
-                              //   console.log(idEtudiant);
-                              //in case deleteEtudiant doesn't work we need to block set list
                               deleteEtudiant(token, idEtudiant);
                               setListStudent(
                                 listStudent.filter(
-                                  (elem) => elem._id !== idEtudiant
+                                  elem => elem._id !== idEtudiant
                                 )
                               );
                             }}
                           />
-                        </td>
-                        {elem.isBanned === false ? (
-                          <td>
+                          {elem.isBanned === false ? (
                             <CustomModal
                               setEtudiant={() => setIdEtudiant(elem._id)}
-                              buttonLabel='Bannir'
+                              buttonLabel="Bloquer"
                               modal={modalBan}
-                              question='Voulez vous vraiment bannir cet étudiant'
+                              question="Voulez vous vraiment bloquer cet étudiant?"
                               toggle={() => setModalBan(!modalBan)}
                               apiFunction={async () => {
-                                //   console.log(idEtudiant);
-                                //in case deleteEtudiant doesn't work we need to block set list
                                 await banEtudiant(
                                   token,
                                   { ...elem, isBanned: true },
@@ -104,14 +103,12 @@ const ListEtudiantAdmin = (props) => {
                                 );
                               }}
                             />
-                          </td>
-                        ) : (
-                          <td>
+                          ) : (
                             <CustomModal
                               setEtudiant={() => setIdEtudiant(elem._id)}
-                              buttonLabel='Unbannir'
+                              buttonLabel="Débloquer"
                               modal={modalUnBan}
-                              question='Voulez vous vraiment unbannir cet étudiant'
+                              question="Voulez vous vraiment débloquer cet étudiant?"
                               toggle={() => setModalUnBan(!modalUnBan)}
                               apiFunction={async () => {
                                 //   console.log(idEtudiant);
@@ -124,8 +121,8 @@ const ListEtudiantAdmin = (props) => {
                                 console.log(data);
                               }}
                             />
-                          </td>
-                        )}
+                          )}
+                        </td>
                       </tr>
                     );
                   })}
