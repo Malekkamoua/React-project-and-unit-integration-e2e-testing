@@ -20,6 +20,7 @@ import {
 import CustomInput from "components/CustomInput";
 import Header from "components/Headers/Header.js";
 import { addEtudiant } from "../../services/authService";
+
 const RegisterUser = () => {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
@@ -28,7 +29,7 @@ const RegisterUser = () => {
   const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
-  const { token } = JSON.parse(localStorage.getItem("user"));
+  // const { token } = JSON.parse(localStorage.getItem("user"));
   const ajouterEtudiant = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
@@ -60,7 +61,7 @@ const RegisterUser = () => {
                   <CardBody className="px-lg-5 py-lg-5">
                     <Form role="form">
                       <CustomInput
-                        placeholder={"Nom"}
+                        placeholder={"Nom etudiant"}
                         value={nom}
                         onChange={e => setNom(e.target.value)}
                       />
@@ -82,7 +83,7 @@ const RegisterUser = () => {
                         onChange={e => setEmail(e.target.value)}
                       />
                       <CustomInput
-                        placeholder={"password"}
+                        placeholder={"insert password"}
                         type="password"
                         value={password}
                         valid={password === confirmPassword ? true : false}
@@ -92,12 +93,14 @@ const RegisterUser = () => {
 
                       <CustomInput
                         placeholder={"confirm password"}
+                        type="password"
                         value={confirmPassword}
                         onChange={e => setConfirmPassword(e.target.value)}
                       />
 
                       <div className="text-center">
                         <Button
+                          data-testid="submit"
                           className="mt-4"
                           color="primary"
                           type="button"
