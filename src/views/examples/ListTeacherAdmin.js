@@ -8,15 +8,19 @@ import { activeTeacherAction } from "../../actions/activeTeacherAction";
 import Header from "../../components/Headers/Header";
 import CustomModal from "../../components/CustomModal/CustomModal";
 import { getAllTeacher, deleteTeacher } from "../../services/teacherService";
+import ClipLoader from "react-spinners/ClipLoader";
 
-const ListTeacherAdmin = props => {
+const ListTeacherAdmin = (props) => {
+  const [loading, setLoading] = useState(false);
   const [listTeacher, setListTeacher] = useState([]);
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [modal, setModal] = useState(false);
   const [idTeacher, setIdTeacher] = useState();
   console.log(props);
   useEffect(async () => {
+    setLoading(true);
     const teacher = await getAllTeacher(token);
+    setLoading(false);
     console.log(teacher);
     setListTeacher(teacher);
   }, []);
@@ -24,66 +28,73 @@ const ListTeacherAdmin = props => {
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7">
+      <Container className='mt--7'>
         {/* Table */}
         <Row>
-          <div className="col">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <h3 className="mb-0">Liste des Professeur</h3>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Liste des Professeur</h3>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
+              <Table className='align-items-center table-flush' responsive>
+                <thead className='thead-light'>
                   <tr>
-                    <th scope="col">Nom et Prenom</th>
-                    <th scope="col">Email</th>
+                    <th scope='col'>Nom et Prenom</th>
+                    <th scope='col'>Email</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colSpan="3">Actions</th>
+                    <th colSpan='3'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listTeacher.map(elem => {
-                    if (elem.role !== "admin")
-                      return (
-                        <tr>
-                          <td>{elem.name}</td>
+                  {loading ? (
+                    <div style={{ flex: 1, position: 50 }}>
+                      {" "}
+                      <ClipLoader loading={loading} />
+                    </div>
+                  ) : (
+                    listTeacher.map((elem) => {
+                      if (elem.role !== "admin")
+                        return (
+                          <tr>
+                            <td>{elem.name}</td>
 
-                          <td>{elem.email}</td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td style={{ display: "flex" }}>
-                            <Link
-                              to="detailTeacher"
-                              className="btn btn-primary btn-sm"
-                              onClick={() => props.selectTeacher(elem)}
-                            >
-                              Details
-                            </Link>
+                            <td>{elem.email}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style={{ display: "flex" }}>
+                              <Link
+                                to='detailTeacher'
+                                className='btn btn-primary btn-sm'
+                                onClick={() => props.selectTeacher(elem)}
+                              >
+                                Details
+                              </Link>
 
-                            <CustomModal
-                              setEtudiant={() => setIdTeacher(elem._id)}
-                              buttonLabel="Delete"
-                              modal={modal}
-                              question="Voulez-vous vraiment supprimer cet étudiant"
-                              toggle={() => setModal(!modal)}
-                              apiFunction={() => {
-                                //   console.log(idEtudiant);
-                                //in case deleteEtudiant doesn't work we need to block set list
-                                deleteTeacher(token, idTeacher);
-                                setListTeacher(
-                                  listTeacher.filter(
-                                    elem => elem._id !== idTeacher
-                                  )
-                                );
-                              }}
-                            />
-                          </td>
-                        </tr>
-                      );
-                  })}
+                              <CustomModal
+                                setEtudiant={() => setIdTeacher(elem._id)}
+                                buttonLabel='Delete'
+                                modal={modal}
+                                question='Voulez-vous vraiment supprimer cet étudiant'
+                                toggle={() => setModal(!modal)}
+                                apiFunction={() => {
+                                  //   console.log(idEtudiant);
+                                  //in case deleteEtudiant doesn't work we need to block set list
+                                  deleteTeacher(token, idTeacher);
+                                  setListTeacher(
+                                    listTeacher.filter(
+                                      (elem) => elem._id !== idTeacher
+                                    )
+                                  );
+                                }}
+                              />
+                            </td>
+                          </tr>
+                        );
+                    })
+                  )}
                 </tbody>
               </Table>
             </Card>

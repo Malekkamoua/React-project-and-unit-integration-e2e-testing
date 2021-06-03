@@ -14,94 +14,100 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form
+  Form,
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
 import Header from "components/Headers/Header.js";
 import { addTeacher } from "../../services/authService";
 const RegisterTeacher = () => {
-  const [nom, setNom] = useState("");
-  const [prenom, setPrenom] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [cin, setCin] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
   const token = JSON.parse(localStorage.getItem("user")).token;
-  const ajouterTeacher = async () => {
+  const addTeacherHandler = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
       return null;
     }
-    const res = await addTeacher(token, { nom, prenom, cin, email, password });
-    // setNom("");
-    // setPrenom("");
-    // setEmail("");
-    // setPassword("");
-    // setConfirmPassword("");
-    // setAge("");
+    const res = await addTeacher(token, {
+      lastName,
+      firstName,
+      cin,
+      email,
+      password,
+    });
+    setLastName("");
+    setFirstName("");
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
+    setAge("");
     console.log(res);
   };
   return (
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7">
+      <Container className='mt--7'>
         {/* Table */}
         <Row>
-          <div className="col">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <h3 className="mb-0">Ajouter un professeur</h3>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Ajouter un professeur</h3>
               </CardHeader>
               <Col>
-                <Card className="bg-secondary shadow border-0">
-                  <CardBody className="px-lg-5 py-lg-5">
-                    <Form role="form">
+                <Card className='bg-secondary shadow border-0'>
+                  <CardBody className='px-lg-5 py-lg-5'>
+                    <Form role='form'>
                       <CustomInput
                         placeholder={"Nom"}
-                        value={nom}
-                        onChange={e => setNom(e.target.value)}
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"Prenom"}
-                        value={prenom}
-                        onChange={e => setPrenom(e.target.value)}
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"CIN"}
-                        type="number"
+                        type='number'
                         value={cin}
-                        onChange={e => setCin(e.target.value)}
+                        onChange={(e) => setCin(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"email"}
-                        type="email"
+                        type='email'
                         value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"password"}
-                        type="password"
+                        type='password'
                         value={password}
                         valid={password === confirmPassword ? true : false}
-                        feedback="password must be equal to confirm password"
-                        onChange={e => setPassword(e.target.value)}
+                        feedback='password must be equal to confirm password'
+                        onChange={(e) => setPassword(e.target.value)}
                       />
 
                       <CustomInput
                         placeholder={"confirm password"}
                         value={confirmPassword}
-                        onChange={e => setConfirmPassword(e.target.value)}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                       />
 
-                      <div className="text-center">
+                      <div className='text-center'>
                         <Button
-                          className="mt-4"
-                          color="primary"
-                          type="button"
+                          className='mt-4'
+                          color='primary'
+                          type='button'
                           onClick={() => {
-                            ajouterTeacher();
+                            addTeacherHandler();
                           }}
                         >
                           Ajouter

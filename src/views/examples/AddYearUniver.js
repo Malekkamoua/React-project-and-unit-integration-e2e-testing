@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form
+  Form,
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
@@ -40,41 +40,41 @@ const RegisterUser = () => {
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7">
+      <Container className='mt--7'>
         {/* Table */}
         <Row>
-          <div className="col">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <h3 className="mb-0">Ajouter une année universitaire</h3>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Ajouter une année universitaire</h3>
               </CardHeader>
               <close>
-                <Card className="bg-secondary shadow border-0">
-                  <CardBody className="px-lg-5 py-lg-5">
-                    <Form role="form">
+                <Card className='bg-secondary shadow border-0'>
+                  <CardBody className='px-lg-5 py-lg-5'>
+                    <Form role='form'>
                       <CustomInput
-                        placeholder={"Nom"}
+                        placeholder={"titre année"}
                         value={title}
-                        onChange={e => setTitle(e.target.value)}
+                        onChange={(e) => setTitle(e.target.value)}
                       />
                       <CustomInput
-                        placeholder={"Prenom"}
-                        type="date"
+                        placeholder={"Date Début"}
+                        type='date'
                         value={startDate}
-                        onChange={e => setStartDate(e.target.value)}
+                        onChange={(e) => setStartDate(e.target.value)}
                       />
                       <CustomInput
-                        placeholder={"Age"}
-                        type="date"
+                        placeholder={"Date Fin"}
+                        type='date'
                         value={endDate}
-                        onChange={e => setEndDate(e.target.value)}
+                        onChange={(e) => setEndDate(e.target.value)}
                       />
 
-                      <div className="text-center">
+                      <div className='text-center'>
                         <Button
-                          className="mt-4"
-                          color="primary"
-                          type="button"
+                          className='mt-4'
+                          color='primary'
+                          type='button'
                           onClick={() => {
                             ajouterEtudiant();
                           }}

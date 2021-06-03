@@ -27,11 +27,13 @@ import {
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
 import ClipLoader from "react-spinners/ClipLoader";
-import { css } from "@emotion/react";
-
 // core components
 import Header from "components/Headers/Header.js";
-import { getAllPfe, acceptPfe } from "../../services/pfeService";
+import {
+  getPfeNonTaken,
+  acceptPfe,
+  getAllPfeByTeacher,
+} from "../../services/pfeService";
 const ListPfeTeacher = (props) => {
   console.log(props);
   const [loading, setLoading] = useState(false);
@@ -42,14 +44,17 @@ const ListPfeTeacher = (props) => {
   useEffect(async () => {
     try {
       setLoading(true);
-      const listPfe = await getAllPfe(token);
+      const res = await getPfeNonTaken(token);
+      const otherRes = await getAllPfeByTeacher(token, userInformation._id);
+      console.log(otherRes);
+      setlistPFE(otherRes.listPfeByTeacher.concat(res.data));
       setLoading(false);
-      setlistPFE(listPfe);
       console.log(listPfe);
     } catch (err) {
       console.log(err);
     }
   }, [mount]);
+  console.log(userInformation);
   // const goToDetail = (pfe) => {};
   const acceptPfeHandler = (idPfe, id_tutor, token) => {
     acceptPfe(idPfe, id_tutor, token);
@@ -72,7 +77,7 @@ const ListPfeTeacher = (props) => {
                   <tr>
                     <th scope='col'>Project</th>
                     <th scope='col'>Contenu</th>
-                    <th scope='col'>Status</th>
+                    <th scope='col'>Tatus</th>
                     <th></th>
                     <th></th>
                     <th></th>

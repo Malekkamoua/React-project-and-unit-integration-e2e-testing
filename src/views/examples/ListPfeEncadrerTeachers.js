@@ -43,9 +43,6 @@ import {
 } from "reactstrap";
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
-
-//api
-import api from "../../api";
 // core components
 import Header from "components/Headers/Header.js";
 import {

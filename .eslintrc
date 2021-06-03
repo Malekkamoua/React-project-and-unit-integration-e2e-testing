@@ -9,7 +9,7 @@
       "semi": "off",
       "no-undef": "off",
       "no-unused-vars": "warn",
-      "capitalized-comments":"error"
+      "capitalized-comments":"warn"
     },
     "env": {
       "browser": true,

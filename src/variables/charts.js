@@ -31,7 +31,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
   var cornerRadius = 6;
 
   if (!vm.horizontal) {
-    // bar
+    // Bar
     left = vm.x - vm.width / 2;
     right = vm.x + vm.width / 2;
     top = vm.y;
@@ -40,7 +40,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
     signY = bottom > top ? 1 : -1;
     borderSkipped = vm.borderSkipped || "bottom";
   } else {
-    // horizontal bar
+    // Horizontal bar
     left = vm.base;
     right = vm.x;
     top = vm.y - vm.height / 2;
@@ -51,9 +51,9 @@ Chart.elements.Rectangle.prototype.draw = function () {
   }
 
   // Canvas doesn't allow us to stroke inside the width so we can
-  // adjust the sizes to fit if we're setting a stroke on the line
+  // Adjust the sizes to fit if we're setting a stroke on the line
   if (borderWidth) {
-    // borderWidth shold be less than bar width and bar height.
+    // BorderWidth shold be less than bar width and bar height.
     var barSize = Math.min(Math.abs(left - right), Math.abs(top - bottom));
     borderWidth = borderWidth > barSize ? barSize : borderWidth;
     var halfStroke = borderWidth / 2;
@@ -64,12 +64,12 @@ Chart.elements.Rectangle.prototype.draw = function () {
     var borderTop = top + (borderSkipped !== "top" ? halfStroke * signY : 0);
     var borderBottom =
       bottom + (borderSkipped !== "bottom" ? -halfStroke * signY : 0);
-    // not become a vertical line?
+    // Not become a vertical line?
     if (borderLeft !== borderRight) {
       top = borderTop;
       bottom = borderBottom;
     }
-    // not become a horizontal line?
+    // Not become a horizontal line?
     if (borderTop !== borderBottom) {
       left = borderLeft;
       right = borderRight;
@@ -113,7 +113,7 @@ Chart.elements.Rectangle.prototype.draw = function () {
       nextCornerId = 0;
     }
 
-    // let nextCorner = cornerAt(nextCornerId);
+    // Let nextCorner = cornerAt(nextCornerId);
 
     let width = corners[2][0] - corners[1][0];
     let height = corners[0][1] - corners[1][1];
@@ -240,11 +240,11 @@ function chartOptions() {
           data.labels.forEach(function (label, index) {
             var bgColor = data.datasets[0].backgroundColor[index];
 
-            content += '<span class="chart-legend-item">';
+            content += "<span class=\"chart-legend-item\">";
             content +=
-              '<i class="chart-legend-indicator" style="background-color: ' +
+              "<i class=\"chart-legend-indicator\" style=\"background-color: " +
               bgColor +
-              '"></i>';
+              "\"></i>";
             content += label;
             content += "</span>";
           });
@@ -255,7 +255,7 @@ function chartOptions() {
     },
   };
 
-  // yAxes
+  // YAxes
   Chart.scaleService.updateScaleDefaults("linear", {
     gridLines: {
       borderDash: [2],
@@ -280,7 +280,7 @@ function chartOptions() {
     },
   });
 
-  // xAxes
+  // XAxes
   Chart.scaleService.updateScaleDefaults("category", {
     gridLines: {
       drawBorder: false,
@@ -376,7 +376,7 @@ let chartExample2 = {
           ticks: {
             callback: function (value) {
               if (!(value % 10)) {
-                //return '$' + value + 'k'
+                //Return '$' + value + 'k'
                 return value;
               }
             },
@@ -412,8 +412,8 @@ let chartExample2 = {
 };
 
 module.exports = {
-  chartOptions, // used inside src/views/Index.js
-  parseOptions, // used inside src/views/Index.js
-  chartExample1, // used inside src/views/Index.js
-  chartExample2, // used inside src/views/Index.js
+  chartOptions, // Used inside src/views/Index.js
+  parseOptions, // Used inside src/views/Index.js
+  chartExample1, // Used inside src/views/Index.js
+  chartExample2, // Used inside src/views/Index.js
 };

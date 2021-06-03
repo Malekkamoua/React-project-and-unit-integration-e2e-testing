@@ -28,16 +28,19 @@ import { activeYearAction } from "../../actions/activeYearAction";
 // core components
 import Header from "components/Headers/Header.js";
 import { getAllYear } from "../../services/univ_yearService";
+import ClipLoader from "react-spinners/ClipLoader";
 
-const ListYearAdmin = props => {
+const ListYearAdmin = (props) => {
   console.log(props);
-
+  const [loading, setLoading] = useState(false);
   const [listYear, setListYear] = useState([]);
   const [mount, setMount] = useState(false);
   let token = JSON.parse(localStorage.getItem("user")).token;
   useEffect(async () => {
     try {
+      setLoading(true);
       const years = await getAllYear(token);
+      setLoading(false);
       setListYear(years);
       console.log(years);
     } catch (err) {
@@ -50,48 +53,55 @@ const ListYearAdmin = props => {
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container className='mt--7' fluid>
         {/* Table */}
         <Row>
-          <div className="col">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <h3 className="mb-0">Années universitaires</h3>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Années universitaires</h3>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
+              <Table className='align-items-center table-flush' responsive>
+                <thead className='thead-light'>
                   <tr>
-                    <th scope="col">titre</th>
-                    <th scope="col">Date Début</th>
-                    <th scope="col">Date Fin</th>
+                    <th scope='col'>titre</th>
+                    <th scope='col'>Date Début</th>
+                    <th scope='col'>Date Fin</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colSpan="3">Actions</th>
+                    <th colSpan='3'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listYear.map(elem => {
-                    return (
-                      <tr>
-                        <td>{elem.title}</td>
-                        <td>{elem.startDate.split("T")[0]}</td>
-                        <td>{elem.endDate.split("T")[0]}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                          <Link
-                            to="detailYear"
-                            className="btn btn-primary btn-sm"
-                            onClick={() => props.selectYear(elem)}
-                          >
-                            Details
-                          </Link>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {loading ? (
+                    <div style={{ flex: 1, position: 50 }}>
+                      {" "}
+                      <ClipLoader loading={loading} />
+                    </div>
+                  ) : (
+                    listYear.map((elem) => {
+                      return (
+                        <tr>
+                          <td>{elem.title}</td>
+                          <td>{elem.startDate.split("T")[0]}</td>
+                          <td>{elem.endDate.split("T")[0]}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                            <Link
+                              to='detailYear'
+                              className='btn btn-primary btn-sm'
+                              onClick={() => props.selectYear(elem)}
+                            >
+                              Details
+                            </Link>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  )}
                 </tbody>
               </Table>
             </Card>

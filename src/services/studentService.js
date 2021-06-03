@@ -27,12 +27,12 @@ const getEtudiant = async (token, id_etudiant) => {
   return data.data;
 };
 const updateEtudiant = async (token, etudiant, id_etudiant) => {
-  let data = await api.patch("admin/students/" + id_etudiant, etudiant, {
+  let data = await api.put("admin/students/" + id_etudiant, etudiant, {
     headers: {
       Authorization: "Bearer " + token,
     },
   });
-  return data.data;
+  return data;
 };
 const banEtudiant = async (token, etudiant, id_etudiant) => {
   try {

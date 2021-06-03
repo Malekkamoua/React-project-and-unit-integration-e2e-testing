@@ -1,10 +1,10 @@
 import api from "../api";
 
-const addEtudiant = async (etudiant, token) => {
-  const { nom, prenom, age, email, password } = etudiant;
+const addStudent = async (etudiant, token) => {
+  const { firstName, lastName, age, email, password } = etudiant;
   let data = await api.post(
     "admin/students",
-    { name: nom.trim() + " " + prenom.trim(), age, email, password },
+    { name: firstName.trim() + " " + lastName.trim(), age, email, password },
     {
       headers: {
         Authorization: "Bearer " + token,
@@ -24,13 +24,13 @@ const changePassword = async (token, object, role, idUser) => {
       },
     }
   );
-  return data.data;
+  return data;
 };
 const addTeacher = async (token, etudiant) => {
-  const { nom, prenom, cin, email, password } = etudiant;
+  const { lastName, firstName, cin, email, password } = etudiant;
   let data = await api.post(
     "admin/teachers",
-    { name: nom.trim() + " " + prenom.trim(), cin, email, password },
+    { name: lastName.trim() + " " + firstName.trim(), cin, email, password },
     {
       headers: {
         Authorization: "Bearer " + token,
@@ -39,4 +39,4 @@ const addTeacher = async (token, etudiant) => {
   );
   return data.data;
 };
-export { addEtudiant, addTeacher, changePassword };
+export { addStudent, addTeacher, changePassword };

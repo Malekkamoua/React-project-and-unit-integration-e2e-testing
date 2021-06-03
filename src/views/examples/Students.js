@@ -45,7 +45,8 @@ const Students = () => {
   const [contentPfe, setcontentPfe] = useState("");
   const [currentPfe, setCurrentPfe] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [systemDate, setsystemDate] = useState(new Date());
+  const systemDate = new Date();
+  const [messageData, setMessageData] = useState();
   const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   useEffect(async () => {
     if (userInformation.pfe === undefined) {
@@ -72,7 +73,7 @@ const Students = () => {
     setEndDate(res.year.endDate);
   };
   const updatePfeHandler = async () => {
-    await updatePfe(
+    const res = await updatePfe(
       token,
       {
         title: nomPfe,
@@ -80,6 +81,11 @@ const Students = () => {
         student: userInformation._id,
       },
       currentPfe._id
+    );
+    setMessageData(
+      res.status == 200
+        ? { message: "Your pfe has been updated", color: "green" }
+        : { message: "Something went wrong", color: "red" }
     );
   };
 
@@ -140,7 +146,11 @@ const Students = () => {
                       />
                     </InputGroup>
                   </FormGroup>
-
+                  {messageData && (
+                    <p style={{ color: messageData.color }}>
+                      {messageData.message}
+                    </p>
+                  )}
                   <div className='text-center'>
                     {!currentPfe && (
                       <Button

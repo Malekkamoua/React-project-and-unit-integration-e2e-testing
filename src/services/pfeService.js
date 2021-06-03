@@ -32,6 +32,14 @@ const getAllPfeByTeacher = async (token, id_tutor) => {
   });
   return data.data;
 };
+const getPfeNonTaken = async (token) => {
+  let data = await api.get("teachers/pfe", {
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+  return data;
+};
 const getPfe = async (token, id_pfe) => {
   let data = await api.get("students/pfe/" + id_pfe, {
     headers: {
@@ -66,7 +74,7 @@ const updatePfe = async (token, pfe, id_pfe) => {
       Authorization: "Bearer " + token,
     },
   });
-  return data.data;
+  return data;
 };
 export {
   getAllPfe,
@@ -76,4 +84,5 @@ export {
   getPfe,
   getAllPfeByTeacher,
   getAllPfeByStudent,
+  getPfeNonTaken,
 };

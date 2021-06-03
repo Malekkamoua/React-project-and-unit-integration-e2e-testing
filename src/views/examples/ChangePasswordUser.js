@@ -25,16 +25,18 @@ const RegisterUser = () => {
   const [newPassword, setNewPassword] = useState("");
 
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
-  const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
+  const [messageData, setMessageData] = useState();
+
   const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   const changePasswordHandler = async () => {
     if (newPassword === newConfirmPassword) {
-      await changePassword(
+      const res = await changePassword(
         token,
         { oldPassword, newPassword },
         userInformation.role,
         userInformation._id
       );
+      setMessageData(res.data);
     } else {
       console.log("those password are not matching :P");
     }
@@ -80,6 +82,18 @@ const RegisterUser = () => {
                 />
 
                 <div className='text-center'>
+                  {messageData && (
+                    <p
+                      style={{
+                        color:
+                          messageData.status == 404 || messageData.status == 401
+                            ? "red"
+                            : "green",
+                      }}
+                    >
+                      {messageData ? messageData.message : ""}
+                    </p>
+                  )}
                   <Button
                     className='mt-4'
                     color='primary'
