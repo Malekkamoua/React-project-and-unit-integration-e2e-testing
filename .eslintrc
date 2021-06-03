@@ -2,6 +2,7 @@
     "parserOptions": {
       "ecmaVersion": 2020
     },
+    "sourceType": "module",
     "extends": ["eslint:recommended", "eslint-config-prettier"],
     "rules": {
       "no-console": "off",
