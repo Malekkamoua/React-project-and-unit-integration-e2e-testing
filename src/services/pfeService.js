@@ -68,6 +68,17 @@ const acceptPfe = async (idPfe, id_prof, token) => {
     }
   );
 };
+const undoPfe = async (idPfe, id_prof, token) => {
+  await api.post(
+    "teachers/undo/" + idPfe,
+    { tutorId: id_prof },
+    {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    }
+  );
+};
 const updatePfe = async (token, pfe, id_pfe) => {
   let data = await api.put("students/pfe/" + id_pfe, pfe, {
     headers: {
@@ -85,4 +96,5 @@ export {
   getAllPfeByTeacher,
   getAllPfeByStudent,
   getPfeNonTaken,
+  undoPfe,
 };

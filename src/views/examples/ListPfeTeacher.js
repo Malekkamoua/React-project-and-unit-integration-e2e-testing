@@ -33,6 +33,7 @@ import {
   getPfeNonTaken,
   acceptPfe,
   getAllPfeByTeacher,
+  undoPfe,
 } from "../../services/pfeService";
 const ListPfeTeacher = (props) => {
   console.log(props);
@@ -46,10 +47,9 @@ const ListPfeTeacher = (props) => {
       setLoading(true);
       const res = await getPfeNonTaken(token);
       const otherRes = await getAllPfeByTeacher(token, userInformation._id);
-      console.log(otherRes);
       setlistPFE(otherRes.listPfeByTeacher.concat(res.data));
       setLoading(false);
-      console.log(listPfe);
+      console.log(listPFE);
     } catch (err) {
       console.log(err);
     }
@@ -58,6 +58,10 @@ const ListPfeTeacher = (props) => {
   // const goToDetail = (pfe) => {};
   const acceptPfeHandler = (idPfe, id_tutor, token) => {
     acceptPfe(idPfe, id_tutor, token);
+    setMount(!mount);
+  };
+  const undoPfeHandler = (idPfe, id_tutor, token) => {
+    undoPfe(idPfe, id_tutor, token);
     setMount(!mount);
   };
   return (
@@ -103,7 +107,16 @@ const ListPfeTeacher = (props) => {
                           {userInformation.role === "teacher" ? (
                             <td>
                               {elem.status ? (
-                                <Button className='btn btn-danger'>
+                                <Button
+                                  className='btn btn-danger'
+                                  onClick={async () => {
+                                    await undoPfeHandler(
+                                      elem._id,
+                                      userInformation._id,
+                                      token
+                                    );
+                                  }}
+                                >
                                   Annuler
                                 </Button>
                               ) : (
