@@ -58,7 +58,7 @@ const ListEtudiantAdmin = (props) => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <div style={{ flex: 1, position: 50 }}>
+                    <div style={{ position: "relative", left: "240%" }}>
                       {" "}
                       <ClipLoader loading={loading} />
                     </div>

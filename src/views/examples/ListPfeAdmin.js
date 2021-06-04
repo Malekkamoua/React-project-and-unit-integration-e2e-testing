@@ -27,6 +27,7 @@ import {
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
 import ClipLoader from "react-spinners/ClipLoader";
+import {} from "react-spinners";
 import { css } from "@emotion/react";
 
 // core components
@@ -81,7 +82,7 @@ const ListPfeTeacher = (props) => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <div style={{ flex: 1, position: 50 }}>
+                    <div style={{ position: "relative", left: "240%" }}>
                       {" "}
                       <ClipLoader loading={loading} />
                     </div>

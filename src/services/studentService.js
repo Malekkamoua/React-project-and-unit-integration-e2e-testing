@@ -36,11 +36,15 @@ const updateEtudiant = async (token, etudiant, id_etudiant) => {
 };
 const banEtudiant = async (token, etudiant, id_etudiant) => {
   try {
-    let data = await api.put("admin/students/ban/" + id_etudiant, etudiant, {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    });
+    let data = await api.put(
+      "admin/students/banning/" + id_etudiant,
+      etudiant,
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
     return data.data;
   } catch (err) {
     console.log(err);

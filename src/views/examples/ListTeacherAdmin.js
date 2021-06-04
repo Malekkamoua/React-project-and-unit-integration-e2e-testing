@@ -16,6 +16,7 @@ const ListTeacherAdmin = (props) => {
   const token = JSON.parse(localStorage.getItem("user")).token;
   const [modal, setModal] = useState(false);
   const [idTeacher, setIdTeacher] = useState();
+
   console.log(props);
   useEffect(async () => {
     setLoading(true);
@@ -49,7 +50,7 @@ const ListTeacherAdmin = (props) => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    <div style={{ flex: 1, position: 50 }}>
+                    <div style={{ position: "relative", left: "140%" }}>
                       {" "}
                       <ClipLoader loading={loading} />
                     </div>

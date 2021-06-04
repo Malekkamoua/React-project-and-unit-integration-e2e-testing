@@ -13,6 +13,7 @@ import {
 import Header from "components/Headers/Header.js";
 const DetailPfe = (props) => {
   console.log(props);
+  const { userInformation } = JSON.parse(localStorage.getItem("user"));
   return (
     <>
       <Header />
@@ -45,26 +46,30 @@ const DetailPfe = (props) => {
             </Card>
             <br></br>
             <br></br>
-            {!props.activePfe.status ? (
-              <Button
-                style={{ position: "relative", left: "92%" }}
-                color='success'
-                className='btn btn-success btn-sm'
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-              >
-                Accepter
-              </Button>
+            {userInformation.role === "teacher" ? (
+              !props.activePfe.status ? (
+                <Button
+                  style={{ position: "relative", left: "92%" }}
+                  color='success'
+                  className='btn btn-success btn-sm'
+                  href='#pablo'
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Accepter
+                </Button>
+              ) : (
+                <Button
+                  style={{ position: "relative", left: "92%" }}
+                  color='danger'
+                  className='btn btn-success btn-sm'
+                  href='#pablo'
+                  onClick={(e) => e.preventDefault()}
+                >
+                  Undo
+                </Button>
+              )
             ) : (
-              <Button
-                style={{ position: "relative", left: "92%" }}
-                color='danger'
-                className='btn btn-success btn-sm'
-                href='#pablo'
-                onClick={(e) => e.preventDefault()}
-              >
-                Undo
-              </Button>
+              ""
             )}
           </CardBody>
         </Card>

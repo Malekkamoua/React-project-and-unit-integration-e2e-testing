@@ -45,6 +45,10 @@ describe("test adding a student", () => {
     const { debug, getByLabelText, getByTestId, getByText } = render(
       <RegisterUser />
     );
+    const functionToken = jest.fn(() => {
+      token: "sksmfjsklfmj";
+    });
+    const userObject = functionToken();
     const mockAjouterEtudiant = jest.fn();
 
     const nomEtudiant = getByLabelText(/Nom etudiant/i);

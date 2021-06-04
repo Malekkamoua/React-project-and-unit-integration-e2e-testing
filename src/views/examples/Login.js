@@ -40,6 +40,10 @@ const Login = () => {
   console.log("email", email, "password:", password);
   let result;
   const login = async (e) => {
+    if (email === "" && password === "") {
+      setMessage("email and password text are missing");
+      return null;
+    }
     e.preventDefault();
     setloading(true);
     console.log(email, password);
