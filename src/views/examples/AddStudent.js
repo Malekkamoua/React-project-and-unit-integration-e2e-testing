@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form,
+  Form
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
@@ -48,62 +48,62 @@ const RegisterUser = () => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7'>
+      <Container className="mt--7">
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Ajouter un étudiant</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Ajouter un étudiant</h3>
               </CardHeader>
               <Col>
-                <Card className='bg-secondary shadow border-0'>
-                  <CardBody className='px-lg-5 py-lg-5'>
-                    <Form role='form'>
+                <Card className="bg-secondary shadow border-0">
+                  <CardBody className="px-lg-5 py-lg-5">
+                    <Form role="form">
                       <CustomInput
                         placeholder={"Nom etudiant"}
                         value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+                        onChange={e => setLastName(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"Prenom etudiant"}
                         value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+                        onChange={e => setFirstName(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"Age"}
-                        type='number'
+                        type="number"
                         value={age}
-                        onChange={(e) => setAge(e.target.value)}
+                        onChange={e => setAge(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"email"}
-                        type='email'
+                        type="email"
                         value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                       />
                       <CustomInput
                         placeholder={"password"}
-                        type='password'
+                        type="password"
                         value={password}
                         valid={password === confirmPassword ? true : false}
-                        feedback='password must be equal to confirm password'
-                        onChange={(e) => setPassword(e.target.value)}
+                        feedback="password must be equal to confirm password"
+                        onChange={e => setPassword(e.target.value)}
                       />
 
                       <CustomInput
                         placeholder={"confirm password"}
-                        type='password'
+                        type="password"
                         value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        onChange={e => setConfirmPassword(e.target.value)}
                       />
 
-                      <div className='text-center'>
+                      <div className="text-center">
                         <Button
-                          data-testid='submit'
-                          className='mt-4'
-                          color='primary'
-                          type='button'
+                          data-testid="submit"
+                          className="mt-4"
+                          color="primary"
+                          type="button"
                           onClick={() => {
                             addStudentHandler();
                           }}
