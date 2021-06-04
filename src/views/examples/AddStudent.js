@@ -29,7 +29,12 @@ const RegisterUser = () => {
   const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
+<<<<<<< Updated upstream
   // const token = JSON.parse(localStorage.getItem("user")).token;
+=======
+  const token = JSON.parse(localStorage.getItem("user"));
+
+>>>>>>> Stashed changes
   const addStudentHandler = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
@@ -61,28 +66,33 @@ const RegisterUser = () => {
                   <CardBody className="px-lg-5 py-lg-5">
                     <Form role="form">
                       <CustomInput
+                        aria_label="nomEtudiant"
                         placeholder={"Nom etudiant"}
                         value={lastName}
                         onChange={e => setLastName(e.target.value)}
                       />
                       <CustomInput
+                        aria_label="prenomEtudiant"
                         placeholder={"Prenom etudiant"}
                         value={firstName}
                         onChange={e => setFirstName(e.target.value)}
                       />
                       <CustomInput
+                        aria_label="age"
                         placeholder={"Age"}
                         type="number"
                         value={age}
                         onChange={e => setAge(e.target.value)}
                       />
                       <CustomInput
+                        aria_label="email"
                         placeholder={"email"}
                         type="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
                       />
                       <CustomInput
+                        aria_label="password"
                         placeholder={"password"}
                         type="password"
                         value={password}
@@ -92,6 +102,7 @@ const RegisterUser = () => {
                       />
 
                       <CustomInput
+                        aria_label="confirm password"
                         placeholder={"confirm password"}
                         type="password"
                         value={confirmPassword}
