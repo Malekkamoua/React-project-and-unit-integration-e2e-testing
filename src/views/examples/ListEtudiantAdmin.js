@@ -22,16 +22,17 @@ const ListEtudiantAdmin = (props) => {
   const [modalBan, setModalBan] = useState(false);
   const [modalUnBan, setModalUnBan] = useState(false);
   const [idEtudiant, setIdEtudiant] = useState();
-  console.log(props);
+  const [resetTable, setResetTable] = useState(false);
+  // console.log(props);
   useEffect(async () => {
+    console.log("first reset and the scecond must be done");
     setLoading(true);
     const students = await getAllEtudiant(token);
     setLoading(false);
     console.log(students);
     setListStudent(students);
-  }, []);
-  console.log(idEtudiant);
-  console.log("hello from the page");
+  }, [resetTable]);
+
   return (
     <>
       <Header />
@@ -110,6 +111,7 @@ const ListEtudiantAdmin = (props) => {
                                     { ...elem, isBanned: true },
                                     idEtudiant
                                   );
+                                  setResetTable(!resetTable);
                                 }}
                               />
                             ) : (
@@ -122,12 +124,12 @@ const ListEtudiantAdmin = (props) => {
                                 apiFunction={async () => {
                                   //   console.log(idEtudiant);
                                   //in case deleteEtudiant doesn't work we need to block set list
-                                  let data = await unBanEtudiant(
+                                  let data = await banEtudiant(
                                     token,
                                     { ...elem, isBanned: false },
                                     idEtudiant
                                   );
-                                  console.log(data);
+                                  setResetTable(!resetTable);
                                 }}
                               />
                             )}
