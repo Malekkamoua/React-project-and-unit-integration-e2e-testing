@@ -13,7 +13,10 @@ import {
 import Header from "components/Headers/Header.js";
 const DetailPfe = props => {
   console.log(props);
-  const { userInformation } = JSON.parse(localStorage.getItem("user"));
+
+  let userInformation;
+  if (localStorage.getItem("user"))
+    userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   return (
     <>
       <Header />

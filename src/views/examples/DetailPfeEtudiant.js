@@ -55,7 +55,11 @@ const DetailStudent = ({ studentprops }) => {
   const [nomProf, setNomProf] = useState(
     studentprops.tutor ? studentprops.tutor.name : ""
   );
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+
   console.log(student);
   return (
     <>

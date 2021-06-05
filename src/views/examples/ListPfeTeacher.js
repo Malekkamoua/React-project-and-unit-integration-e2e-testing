@@ -22,7 +22,7 @@ import {
   Container,
   Row,
   Button,
-  UncontrolledTooltip
+  UncontrolledTooltip,
 } from "reactstrap";
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
@@ -32,24 +32,28 @@ import Header from "components/Headers/Header.js";
 import {
   getPfeNonTaken,
   acceptPfe,
-  getAllPfeByTeacher
+  getAllPfeByTeacher,
+  undoPfe,
 } from "../../services/pfeService";
-const ListPfeTeacher = props => {
+const ListPfeTeacher = (props) => {
   console.log(props);
   const [loading, setLoading] = useState(false);
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
-  let { token, userInformation } = JSON.parse(localStorage.getItem("user"));
+  let token;
+  let userInformation;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+  userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   console.log(token);
   useEffect(async () => {
     try {
       setLoading(true);
       const res = await getPfeNonTaken(token);
       const otherRes = await getAllPfeByTeacher(token, userInformation._id);
-      console.log(otherRes);
       setlistPFE(otherRes.listPfeByTeacher.concat(res.data));
       setLoading(false);
-      console.log(listPfe);
+      console.log(listPFE);
     } catch (err) {
       console.log(err);
     }
@@ -60,28 +64,32 @@ const ListPfeTeacher = props => {
     acceptPfe(idPfe, id_tutor, token);
     setMount(!mount);
   };
+  const undoPfeHandler = (idPfe, id_tutor, token) => {
+    undoPfe(idPfe, id_tutor, token);
+    setMount(!mount);
+  };
   return (
     <>
       <Header />
       {/* Page content */}
-      <Container className="mt--7" fluid>
+      <Container className='mt--7' fluid>
         {/* Table */}
         <Row>
-          <div className="col">
-            <Card className="shadow">
-              <CardHeader className="border-0">
-                <h3 className="mb-0">Liste des PFE</h3>
+          <div className='col'>
+            <Card className='shadow'>
+              <CardHeader className='border-0'>
+                <h3 className='mb-0'>Liste des PFE</h3>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
+              <Table className='align-items-center table-flush' responsive>
+                <thead className='thead-light'>
                   <tr>
-                    <th scope="col">Project</th>
-                    <th scope="col">Contenu</th>
-                    <th scope="col">Tatus</th>
+                    <th scope='col'>Project</th>
+                    <th scope='col'>Contenu</th>
+                    <th scope='col'>Tatus</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colSpan="3">Actions</th>
+                    <th colSpan='3'>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,7 +99,7 @@ const ListPfeTeacher = props => {
                       <ClipLoader loading={loading} />
                     </div>
                   ) : (
-                    listPFE.map(elem => {
+                    listPFE.map((elem) => {
                       return (
                         <tr>
                           <td>{elem.title}</td>
@@ -103,19 +111,28 @@ const ListPfeTeacher = props => {
                           {userInformation.role === "teacher" ? (
                             <td>
                               <Link
-                                to="detailpfe"
-                                className="btn btn-primary btn-sm"
+                                to='detailpfe'
+                                className='btn btn-primary btn-sm'
                                 onClick={() => props.selectPfe(elem)}
                               >
                                 Details
                               </Link>
                               {elem.status ? (
-                                <Button className="btn btn-danger btn-sm">
+                                <Button
+                                  className='btn btn-danger'
+                                  onClick={async () => {
+                                    await undoPfeHandler(
+                                      elem._id,
+                                      userInformation._id,
+                                      token
+                                    );
+                                  }}
+                                >
                                   Annuler
                                 </Button>
                               ) : (
                                 <Button
-                                  className="btn btn-success btn-sm"
+                                  className='btn btn-success btn-sm'
                                   onClick={() =>
                                     acceptPfeHandler(
                                       elem._id,

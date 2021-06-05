@@ -17,7 +17,11 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const ListEtudiantAdmin = props => {
   const [listStudent, setListStudent] = useState([]);
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [modalBan, setModalBan] = useState(false);

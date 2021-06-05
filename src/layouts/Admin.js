@@ -29,11 +29,10 @@ const { routesAdmin } = routes;
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
-  const user = localStorage.getItem("user");
-
-  const userObject = JSON.parse(user);
-
-  console.log(userObject);
+  console.log(JSON.parse(localStorage.getItem("user")));
+  if (!JSON.parse(localStorage.getItem("user"))) {
+    return <Redirect to='/auth/login' />;
+  }
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -83,7 +82,6 @@ const Admin = (props) => {
       <div className='main-content' ref={mainContent}>
         <AdminNavbar
           {...props}
-          userName={userObject.userInformation.email}
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>
