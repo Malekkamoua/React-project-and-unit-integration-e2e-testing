@@ -25,7 +25,7 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 import api from "../../api";
 import { ClipLoader } from "react-spinners";
@@ -39,7 +39,7 @@ const Login = () => {
 
   console.log("email", email, "password:", password);
   let result;
-  const login = async (e) => {
+  const login = async e => {
     if (email === "" && password === "") {
       setMessage("email and password text are missing");
       return null;
@@ -50,7 +50,7 @@ const Login = () => {
 
     result = await api.post("/login", {
       email: email,
-      password: password,
+      password: password
     });
 
     if (result.data.status === 401) {
@@ -69,64 +69,64 @@ const Login = () => {
   if (logged) {
     console.log(role);
     if (role === "teacher") {
-      return <Redirect to='/teacher/teacher-profile' />;
+      return <Redirect to="/teacher/teacher-profile" />;
     }
     if (role === "admin") {
-      return <Redirect to='/admin/students' />;
+      return <Redirect to="/admin/students" />;
     }
     if (role === "student") {
-      return <Redirect to='/student/student-profile' />;
+      return <Redirect to="/student/student-profile" />;
     }
   }
   return (
     <>
-      <Col lg='5' md='7'>
-        <Card className='bg-secondary shadow border-0'>
-          <CardHeader className='bg-transparent pb-5'>
-            <div className='text-muted text-center mt-2 mb-3'>
+      <Col lg="5" md="7">
+        <Card className="bg-secondary shadow border-0">
+          <CardHeader className="bg-transparent pb-5">
+            <div className="text-muted text-center mt-2 mb-3">
               <small>LOGO</small>
             </div>
           </CardHeader>
-          <CardBody className='px-lg-5 py-lg-5'>
-            <Form role='form'>
-              <FormGroup className='mb-3'>
-                <InputGroup className='input-group-alternative'>
-                  <InputGroupAddon addonType='prepend'>
+          <CardBody className="px-lg-5 py-lg-5">
+            <Form role="form">
+              <FormGroup className="mb-3">
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <i className='ni ni-email-83' />
+                      <i className="ni ni-email-83" />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder='Email'
-                    type='email'
-                    autoComplete='new-email'
-                    onChange={(e) => setemail(e.target.value)}
+                    placeholder="Email"
+                    type="email"
+                    autoComplete="new-email"
+                    onChange={e => setemail(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
-                <InputGroup className='input-group-alternative'>
-                  <InputGroupAddon addonType='prepend'>
+                <InputGroup className="input-group-alternative">
+                  <InputGroupAddon addonType="prepend">
                     <InputGroupText>
-                      <i className='ni ni-lock-circle-open' />
+                      <i className="ni ni-lock-circle-open" />
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder='Password'
-                    type='password'
-                    autoComplete='new-password'
-                    onChange={(e) => setpassword(e.target.value)}
+                    placeholder="Password"
+                    type="password"
+                    autoComplete="new-password"
+                    onChange={e => setpassword(e.target.value)}
                   />
                 </InputGroup>
               </FormGroup>
-              <div className='text-center'>
+              <div className="text-center">
                 {loading ? (
                   <ClipLoader loading={loading} />
                 ) : (
                   <Button
-                    className='my-4'
-                    color='primary'
-                    type='button'
+                    className="my-4"
+                    color="primary"
+                    type="button"
                     onClick={login}
                     disabled={loading}
                   >
@@ -134,7 +134,9 @@ const Login = () => {
                   </Button>
                 )}
 
-                <p style={{ color: "red" }}>{message}</p>
+                <p className="msg" style={{ color: "red" }}>
+                  {message}
+                </p>
               </div>
             </Form>
           </CardBody>
