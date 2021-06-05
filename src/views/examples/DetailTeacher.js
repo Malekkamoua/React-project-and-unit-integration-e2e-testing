@@ -227,10 +227,11 @@ const DetailTeacher = ({ teacherprops }) => {
                           <CardTitle>titre:{e.title} </CardTitle>
                           <CardText>contenu:{e.contenu} </CardText>
                           <CardText>
-                            Nom et prenom d'etudiant:{e.student.name}{" "}
+                            Nom et prenom d'etudiant:
+                            {e.student ? e.student.name : ""}{" "}
                           </CardText>
                           <CardText>
-                            Année:{e.year ? e.year.title : ""}{" "}
+                            Année:{e ? (e.year ? e.year.title : "") : ""}{" "}
                           </CardText>
                         </CardBody>
                       </Card>

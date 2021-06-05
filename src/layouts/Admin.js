@@ -29,7 +29,10 @@ const { routesAdmin } = routes;
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
-
+  console.log(JSON.parse(localStorage.getItem("user")));
+  if (!JSON.parse(localStorage.getItem("user"))) {
+    return <Redirect to='/auth/login' />;
+  }
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
