@@ -39,7 +39,8 @@ const ListPfeTeacher = (props) => {
   console.log(props);
   const [loading, setLoading] = useState(false);
   const [listPFE, setlistPFE] = useState([]);
-  const [mount, setMount] = useState(false);
+  const [mount, setMount] = useState();
+  const [show, setShow] = useState(false);
   let token;
   let userInformation;
   if (localStorage.getItem("user"))
@@ -67,6 +68,9 @@ const ListPfeTeacher = (props) => {
   const undoPfeHandler = (idPfe, id_tutor, token) => {
     undoPfe(idPfe, id_tutor, token);
     setMount(!mount);
+  };
+  const showAll = () => {
+    setShow(!show);
   };
   return (
     <>
@@ -104,24 +108,30 @@ const ListPfeTeacher = (props) => {
                         <tr>
                           <td>{elem.title}</td>
                           <td>
-                            {elem.content.length > 50 ? (
+                            {elem.content.length > 70 ? (
                               <>
                                 {" "}
-                                {elem.content.slice(0, elem.content.length / 4)}
-                                <br />{" "}
-                                {elem.content.slice(
-                                  elem.content.length / 4 + 1,
-                                  elem.content.length / 2
-                                )}
-                                <br />{" "}
-                                {elem.content.slice(
-                                  elem.content.length / 2 + 1,
-                                  (elem.content.length * 3) / 4
-                                )}
-                                <br />{" "}
-                                {elem.content.slice(
-                                  (elem.content.length * 3) / 4 + 1,
-                                  elem.content.length
+                                {!show && (
+                                  <>
+                                    {elem.content.slice(0, 70)}{" "}
+                                    <a
+                                      onClick={showAll}
+                                      style={{ color: "blue" }}
+                                    >
+                                      show more
+                                    </a>
+                                  </>
+                                )}{" "}
+                                {show && (
+                                  <>
+                                    {elem.content}{" "}
+                                    <a
+                                      onClick={showAll}
+                                      style={{ color: "blue" }}
+                                    >
+                                      show less
+                                    </a>{" "}
+                                  </>
                                 )}
                               </>
                             ) : (
