@@ -103,7 +103,31 @@ const ListPfeTeacher = (props) => {
                       return (
                         <tr>
                           <td>{elem.title}</td>
-                          <td>{elem.content}</td>
+                          <td>
+                            {elem.content.length > 50 ? (
+                              <>
+                                {" "}
+                                {elem.content.slice(0, elem.content.length / 4)}
+                                <br />{" "}
+                                {elem.content.slice(
+                                  elem.content.length / 4 + 1,
+                                  elem.content.length / 2
+                                )}
+                                <br />{" "}
+                                {elem.content.slice(
+                                  elem.content.length / 2 + 1,
+                                  (elem.content.length * 3) / 4
+                                )}
+                                <br />{" "}
+                                {elem.content.slice(
+                                  (elem.content.length * 3) / 4 + 1,
+                                  elem.content.length
+                                )}
+                              </>
+                            ) : (
+                              elem.content
+                            )}
+                          </td>
                           <td>{elem.status ? "Accepted" : "Pending"}</td>
                           <td></td>
                           <td></td>
