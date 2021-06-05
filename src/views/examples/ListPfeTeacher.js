@@ -22,7 +22,7 @@ import {
   Container,
   Row,
   Button,
-  UncontrolledTooltip,
+  UncontrolledTooltip
 } from "reactstrap";
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
@@ -32,9 +32,9 @@ import Header from "components/Headers/Header.js";
 import {
   getPfeNonTaken,
   acceptPfe,
-  getAllPfeByTeacher,
+  getAllPfeByTeacher
 } from "../../services/pfeService";
-const ListPfeTeacher = (props) => {
+const ListPfeTeacher = props => {
   console.log(props);
   const [loading, setLoading] = useState(false);
   const [listPFE, setlistPFE] = useState([]);
@@ -64,24 +64,24 @@ const ListPfeTeacher = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7' fluid>
+      <Container className="mt--7" fluid>
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des PFE</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Liste des PFE</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>Project</th>
-                    <th scope='col'>Contenu</th>
-                    <th scope='col'>Tatus</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Tatus</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colSpan='3'>Actions</th>
+                    <th colSpan="3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,7 +91,7 @@ const ListPfeTeacher = (props) => {
                       <ClipLoader loading={loading} />
                     </div>
                   ) : (
-                    listPFE.map((elem) => {
+                    listPFE.map(elem => {
                       return (
                         <tr>
                           <td>{elem.title}</td>
@@ -102,13 +102,20 @@ const ListPfeTeacher = (props) => {
                           <td></td>
                           {userInformation.role === "teacher" ? (
                             <td>
+                              <Link
+                                to="detailpfe"
+                                className="btn btn-primary btn-sm"
+                                onClick={() => props.selectPfe(elem)}
+                              >
+                                Details
+                              </Link>
                               {elem.status ? (
-                                <Button className='btn btn-danger'>
+                                <Button className="btn btn-danger btn-sm">
                                   Annuler
                                 </Button>
                               ) : (
                                 <Button
-                                  className='btn btn-success'
+                                  className="btn btn-success btn-sm"
                                   onClick={() =>
                                     acceptPfeHandler(
                                       elem._id,
@@ -124,15 +131,6 @@ const ListPfeTeacher = (props) => {
                           ) : (
                             ""
                           )}
-                          <td>
-                            <Link
-                              to='detailpfe'
-                              className='btn btn-primary btn-sm'
-                              onClick={() => props.selectPfe(elem)}
-                            >
-                              Details
-                            </Link>
-                          </td>
                         </tr>
                       );
                     })

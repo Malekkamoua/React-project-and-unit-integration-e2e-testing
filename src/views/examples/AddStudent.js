@@ -30,15 +30,18 @@ const RegisterUser = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
   const token = JSON.parse(localStorage.getItem("user")).token;
+
   const addStudentHandler = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
       return null;
     }
+
     const res = await addStudent(
       { firstName, lastName, age, email, password },
       token
     );
+
     setFirstName("");
     setLastName("");
     setEmail("");
@@ -47,12 +50,11 @@ const RegisterUser = () => {
     setAge("");
     console.log(res);
   };
+
   return (
     <>
       <Header />
-      {/* Page content */}
       <Container className="mt--7">
-        {/* Table */}
         <Row>
           <div className="col">
             <Card className="shadow">
@@ -127,7 +129,6 @@ const RegisterUser = () => {
             </Card>
           </div>
         </Row>
-        {/* Dark table */}
       </Container>
     </>
   );

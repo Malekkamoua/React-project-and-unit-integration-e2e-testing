@@ -46,6 +46,7 @@ describe("test adding a student", () => {
   });
 
   test("should fire events", () => {
+    // const mockAddStudentHandler = jest.fn();
     const { debug, getByLabelText, getByTestId } = render(<RegisterUser />);
 
     const nomEtudiant = getByLabelText("nomEtudiant");

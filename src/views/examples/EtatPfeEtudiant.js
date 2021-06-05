@@ -7,10 +7,10 @@ import {
   CardTitle,
   CardBody,
   Button,
-  CardText,
+  CardText
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
-const EtatPfeEtudiant = (props) => {
+const EtatPfeEtudiant = props => {
   const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
   const [currentPfe, setCurrentPfe] = useState("");
   const [loading, setloading] = useState(false);
@@ -24,7 +24,7 @@ const EtatPfeEtudiant = (props) => {
     <>
       <Header />
       {loading ? (
-        <Container className='mt--15' fluid>
+        <Container className="mt--15" fluid>
           <Card
             style={{
               width: "30rem",
@@ -34,7 +34,7 @@ const EtatPfeEtudiant = (props) => {
                 ? currentPfe[0].status
                   ? "lightgreen"
                   : "lightyellow"
-                : "grey",
+                : "grey"
             }}
           >
             <CardBody>

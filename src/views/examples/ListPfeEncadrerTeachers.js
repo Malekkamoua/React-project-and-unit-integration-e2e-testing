@@ -39,7 +39,7 @@ import {
   Container,
   Row,
   Button,
-  UncontrolledTooltip,
+  UncontrolledTooltip
 } from "reactstrap";
 //actions
 import { activePfeAction } from "../../actions/activePfeAction";
@@ -48,9 +48,9 @@ import Header from "components/Headers/Header.js";
 import {
   getAllPfe,
   acceptPfe,
-  getAllPfeByTeacher,
+  getAllPfeByTeacher
 } from "../../services/pfeService";
-const Teachers = (props) => {
+const Teachers = props => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
@@ -68,25 +68,25 @@ const Teachers = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7' fluid>
+      <Container className="mt--7" fluid>
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des PFE</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Liste des PFE</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>Project</th>
-                    <th scope='col'>Contenu</th>
-                    <th scope='col'>Status</th>
-                    <th colSpan='2'>Actions</th>
+                    <th scope="col">Project</th>
+                    <th scope="col">Contenu</th>
+                    <th scope="col">Status</th>
+                    <th colSpan="2">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {listPFE.map((elem) => {
+                  {listPFE.map(elem => {
                     return (
                       <tr>
                         <td>{elem.title}</td>
@@ -94,8 +94,8 @@ const Teachers = (props) => {
                         <td>{elem.status ? "Accepted" : "Pending"}</td>
                         <td>
                           <Link
-                            to='detailpfe'
-                            className='btn btn-primary'
+                            to="detailpfe"
+                            className="btn btn-primary btn-sm"
                             onClick={() => props.selectPfe(elem)}
                           >
                             Detail

@@ -46,7 +46,11 @@ const ListEtudiantAdmin = props => {
               <CardHeader className="border-0">
                 <h3 className="mb-0">Liste des Etudiants</h3>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
+              <Table
+                data-testid="table"
+                className="align-items-center table-flush"
+                responsive
+              >
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">Nom</th>

@@ -13,8 +13,7 @@
       "quotes": ["error", "double"],
       "semi": "off",
       "no-undef": "off",
-      "no-unused-vars": "warn",
-      "capitalized-comments":"warn"
+      "no-unused-vars": "off"
     },
     "env": {
       "browser": true,

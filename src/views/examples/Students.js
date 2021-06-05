@@ -125,24 +125,16 @@ const Students = () => {
           <ClipLoader loading={loading} />
         ) : (
           <Container className="mt--7" fluid>
-            {/* Table */}
-            <Row>
-              <div className="col">
-                <Card className="shadow">
-                  <CardHeader className="border-0">
-                    <h3 className="mb-0">
-                      {currentPfe ? "ModifierPfe" : "Ajouter PFE"}
-                    </h3>
-                  </CardHeader>
-                </Card>
-              </div>
-            </Row>
-            {/* Dark table */}
             <Col lg="13" md="13">
               <Card className="bg-secondary shadow border-0">
+                <CardHeader className="border-0">
+                  <h3 className="mb-0">Détails de mon pfe</h3>
+                </CardHeader>
                 <CardBody className="px-lg-5 py-lg-5">
                   <Form role="form">
                     <FormGroup>
+                      Titre du projet
+                      <br></br> <br></br>
                       <InputGroup className="input-group-alternative mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -150,7 +142,7 @@ const Students = () => {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="Nom PFE"
+                          placeholder="Titre du projet"
                           type="text"
                           value={nomPfe}
                           onChange={e => {
@@ -160,6 +152,8 @@ const Students = () => {
                       </InputGroup>
                     </FormGroup>
                     <FormGroup>
+                      Contenu
+                      <br></br> <br></br>
                       <InputGroup className="input-group-alternative mb-3">
                         <InputGroupAddon addonType="prepend">
                           <InputGroupText>
@@ -167,8 +161,9 @@ const Students = () => {
                           </InputGroupText>
                         </InputGroupAddon>
                         <Input
-                          placeholder="Content"
+                          placeholder="Contenu"
                           type="textarea"
+                          rows="25"
                           value={contentPfe}
                           onChange={e => {
                             setcontentPfe(e.target.value);
@@ -184,6 +179,7 @@ const Students = () => {
                     <div className="text-center">
                       {!currentPfe && (
                         <Button
+                          style={{ position: "relative", left: "42%" }}
                           className="mt-4"
                           color="primary"
                           type="button"
@@ -196,6 +192,7 @@ const Students = () => {
                     <div className="text-center">
                       {currentPfe && (
                         <Button
+                          style={{ position: "relative", left: "42%" }}
                           className="mt-4"
                           color="primary"
                           type="button"
