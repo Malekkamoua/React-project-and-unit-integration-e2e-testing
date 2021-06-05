@@ -3,6 +3,14 @@ import { render, fireEvent } from "@testing-library/react";
 import RegisterUser from "../views/examples/AddStudent";
 
 describe("test adding a student", () => {
+  beforeAll(() => {
+    let user = {
+      token: "12555466222",
+      userInformation: {}
+    };
+
+    localStorage.setItem("user", user.token);
+  });
   test("should run without crashing", () => {
     const { debug } = render(<RegisterUser />);
   });
@@ -38,18 +46,7 @@ describe("test adding a student", () => {
   });
 
   test("should fire events", () => {
-<<<<<<< Updated upstream
-    const { debug, getByLabelText, getByTestId, getByText } = render(
-      <RegisterUser />
-    );
-    const functionToken = jest.fn(() => {
-      token: "sksmfjsklfmj";
-    });
-    const userObject = functionToken();
-=======
     const { debug, getByLabelText, getByTestId } = render(<RegisterUser />);
->>>>>>> Stashed changes
-    const mockAjouterEtudiant = jest.fn();
 
     const nomEtudiant = getByLabelText("nomEtudiant");
     const valNomEtudiant = "Malek kamoua";
@@ -60,7 +57,7 @@ describe("test adding a student", () => {
     const submitBtn = getByTestId("submit");
     fireEvent.click(submitBtn);
 
-    // expect(mockAjouterEtudiant).toHaveBeenCalled();
-    // expect(mockAjouterEtudiant).toHaveBeenCalledtimes(1);
+    // Expect(mockAjouterEtudiant).toHaveBeenCalled();
+    // Expect(mockAjouterEtudiant).toHaveBeenCalledtimes(1);
   });
 });

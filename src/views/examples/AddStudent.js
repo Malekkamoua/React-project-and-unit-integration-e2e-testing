@@ -29,18 +29,16 @@ const RegisterUser = () => {
   const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
-<<<<<<< Updated upstream
-  // const token = JSON.parse(localStorage.getItem("user")).token;
-=======
-  const token = JSON.parse(localStorage.getItem("user"));
-
->>>>>>> Stashed changes
+  const token = JSON.parse(localStorage.getItem("user")).token;
   const addStudentHandler = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");
       return null;
     }
-    const res = await addStudent({ firstName, lastName, age, email, password });
+    const res = await addStudent(
+      { firstName, lastName, age, email, password },
+      token
+    );
     setFirstName("");
     setLastName("");
     setEmail("");

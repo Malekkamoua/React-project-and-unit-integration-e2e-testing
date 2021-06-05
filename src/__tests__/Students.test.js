@@ -3,12 +3,15 @@ import { render, fireEvent } from "@testing-library/react";
 import Students from "../views/examples/Students";
 
 describe("test liste etudiants", () => {
-  test("throw error", () => {
-    Storage.prototype.setItem = jest.fn(() => {
-      console.log(" called "); // <-- was called
-      throw new Error("ERROR");
-    });
+  beforeAll(() => {
+    let user = {
+      token: "12555466222",
+      userInformation: {}
+    };
 
-    utility.setItem("123", "value");
+    localStorage.setItem("user", user.token);
+  });
+  test("should run without crashing", () => {
+    const { debug } = render(<Students />);
   });
 });

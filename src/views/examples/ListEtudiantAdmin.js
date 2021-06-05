@@ -23,13 +23,8 @@ const ListEtudiantAdmin = props => {
   const [modalBan, setModalBan] = useState(false);
   const [modalUnBan, setModalUnBan] = useState(false);
   const [idEtudiant, setIdEtudiant] = useState();
-<<<<<<< Updated upstream
   const [resetTable, setResetTable] = useState(false);
-  // console.log(props);
-=======
-  console.log(props);
-
->>>>>>> Stashed changes
+  // Console.log(props);
   useEffect(async () => {
     console.log("first reset and the scecond must be done");
     setLoading(true);
@@ -37,14 +32,7 @@ const ListEtudiantAdmin = props => {
     setLoading(false);
     console.log(students);
     setListStudent(students);
-<<<<<<< Updated upstream
   }, [resetTable]);
-=======
-  }, []);
-
-  console.log(idEtudiant);
-  console.log("hello from the page");
->>>>>>> Stashed changes
 
   return (
     <>
@@ -135,15 +123,9 @@ const ListEtudiantAdmin = props => {
                                 question="Voulez vous vraiment débloquer cet étudiant?"
                                 toggle={() => setModalUnBan(!modalUnBan)}
                                 apiFunction={async () => {
-<<<<<<< Updated upstream
-                                  //   console.log(idEtudiant);
-                                  //in case deleteEtudiant doesn't work we need to block set list
-                                  let data = await banEtudiant(
-=======
                                   //   Console.log(idEtudiant);
                                   //In case deleteEtudiant doesn't work we need to block set list
-                                  let data = await unBanEtudiant(
->>>>>>> Stashed changes
+                                  let data = await banEtudiant(
                                     token,
                                     { ...elem, isBanned: false },
                                     idEtudiant
