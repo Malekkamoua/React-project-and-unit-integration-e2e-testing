@@ -16,26 +16,38 @@ import reducers from "./reducers";
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 let connetedRole;
-if (localStorage.getItem("user"))
+let token = "";
+if (localStorage.getItem("user")) {
   connetedRole = JSON.parse(localStorage.getItem("user")).userInformation.role;
+  token = JSON.parse(localStorage.getItem("user")).token;
+  console.log(token);
+}
 
 // console.log(connecteduser.userInformation.role);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <BrowserRouter>
       <Switch>
-        <Route path="/admin" render={props => <AdminLayout {...props} />} />
-        <Route path="/auth" render={props => <AuthLayout {...props} />} />
-        <Route path="/student" render={props => <StudentLayout {...props} />} />
-        <Route path="/teacher" render={props => <TeacherLayout {...props} />} />
+        <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
+
+        <Route path='/admin' render={(props) => <AdminLayout {...props} />} />
+
+        <Route
+          path='/student'
+          render={(props) => <StudentLayout {...props} />}
+        />
+        <Route
+          path='/teacher'
+          render={(props) => <TeacherLayout {...props} />}
+        />
 
         {connetedRole === "student" && (
-          <Redirect from="*" to="/student/student-profile" />
+          <Redirect from='*' to='/student/student-profile' />
         )}
         {connetedRole === "teacher" && (
-          <Redirect from="/" to="/teacher/teacher-profile" />
+          <Redirect from='/' to='/teacher/teacher-profile' />
         )}
-        <Redirect from="*" to="/auth/login" />
+        <Redirect from='*' to='/auth/login' />
       </Switch>
     </BrowserRouter>
   </Provider>,

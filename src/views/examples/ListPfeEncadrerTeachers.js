@@ -54,7 +54,11 @@ const Teachers = (props) => {
   console.log(props);
   const [listPFE, setlistPFE] = useState([]);
   const [mount, setMount] = useState(false);
-  let { token, userInformation } = JSON.parse(localStorage.getItem("user"));
+  let token;
+  let userInformation;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+  userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   useEffect(async () => {
     const listPfe = await getAllPfeByTeacher(token, userInformation._id);
     setlistPFE(listPfe.listPfeByTeacher);

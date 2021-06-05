@@ -27,7 +27,9 @@ const RegisterTeacher = () => {
   const [password, setPassword] = useState("");
   const [cin, setCin] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
   const addTeacherHandler = async () => {
     if (password !== confirmPassword) {
       console.log("wrong password confirmation ");

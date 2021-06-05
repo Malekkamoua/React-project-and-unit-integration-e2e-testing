@@ -29,11 +29,7 @@ const { routesAdmin } = routes;
 const Admin = (props) => {
   const mainContent = React.useRef(null);
   const location = useLocation();
-  const user = localStorage.getItem("user");
 
-  const userObject = JSON.parse(user);
-
-  console.log(userObject);
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
     document.scrollingElement.scrollTop = 0;
@@ -83,7 +79,6 @@ const Admin = (props) => {
       <div className='main-content' ref={mainContent}>
         <AdminNavbar
           {...props}
-          userName={userObject.userInformation.email}
           brandText={getBrandText(props.location.pathname)}
         />
         <Switch>

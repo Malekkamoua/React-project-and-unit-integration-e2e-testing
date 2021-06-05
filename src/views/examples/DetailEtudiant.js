@@ -57,7 +57,11 @@ const DetailStudent = ({ studentprops }) => {
   const [nameProf, setnameProf] = useState(
     studentprops.tutor ? studentprops.tutor.name : ""
   );
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+
   const updateStudentHandler = async () => {
     const res = await updateEtudiant(
       token,

@@ -26,8 +26,11 @@ const RegisterUser = () => {
 
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
   const [messageData, setMessageData] = useState();
-
-  const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
+  let token;
+  let userInformation;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+  userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   const changePasswordHandler = async () => {
     if (newPassword === newConfirmPassword) {
       const res = await changePassword(

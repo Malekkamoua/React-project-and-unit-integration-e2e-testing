@@ -35,7 +35,11 @@ const ListYearAdmin = (props) => {
   const [loading, setLoading] = useState(false);
   const [listYear, setListYear] = useState([]);
   const [mount, setMount] = useState(false);
-  let token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+
   useEffect(async () => {
     try {
       setLoading(true);

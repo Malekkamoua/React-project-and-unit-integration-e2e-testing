@@ -24,7 +24,9 @@ const RegisterUser = () => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const token = JSON.parse(localStorage.getItem("user")).token;
+  let token;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
   const ajouterEtudiant = async () => {
     const res = await addYear({ title, startDate, endDate }, token);
     // setNom("");

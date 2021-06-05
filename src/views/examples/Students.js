@@ -49,7 +49,11 @@ const Students = () => {
   const [endDate, setEndDate] = useState("");
   const systemDate = new Date();
   const [messageData, setMessageData] = useState();
-  const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
+  let token;
+  let userInformation;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+  userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
 
   console.log(token);
   useEffect(async () => {

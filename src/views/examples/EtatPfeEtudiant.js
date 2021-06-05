@@ -11,7 +11,11 @@ import {
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
 const EtatPfeEtudiant = (props) => {
-  const { token, userInformation } = JSON.parse(localStorage.getItem("user"));
+  let token;
+  let userInformation;
+  if (localStorage.getItem("user"))
+    token = JSON.parse(localStorage.getItem("user")).token;
+  userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   const [currentPfe, setCurrentPfe] = useState("");
   const [loading, setloading] = useState(false);
   useEffect(async () => {
