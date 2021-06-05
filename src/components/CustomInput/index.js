@@ -20,7 +20,7 @@ const CustomInput = props => {
           </InputGroupAddon>
 
           <Input
-            aria-label={props.placeholder}
+            aria-label={props.aria_label}
             placeholder={props.placeholder}
             type={props.type ? props.type : "text"}
             value={props.value}

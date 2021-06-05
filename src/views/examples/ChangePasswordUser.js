@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form,
+  Form
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
@@ -47,63 +47,62 @@ const RegisterUser = () => {
   return (
     <>
       <Header />
-      <Container className='mt--10'>
+      <Container
+        className="mt--10"
+        style={{ position: "relative", top: "-100px" }}
+      >
         {/* Table */}
-        <Row lg='7' md='7' style={{ width: 500, marginLeft: 300 }}>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Change Password</h3>
-              </CardHeader>
-            </Card>
-          </div>
-        </Row>
-        {/* Dark table */}
-        <Col style={{ marginLeft: 300, width: 500 }} lg='7' md='7'>
-          <Card className='bg-secondary shadow border-0'>
-            <CardBody className='px-lg-5 py-lg-5'>
-              <Form role='form'>
+        <Col>
+          <Card className="bg-secondary shadow border-0">
+            <CardHeader className="border-0">
+              <h3 className="mb-0">Changer mot de passe</h3>
+            </CardHeader>
+            <CardBody className="px-lg-5 py-lg-5">
+              <Form role="form">
                 <CustomInput
                   placeholder={"old"}
-                  type='password'
+                  type="password"
                   value={oldPassword}
-                  onChange={(e) => setOldPassowrd(e.target.value)}
+                  onChange={e => setOldPassowrd(e.target.value)}
                 />
                 <CustomInput
                   placeholder={"new"}
-                  type='password'
+                  type="password"
                   value={newPassword}
                   valid={newPassword === newConfirmPassword ? true : false}
-                  feedback='password must be equal to confirm password'
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  feedback="Les mots de passes doivent être identiques"
+                  onChange={e => setNewPassword(e.target.value)}
                 />
 
                 <CustomInput
-                  placeholder={"confirm new pass"}
+                  placeholder={"Confirmer nouveau mot de passe"}
                   value={newConfirmPassword}
-                  onChange={(e) => setNewConfirmPassword(e.target.value)}
+                  onChange={e => setNewConfirmPassword(e.target.value)}
                 />
 
-                <div className='text-center'>
+                <div
+                  className="text-center"
+                  style={{ position: "relative", left: "43%" }}
+                >
                   {messageData && (
                     <p
                       style={{
                         color:
                           messageData.status == 404 || messageData.status == 401
                             ? "red"
-                            : "green",
+                            : "green"
                       }}
                     >
                       {messageData ? messageData.message : ""}
                     </p>
                   )}
                   <Button
-                    className='mt-4'
-                    color='primary'
-                    type='button'
+                    color="success"
+                    className="btn btn-success"
+                    href="#pablo"
                     onClick={async () => await changePasswordHandler()}
                   >
-                    Changer
+                    Confirmer
                   </Button>
                 </div>
               </Form>

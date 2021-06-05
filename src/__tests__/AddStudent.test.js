@@ -1,20 +1,24 @@
 import React from "react";
-import { render, fireEvent, getByLabelText } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import RegisterUser from "../views/examples/AddStudent";
-import CustomInput from "../components/CustomInput/index";
-import user from "@testing-library/user-event";
 
 describe("test adding a student", () => {
+  beforeAll(() => {
+    let user = {
+      token: "12555466222",
+      userInformation: {}
+    };
+
+    localStorage.setItem("user", user.token);
+  });
   test("should run without crashing", () => {
     const { debug } = render(<RegisterUser />);
   });
 
   test("should contain nom, prenom, age, email, mot de passe, confirmation mot de passe et un bouton", () => {
-    const { debug, getByLabelText, getByTestId, getByText } = render(
-      <RegisterUser />
-    );
+    const { debug, getByLabelText, getByTestId } = render(<RegisterUser />);
 
-    const nomEtudiant = getByLabelText(/Nom etudiant/i);
+    const nomEtudiant = getByLabelText("nomEtudiant");
     expect(nomEtudiant).toBeTruthy();
     expect(nomEtudiant).toHaveAttribute("type", "text");
 
@@ -30,7 +34,7 @@ describe("test adding a student", () => {
     expect(ageEtudiant).toBeTruthy();
     expect(ageEtudiant).toHaveAttribute("type", "number");
 
-    const passwordEtudiant = getByLabelText(/insert password/);
+    const passwordEtudiant = getByLabelText("password");
     expect(passwordEtudiant).toBeTruthy();
     expect(passwordEtudiant).toHaveAttribute("type", "password");
 
@@ -42,25 +46,19 @@ describe("test adding a student", () => {
   });
 
   test("should fire events", () => {
-    const { debug, getByLabelText, getByTestId, getByText } = render(
-      <RegisterUser />
-    );
-    const functionToken = jest.fn(() => {
-      token: "sksmfjsklfmj";
-    });
-    const userObject = functionToken();
-    const mockAjouterEtudiant = jest.fn();
+    // const mockAddStudentHandler = jest.fn();
+    const { debug, getByLabelText, getByTestId } = render(<RegisterUser />);
 
-    const nomEtudiant = getByLabelText(/Nom etudiant/i);
+    const nomEtudiant = getByLabelText("nomEtudiant");
     const valNomEtudiant = "Malek kamoua";
 
     fireEvent.change(nomEtudiant, { target: { value: valNomEtudiant } });
     expect(nomEtudiant.value).toContain(valNomEtudiant);
 
-    // const submitBtn = getByTestId("submit");
-    // fireEvent.click(submitBtn);
+    const submitBtn = getByTestId("submit");
+    fireEvent.click(submitBtn);
 
-    // expect(mockAjouterEtudiant).toHaveBeenCalled();
-    // expect(mockAjouterEtudiant).toHaveBeenCalledtimes(1);
+    // Expect(mockAjouterEtudiant).toHaveBeenCalled();
+    // Expect(mockAjouterEtudiant).toHaveBeenCalledtimes(1);
   });
 });

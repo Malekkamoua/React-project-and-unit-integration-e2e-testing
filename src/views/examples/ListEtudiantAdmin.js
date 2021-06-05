@@ -11,10 +11,11 @@ import {
   getAllEtudiant,
   deleteEtudiant,
   banEtudiant,
-  unBanEtudiant,
+  unBanEtudiant
 } from "../../services/studentService";
 import ClipLoader from "react-spinners/ClipLoader";
-const ListEtudiantAdmin = (props) => {
+
+const ListEtudiantAdmin = props => {
   const [listStudent, setListStudent] = useState([]);
   let token;
 
@@ -27,7 +28,7 @@ const ListEtudiantAdmin = (props) => {
   const [modalUnBan, setModalUnBan] = useState(false);
   const [idEtudiant, setIdEtudiant] = useState();
   const [resetTable, setResetTable] = useState(false);
-  // console.log(props);
+  // Console.log(props);
   useEffect(async () => {
     console.log("first reset and the scecond must be done");
     setLoading(true);
@@ -41,24 +42,28 @@ const ListEtudiantAdmin = (props) => {
     <>
       <Header />
       {/* Page content */}
-      <Container className='mt--7'>
+      <Container className="mt--7">
         {/* Table */}
         <Row>
-          <div className='col'>
-            <Card className='shadow'>
-              <CardHeader className='border-0'>
-                <h3 className='mb-0'>Liste des Etudiants</h3>
+          <div className="col">
+            <Card className="shadow">
+              <CardHeader className="border-0">
+                <h3 className="mb-0">Liste des Etudiants</h3>
               </CardHeader>
-              <Table className='align-items-center table-flush' responsive>
-                <thead className='thead-light'>
+              <Table
+                data-testid="table"
+                className="align-items-center table-flush"
+                responsive
+              >
+                <thead className="thead-light">
                   <tr>
-                    <th scope='col'>Nom</th>
-                    <th scope='col'>Prenom</th>
-                    <th scope='col'>Email</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prenom</th>
+                    <th scope="col">Email</th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th colSpan='3'>Actions</th>
+                    <th colSpan="3">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -68,7 +73,7 @@ const ListEtudiantAdmin = (props) => {
                       <ClipLoader loading={loading} />
                     </div>
                   ) : (
-                    listStudent.map((elem) => {
+                    listStudent.map(elem => {
                       return (
                         <tr>
                           <td>{elem.name ? elem.name.split(" ")[1] : ""}</td>
@@ -80,8 +85,8 @@ const ListEtudiantAdmin = (props) => {
 
                           <td style={{ display: "flex" }}>
                             <Link
-                              to='detailEtudiant'
-                              className='btn btn-primary btn-sm'
+                              to="detailEtudiant"
+                              className="btn btn-primary btn-sm"
                               onClick={() => props.selectStudent(elem)}
                             >
                               Details
@@ -89,15 +94,15 @@ const ListEtudiantAdmin = (props) => {
 
                             <CustomModal
                               setEtudiant={() => setIdEtudiant(elem._id)}
-                              buttonLabel='Supprimer'
+                              buttonLabel="Supprimer"
                               modal={modal}
-                              question='Voulez-vous vraiment supprimer cet étudiant'
+                              question="Voulez-vous vraiment supprimer cet étudiant"
                               toggle={() => setModal(!modal)}
                               apiFunction={() => {
                                 deleteEtudiant(token, idEtudiant);
                                 setListStudent(
                                   listStudent.filter(
-                                    (elem) => elem._id !== idEtudiant
+                                    elem => elem._id !== idEtudiant
                                   )
                                 );
                               }}
@@ -105,9 +110,9 @@ const ListEtudiantAdmin = (props) => {
                             {elem.isBanned === false ? (
                               <CustomModal
                                 setEtudiant={() => setIdEtudiant(elem._id)}
-                                buttonLabel='Bloquer'
+                                buttonLabel="Bloquer"
                                 modal={modalBan}
-                                question='Voulez vous vraiment bloquer cet étudiant?'
+                                question="Voulez vous vraiment bloquer cet étudiant?"
                                 toggle={() => setModalBan(!modalBan)}
                                 apiFunction={async () => {
                                   await banEtudiant(
@@ -121,13 +126,13 @@ const ListEtudiantAdmin = (props) => {
                             ) : (
                               <CustomModal
                                 setEtudiant={() => setIdEtudiant(elem._id)}
-                                buttonLabel='Débloquer'
+                                buttonLabel="Débloquer"
                                 modal={modalUnBan}
-                                question='Voulez vous vraiment débloquer cet étudiant?'
+                                question="Voulez vous vraiment débloquer cet étudiant?"
                                 toggle={() => setModalUnBan(!modalUnBan)}
                                 apiFunction={async () => {
-                                  //   console.log(idEtudiant);
-                                  //in case deleteEtudiant doesn't work we need to block set list
+                                  //   Console.log(idEtudiant);
+                                  //In case deleteEtudiant doesn't work we need to block set list
                                   let data = await banEtudiant(
                                     token,
                                     { ...elem, isBanned: false },

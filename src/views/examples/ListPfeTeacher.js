@@ -110,6 +110,13 @@ const ListPfeTeacher = (props) => {
                           <td></td>
                           {userInformation.role === "teacher" ? (
                             <td>
+                              <Link
+                                to='detailpfe'
+                                className='btn btn-primary btn-sm'
+                                onClick={() => props.selectPfe(elem)}
+                              >
+                                Details
+                              </Link>
                               {elem.status ? (
                                 <Button
                                   className='btn btn-danger'
@@ -125,7 +132,7 @@ const ListPfeTeacher = (props) => {
                                 </Button>
                               ) : (
                                 <Button
-                                  className='btn btn-success'
+                                  className='btn btn-success btn-sm'
                                   onClick={() =>
                                     acceptPfeHandler(
                                       elem._id,
@@ -141,15 +148,6 @@ const ListPfeTeacher = (props) => {
                           ) : (
                             ""
                           )}
-                          <td>
-                            <Link
-                              to='detailpfe'
-                              className='btn btn-primary btn-sm'
-                              onClick={() => props.selectPfe(elem)}
-                            >
-                              Details
-                            </Link>
-                          </td>
                         </tr>
                       );
                     })
