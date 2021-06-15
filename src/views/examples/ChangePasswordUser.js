@@ -82,6 +82,7 @@ const RegisterUser = () => {
                 <CustomInput
                   placeholder={"Confirmer nouveau mot de passe"}
                   value={newConfirmPassword}
+                  type='password'
                   onChange={(e) => setNewConfirmPassword(e.target.value)}
                 />
 

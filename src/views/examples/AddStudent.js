@@ -20,6 +20,7 @@ import {
 import CustomInput from "components/CustomInput";
 import Header from "components/Headers/Header.js";
 import { addStudent } from "../../services/authService";
+import { validateEmail } from "../../utils/validateEmail";
 
 const RegisterUser = () => {
   const [firstName, setFirstName] = useState("");
@@ -28,15 +29,31 @@ const RegisterUser = () => {
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [msgConfirmPassword, setMsgConfirmPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const token = JSON.parse(localStorage.getItem("user")).token;
 
   const addStudentHandler = async () => {
     if (password !== confirmPassword) {
-      console.log("wrong password confirmation ");
+      setMessage({ msg: "wrong password confirmation", type: "error" });
       return null;
     }
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !age ||
+      !confirmPassword
+    ) {
+      setMessage({ msg: "vous devez remplir tous les champs", type: "error" });
+      return null;
+    }
+    if (validateEmail(email) === false) {
+      setMessage({ msg: "verifier votre email", type: "error" });
+      return null;
+    }
+
     setLoading(true);
     const res = await addStudent(
       { firstName, lastName, age, email, password },
@@ -49,6 +66,7 @@ const RegisterUser = () => {
     setPassword("");
     setConfirmPassword("");
     setAge("");
+    setMessage({ msg: "Etudiant ajouté", type: "success" });
     setLoading(false);
     console.log(res);
   };
@@ -110,7 +128,13 @@ const RegisterUser = () => {
                         value={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
                       />
-
+                      <p
+                        style={{
+                          color: message.type === "error" ? "red" : "green",
+                        }}
+                      >
+                        {message ? message.msg : ""}
+                      </p>
                       <div className='text-center'>
                         <Button
                           disabled={loading}

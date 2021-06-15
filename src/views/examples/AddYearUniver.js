@@ -26,12 +26,20 @@ const RegisterUser = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [endDate, setEndDate] = useState();
+
   let token;
   if (localStorage.getItem("user"))
     token = JSON.parse(localStorage.getItem("user")).token;
   const ajouterEtudiant = async () => {
     if (new Date(startDate).getTime() >= new Date(endDate).getTime()) {
-      setMessage("La date début doit être inferieur à la date fin");
+      setMessage({
+        msg: "La date début doit être inferieur à la date fin",
+        type: "error",
+      });
+      return null;
+    }
+    if (!title || !startDate || !endDate) {
+      setMessage({ msg: "vous devez remplir tous les champs", type: "error" });
       return null;
     }
 
@@ -41,6 +49,10 @@ const RegisterUser = () => {
     setTitle("");
     setStartDate("");
     setEndDate("");
+    setMessage({
+      msg: "Année universitaire ajoutée",
+      type: "success",
+    });
     setLoading(false);
 
     console.log(res);
@@ -80,7 +92,13 @@ const RegisterUser = () => {
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
                       />
-                      <p style={{ color: "red" }}>{message}</p>
+                      <p
+                        style={{
+                          color: message.type === "error" ? "red" : "green",
+                        }}
+                      >
+                        {message ? message.msg : ""}
+                      </p>
                       <div className='text-center'>
                         <Button
                           disabled={loading}

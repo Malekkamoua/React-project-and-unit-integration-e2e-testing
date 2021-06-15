@@ -153,7 +153,7 @@ const ListPfeTeacher = (props) => {
                               </Link>
                               {elem.status ? (
                                 <Button
-                                  className='btn btn-danger'
+                                  className='btn btn-danger btn-sm'
                                   onClick={async () => {
                                     await undoPfeHandler(
                                       elem._id,
