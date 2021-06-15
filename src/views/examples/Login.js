@@ -97,6 +97,7 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    aria-label="email"
                     placeholder='Email'
                     type='email'
                     autoComplete='new-email'
@@ -112,6 +113,7 @@ const Login = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
+                    aria-label="password"
                     placeholder='Password'
                     type='password'
                     autoComplete='new-password'
@@ -124,6 +126,7 @@ const Login = () => {
                   <ClipLoader loading={loading} />
                 ) : (
                   <Button
+                    data-testid='submit'
                     className='my-4'
                     color='primary'
                     type='button'

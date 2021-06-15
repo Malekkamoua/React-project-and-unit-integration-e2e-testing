@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 const instance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://localhost:3000",
 
   timeout: 5000,
   headers: { "X-Custom-Header": "foobar" },
