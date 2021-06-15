@@ -1,8 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { waitFor } from "@testing-library/dom"
-import { createMemoryHistory } from "history"
-import { Router } from "react-router-dom";
 
 import Login from "../../views/examples/Login";
 
@@ -11,22 +9,18 @@ test("successful login", async () => {
       .spyOn(window, "fetch")
       .mockResolvedValue({ json: () => ({ token: "123" }) });
   
-      const history = createMemoryHistory();
-
-    const { getByLabelText, getByTestId } = render(<Router history={history}>
-      <Login />
-    </Router>);
+    const { getByLabelText, getByTestId } = render(<Login />);
 
     const emailField = getByLabelText("email");
     const passwordField = getByLabelText("password");
     const button = getByTestId("submit");
   
     // fill out and submit form
-    fireEvent.change(emailField, { target: { value: "malekkamoua50@gmail.com" } });
-    fireEvent.change(passwordField, { target: { value: "etudiant" } });
+    fireEvent.change(emailField, { target: { value: "student@gmail.com" } });
+    fireEvent.change(passwordField, { target: { value: "student" } });
     fireEvent.click(button);
   
-    await waitFor(() => { 
+    await waitFor(() => {
       // it hides form elements
       expect(button).not.toBeInTheDocument();
 
