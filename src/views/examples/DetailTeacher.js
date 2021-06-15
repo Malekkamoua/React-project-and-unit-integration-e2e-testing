@@ -190,9 +190,8 @@ const DetailTeacher = ({ teacherprops }) => {
                           </label>
                           <Input
                             className='form-control-alternative'
-                            defaultValue='Lucky'
                             id='input-first-name'
-                            placeholder='First name'
+                            placeholder='Homme ou Femme'
                             type='text'
                             value={teacher ? teacher.sexe : ""}
                           />
@@ -225,7 +224,7 @@ const DetailTeacher = ({ teacherprops }) => {
                       <Card style={{ width: "30rem" }}>
                         <CardBody>
                           <CardTitle>titre:{e.title} </CardTitle>
-                          <CardText>contenu:{e.contenu} </CardText>
+                          <CardText>contenu:{e.content} </CardText>
                           <CardText>
                             Nom et prenom d'etudiant:
                             {e.student ? e.student.name : ""}{" "}
