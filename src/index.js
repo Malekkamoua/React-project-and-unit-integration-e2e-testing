@@ -1,6 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
 import "assets/plugins/nucleo/css/nucleo.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -26,7 +31,7 @@ if (localStorage.getItem("user")) {
 // console.log(connecteduser.userInformation.role);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <BrowserRouter>
+    <Router>
       <Switch>
         <Route path='/auth' render={(props) => <AuthLayout {...props} />} />
 
@@ -49,7 +54,7 @@ ReactDOM.render(
         )}
         <Redirect from='*' to='/auth/login' />
       </Switch>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

@@ -5,17 +5,17 @@ import {
   InputGroupText,
   InputGroupAddon,
   Input,
-  FormFeedback
+  FormFeedback,
 } from "reactstrap";
 
-const CustomInput = props => {
+const CustomInput = (props) => {
   return (
     <>
       <FormGroup>
-        <InputGroup className="input-group-alternative mb-3">
-          <InputGroupAddon addonType="append">
+        <InputGroup className='input-group-alternative mb-3'>
+          <InputGroupAddon addonType='append'>
             <InputGroupText>
-              <i className="ni ni-hat-3" />
+              <i className='ni ni-hat-3' />
             </InputGroupText>
           </InputGroupAddon>
 

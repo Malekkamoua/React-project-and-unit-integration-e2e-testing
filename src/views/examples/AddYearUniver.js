@@ -24,12 +24,19 @@ const RegisterUser = () => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState();
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const [endDate, setEndDate] = useState();
   let token;
   if (localStorage.getItem("user"))
     token = JSON.parse(localStorage.getItem("user")).token;
   const ajouterEtudiant = async () => {
+    if (new Date(startDate).getTime() >= new Date(endDate).getTime()) {
+      setMessage("La date début doit être inferieur à la date fin");
+      return null;
+    }
+
     setLoading(true);
+
     const res = await addYear({ title, startDate, endDate }, token);
     setTitle("");
     setStartDate("");
@@ -37,10 +44,9 @@ const RegisterUser = () => {
     setLoading(false);
 
     console.log(res);
-    console.log(startDate);
-    console.log(endDate);
   };
-
+  console.log(startDate);
+  console.log(endDate);
   return (
     <>
       <Header />
@@ -74,7 +80,7 @@ const RegisterUser = () => {
                         value={endDate}
                         onChange={(e) => setEndDate(e.target.value)}
                       />
-
+                      <p style={{ color: "red" }}>{message}</p>
                       <div className='text-center'>
                         <Button
                           disabled={loading}
