@@ -14,7 +14,7 @@ import {
   InputGroupAddon,
   InputGroupText,
   Button,
-  Form
+  Form,
 } from "reactstrap";
 
 import CustomInput from "components/CustomInput";
@@ -23,7 +23,7 @@ import { changePassword } from "../../services/authService";
 const RegisterUser = () => {
   const [oldPassword, setOldPassowrd] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const [newConfirmPassword, setNewConfirmPassword] = useState("");
   const [messageData, setMessageData] = useState();
   let token;
@@ -33,6 +33,7 @@ const RegisterUser = () => {
   userInformation = JSON.parse(localStorage.getItem("user")).userInformation;
   const changePasswordHandler = async () => {
     if (newPassword === newConfirmPassword) {
+      setLoading(true);
       const res = await changePassword(
         token,
         { oldPassword, newPassword },
@@ -40,6 +41,10 @@ const RegisterUser = () => {
         userInformation._id
       );
       setMessageData(res.data);
+      setOldPassowrd("");
+      setNewPassword("");
+      setNewConfirmPassword("");
+      setLoading(false);
     } else {
       console.log("those password are not matching :P");
     }
@@ -48,40 +53,40 @@ const RegisterUser = () => {
     <>
       <Header />
       <Container
-        className="mt--10"
+        className='mt--10'
         style={{ position: "relative", top: "-100px" }}
       >
         {/* Table */}
         <Col>
-          <Card className="bg-secondary shadow border-0">
-            <CardHeader className="border-0">
-              <h3 className="mb-0">Changer mot de passe</h3>
+          <Card className='bg-secondary shadow border-0'>
+            <CardHeader className='border-0'>
+              <h3 className='mb-0'>Changer mot de passe</h3>
             </CardHeader>
-            <CardBody className="px-lg-5 py-lg-5">
-              <Form role="form">
+            <CardBody className='px-lg-5 py-lg-5'>
+              <Form role='form'>
                 <CustomInput
                   placeholder={"old"}
-                  type="password"
+                  type='password'
                   value={oldPassword}
-                  onChange={e => setOldPassowrd(e.target.value)}
+                  onChange={(e) => setOldPassowrd(e.target.value)}
                 />
                 <CustomInput
                   placeholder={"new"}
-                  type="password"
+                  type='password'
                   value={newPassword}
                   valid={newPassword === newConfirmPassword ? true : false}
-                  feedback="Les mots de passes doivent être identiques"
-                  onChange={e => setNewPassword(e.target.value)}
+                  feedback='Les mots de passes doivent être identiques'
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
 
                 <CustomInput
                   placeholder={"Confirmer nouveau mot de passe"}
                   value={newConfirmPassword}
-                  onChange={e => setNewConfirmPassword(e.target.value)}
+                  onChange={(e) => setNewConfirmPassword(e.target.value)}
                 />
 
                 <div
-                  className="text-center"
+                  className='text-center'
                   style={{ position: "relative", left: "43%" }}
                 >
                   {messageData && (
@@ -90,16 +95,17 @@ const RegisterUser = () => {
                         color:
                           messageData.status == 404 || messageData.status == 401
                             ? "red"
-                            : "green"
+                            : "green",
                       }}
                     >
                       {messageData ? messageData.message : ""}
                     </p>
                   )}
                   <Button
-                    color="success"
-                    className="btn btn-success"
-                    href="#pablo"
+                    color='success'
+                    className='btn btn-success'
+                    href='#pablo'
+                    disabled={loading}
                     onClick={async () => await changePasswordHandler()}
                   >
                     Confirmer

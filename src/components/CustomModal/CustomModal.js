@@ -7,14 +7,14 @@ const CustomModal = ({
   buttonLabel,
   question,
   apiFunction,
-  setEtudiant
+  setEtudiant,
 }) => {
   return (
     <div>
       <Button
-        style={{ right: "2%" }}
-        className="btn btn-danger btn-sm"
-        color="danger"
+        style={{ right: "2%", marginRight: 7 }}
+        className='btn btn-danger btn-sm'
+        color='danger'
         onClick={() => {
           setEtudiant();
           toggle();
@@ -27,7 +27,7 @@ const CustomModal = ({
         <ModalBody>{question}</ModalBody>
         <ModalFooter>
           <Button
-            color="primary"
+            color='primary'
             onClick={() => {
               apiFunction();
               toggle();
@@ -35,7 +35,7 @@ const CustomModal = ({
           >
             Confimer
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
+          <Button color='secondary' onClick={toggle}>
             x
           </Button>
         </ModalFooter>

@@ -25,6 +25,7 @@ const RegisterTeacher = () => {
   const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [cin, setCin] = useState();
   const [confirmPassword, setConfirmPassword] = useState("");
   let token;
@@ -35,6 +36,7 @@ const RegisterTeacher = () => {
       console.log("wrong password confirmation ");
       return null;
     }
+    setLoading(true);
     const res = await addTeacher(token, {
       lastName,
       firstName,
@@ -47,7 +49,7 @@ const RegisterTeacher = () => {
     setEmail("");
     setPassword("");
     setConfirmPassword("");
-    setAge("");
+    setLoading(false);
     console.log(res);
   };
   return (
@@ -105,6 +107,7 @@ const RegisterTeacher = () => {
 
                       <div className='text-center'>
                         <Button
+                          disabled={loading}
                           className='mt-4'
                           color='primary'
                           type='button'

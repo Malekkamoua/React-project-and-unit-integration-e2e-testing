@@ -23,19 +23,22 @@ import { addYear } from "../../services/univ_yearService";
 const RegisterUser = () => {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState();
+  const [loading, setLoading] = useState(false);
   const [endDate, setEndDate] = useState();
   let token;
   if (localStorage.getItem("user"))
     token = JSON.parse(localStorage.getItem("user")).token;
   const ajouterEtudiant = async () => {
+    setLoading(true);
     const res = await addYear({ title, startDate, endDate }, token);
-    // setNom("");
-    // setPrenom("");
-    // setEmail("");
-    // setPassword("");
-    // setConfirmPassword("");
-    // setAge("");
+    setTitle("");
+    setStartDate("");
+    setEndDate("");
+    setLoading(false);
+
     console.log(res);
+    console.log(startDate);
+    console.log(endDate);
   };
 
   return (
@@ -74,6 +77,7 @@ const RegisterUser = () => {
 
                       <div className='text-center'>
                         <Button
+                          disabled={loading}
                           className='mt-4'
                           color='primary'
                           type='button'

@@ -70,17 +70,15 @@ const AdminNavbar = (props) => {
                 <DropdownItem className='noti-title' header tag='div'>
                   <h6 className='text-overflow m-0'>Welcome!</h6>
                 </DropdownItem>
-                <DropdownItem to='/admin/user-profile' tag={Link}>
-                  <i className='ni ni-single-02' />
-                  <span>My profile</span>
-                </DropdownItem>
 
                 <DropdownItem divider />
+
                 <DropdownItem
                   href='http://localhost:3000/auth/login'
                   onClick={() => sessionStorage.clear()}
                 >
                   <i className='ni ni-user-run' />
+                  <Link to='/auth/login'></Link>
                   <span>Logout</span>
                 </DropdownItem>
               </DropdownMenu>
