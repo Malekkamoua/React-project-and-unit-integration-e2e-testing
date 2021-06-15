@@ -32,7 +32,7 @@ import {
   CardBody,
   InputGroupAddon,
   InputGroupText,
-  Input,
+  Input
 } from "reactstrap";
 import api from "../../api";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -94,8 +94,8 @@ const Students = () => {
       ...JSON.parse(localStorage.getItem("user")),
       userInformation: {
         ...JSON.parse(localStorage.getItem("user")).userInformation,
-        pfe: res._id,
-      },
+        pfe: res._id
+      }
     });
     localStorage.removeItem("user");
     localStorage.setItem("user", resetUser);
@@ -109,14 +109,14 @@ const Students = () => {
       {
         title: nomPfe,
         content: contentPfe,
-        student: userInformation._id,
+        student: userInformation._id
       },
       currentPfe._id
     );
     setMessageData(
       res.status == 200
-        ? { message: "Your pfe has been updated", color: "green" }
-        : { message: "Something went wrong", color: "red" }
+        ? { message: "Votre PFE est mis à jour avec succés", color: "green" }
+        : { message: "Erreur, reessayer svp.", color: "red" }
     );
   };
 
@@ -129,28 +129,28 @@ const Students = () => {
           loading ? (
             <ClipLoader loading={loading} />
           ) : (
-            <Container className='mt--7' fluid>
-              <Col lg='13' md='13'>
-                <Card className='bg-secondary shadow border-0'>
-                  <CardHeader className='border-0'>
-                    <h3 className='mb-0'>Détails de mon pfe</h3>
+            <Container className="mt--7" fluid>
+              <Col lg="13" md="13">
+                <Card className="bg-secondary shadow border-0">
+                  <CardHeader className="border-0">
+                    <h3 className="mb-0">Détails de mon pfe</h3>
                   </CardHeader>
-                  <CardBody className='px-lg-5 py-lg-5'>
-                    <Form role='form'>
+                  <CardBody className="px-lg-5 py-lg-5">
+                    <Form role="form">
                       <FormGroup>
                         Titre du projet
                         <br></br> <br></br>
-                        <InputGroup className='input-group-alternative mb-3'>
-                          <InputGroupAddon addonType='prepend'>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className='ni ni-hat-3' />
+                              <i className="ni ni-hat-3" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder='Titre du projet'
-                            type='text'
+                            placeholder="Titre du projet"
+                            type="text"
                             value={nomPfe}
-                            onChange={(e) => {
+                            onChange={e => {
                               setnomPfe(e.target.value);
                             }}
                           />
@@ -159,18 +159,18 @@ const Students = () => {
                       <FormGroup>
                         Contenu
                         <br></br> <br></br>
-                        <InputGroup className='input-group-alternative mb-3'>
-                          <InputGroupAddon addonType='prepend'>
+                        <InputGroup className="input-group-alternative mb-3">
+                          <InputGroupAddon addonType="prepend">
                             <InputGroupText>
-                              <i className='ni ni-email-83' />
+                              <i className="ni ni-email-83" />
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            placeholder='Contenu'
-                            type='textarea'
-                            rows='25'
+                            placeholder="Contenu"
+                            type="textarea"
+                            rows="25"
                             value={contentPfe}
-                            onChange={(e) => {
+                            onChange={e => {
                               setcontentPfe(e.target.value);
                             }}
                           />
@@ -181,26 +181,26 @@ const Students = () => {
                           {messageData.message}
                         </p>
                       )}
-                      <div className='text-center'>
+                      <div className="text-center">
                         {!currentPfe && (
                           <Button
                             style={{ position: "relative", left: "42%" }}
-                            className='mt-4'
-                            color='primary'
-                            type='button'
+                            className="mt-4"
+                            color="primary"
+                            type="button"
                             onClick={async () => await addPfeHandler()}
                           >
                             Ajouter PFE
                           </Button>
                         )}
                       </div>
-                      <div className='text-center'>
+                      <div className="text-center">
                         {currentPfe && (
                           <Button
                             style={{ position: "relative", left: "42%" }}
-                            className='mt-4'
-                            color='primary'
-                            type='button'
+                            className="mt-4"
+                            color="primary"
+                            type="button"
                             onClick={async () => await updatePfeHandler()}
                           >
                             Modifier PFE

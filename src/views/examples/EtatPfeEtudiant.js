@@ -7,10 +7,10 @@ import {
   CardTitle,
   CardBody,
   Button,
-  CardText,
+  CardText
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
-const EtatPfeEtudiant = (props) => {
+const EtatPfeEtudiant = props => {
   let token;
   let userInformation;
   if (localStorage.getItem("user"))
@@ -27,52 +27,41 @@ const EtatPfeEtudiant = (props) => {
   return (
     <>
       <Header />
-      {loading ? (
-        <Container className='mt--15' fluid>
-          <Card
-            style={{
-              width: "30rem",
-              marginLeft: 350,
-              marginTop: 200,
-              backgroundColor: currentPfe[0]
+      <Container
+        className="mt--15"
+        fluid
+        style={{ position: "relative", top: "-100px" }}
+      >
+        <Card className="shadow">
+          <CardBody>
+            <CardTitle>
+              <b> Titre </b>: {currentPfe[0] ? currentPfe[0].title : ""}
+            </CardTitle>
+            <CardText>
+              <b>Contenu</b>: {currentPfe[0] ? currentPfe[0].content : ""}{" "}
+            </CardText>
+            <CardText>
+              <b>Etat</b>:{" "}
+              {currentPfe[0]
                 ? currentPfe[0].status
-                  ? "lightgreen"
-                  : "lightyellow"
-                : "grey",
-            }}
-          >
-            <CardBody>
-              <CardTitle>
-                titre:{currentPfe[0] ? currentPfe[0].title : ""}
-              </CardTitle>
+                  ? "est pris"
+                  : "en attente"
+                : "NaN"}
+            </CardText>
+            {currentPfe[0].tutor ? (
               <CardText>
-                contenu:{currentPfe[0] ? currentPfe[0].content : ""}{" "}
+                <b>Mon encadrant</b>:
+                {currentPfe[0].tutor ? currentPfe[0].tutor.name : ""}{" "}
               </CardText>
-              <CardText>
-                état:{" "}
-                {currentPfe[0]
-                  ? currentPfe[0].status
-                    ? "est pris"
-                    : "en attente"
-                  : "NaN"}
-              </CardText>
-              {currentPfe[0].tutor ? (
-                <CardText>
-                  accepter par:
-                  {currentPfe[0].tutor ? currentPfe[0].tutor.name : ""}{" "}
-                </CardText>
-              ) : (
-                ""
-              )}
-              <CardText>
-                Année:{currentPfe[0] ? currentPfe[0].year.title : ""}
-              </CardText>
-            </CardBody>
-          </Card>
-        </Container>
-      ) : (
-        ""
-      )}
+            ) : (
+              ""
+            )}
+            <CardText>
+              <b>Année</b>: {currentPfe[0] ? currentPfe[0].year.title : ""}
+            </CardText>
+          </CardBody>
+        </Card>
+      </Container>
     </>
   );
 };
