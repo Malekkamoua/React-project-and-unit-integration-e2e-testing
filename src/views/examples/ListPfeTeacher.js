@@ -39,7 +39,7 @@ const ListPfeTeacher = (props) => {
   console.log(props);
   const [loading, setLoading] = useState(false);
   const [listPFE, setlistPFE] = useState([]);
-  const [mount, setMount] = useState();
+  const [mount, setMount] = useState(false);
   const [show, setShow] = useState(false);
   let token;
   let userInformation;
@@ -64,12 +64,12 @@ const ListPfeTeacher = (props) => {
   const acceptPfeHandler = (idPfe, id_tutor, token) => {
     acceptPfe(idPfe, id_tutor, token);
 
-    setMount(true);
+    setMount(!mount);
   };
   const undoPfeHandler = (idPfe, id_tutor, token) => {
     undoPfe(idPfe, id_tutor, token);
 
-    setMount(true);
+    setMount(!mount);
   };
   const showAll = () => {
     setShow(!show);
