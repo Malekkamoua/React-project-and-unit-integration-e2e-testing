@@ -63,11 +63,13 @@ const ListPfeTeacher = (props) => {
   // const goToDetail = (pfe) => {};
   const acceptPfeHandler = (idPfe, id_tutor, token) => {
     acceptPfe(idPfe, id_tutor, token);
-    setMount(!mount);
+
+    setMount(true);
   };
   const undoPfeHandler = (idPfe, id_tutor, token) => {
     undoPfe(idPfe, id_tutor, token);
-    setMount(!mount);
+
+    setMount(true);
   };
   const showAll = () => {
     setShow(!show);

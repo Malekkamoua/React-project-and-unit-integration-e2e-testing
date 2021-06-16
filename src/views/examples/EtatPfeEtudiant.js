@@ -7,10 +7,10 @@ import {
   CardTitle,
   CardBody,
   Button,
-  CardText
+  CardText,
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
-const EtatPfeEtudiant = props => {
+const EtatPfeEtudiant = (props) => {
   let token;
   let userInformation;
   if (localStorage.getItem("user"))
@@ -28,11 +28,11 @@ const EtatPfeEtudiant = props => {
     <>
       <Header />
       <Container
-        className="mt--15"
+        className='mt--15'
         fluid
         style={{ position: "relative", top: "-100px" }}
       >
-        <Card className="shadow">
+        <Card className='shadow'>
           <CardBody>
             <CardTitle>
               <b> Titre </b>: {currentPfe[0] ? currentPfe[0].title : ""}
@@ -48,7 +48,7 @@ const EtatPfeEtudiant = props => {
                   : "en attente"
                 : "NaN"}
             </CardText>
-            {currentPfe[0].tutor ? (
+            {currentPfe[0] ? (
               <CardText>
                 <b>Mon encadrant</b>:
                 {currentPfe[0].tutor ? currentPfe[0].tutor.name : ""}{" "}
