@@ -48,31 +48,6 @@ const DetailPfe = props => {
             </Card>
             <br></br>
             <br></br>
-            {userInformation.role === "teacher" ? (
-              !props.activePfe.status ? (
-                <Button
-                  style={{ position: "relative", left: "92%" }}
-                  color="success"
-                  className="btn btn-success btn-sm"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  Accepter
-                </Button>
-              ) : (
-                <Button
-                  style={{ position: "relative", left: "92%" }}
-                  color="danger"
-                  className="btn btn-success btn-sm"
-                  href="#pablo"
-                  onClick={e => e.preventDefault()}
-                >
-                  Annuler
-                </Button>
-              )
-            ) : (
-              ""
-            )}
           </CardBody>
         </Card>
       </Container>
